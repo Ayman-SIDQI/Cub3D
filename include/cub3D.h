@@ -6,7 +6,7 @@
 /*   By: asidqi <asidqi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 16:06:07 by asidqi            #+#    #+#             */
-/*   Updated: 2023/08/23 20:46:32 by asidqi           ###   ########.fr       */
+/*   Updated: 2023/08/24 11:23:14 by asidqi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ typedef struct s_pov	t_pov;
 void	checkname(char *filename);
 bool	parse(char *fmap, t_pov *all);
 void	exit_perror(void);
-
+bool	xelem(t_pov *all);
+bool	xmap(t_pov *all);
+bool	nasa(char *line);
 
 #endif

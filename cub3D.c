@@ -6,7 +6,7 @@
 /*   By: asidqi <asidqi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 16:06:01 by asidqi            #+#    #+#             */
-/*   Updated: 2023/08/23 21:57:24 by asidqi           ###   ########.fr       */
+/*   Updated: 2023/08/23 23:01:46 by asidqi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,14 @@ int	main(int ac, char **av)
 	printf("	[%s]", all.elem[3]);
 	printf("	[%s]", all.elem[4]);
 	printf("	[%s]\n", all.elem[5]);
+	int i = 0;
+	t_list *tmp;
+	tmp = all.map_2d;
+	while (tmp)
+	{
+		printf("%s\n", tmp->content);
+		tmp = tmp->next;
+	}
 	// all = initializer(&all);
 	// mlx_image_t* img = mlx_new_image(mlx, 256, 256);
 	// mlx_image_to_window(mlx, img, 0, 0);

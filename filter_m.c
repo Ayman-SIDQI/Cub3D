@@ -1,26 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   filter_m.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: asidqi <asidqi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/28 15:01:36 by asidqi            #+#    #+#             */
-/*   Updated: 2023/08/23 22:48:27 by asidqi           ###   ########.fr       */
+/*   Created: 2023/08/24 11:23:46 by asidqi            #+#    #+#             */
+/*   Updated: 2023/08/24 11:56:09 by asidqi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "cub3D.h"
 
-size_t	ft_strlen(char *s)
+void	dup_check(char *cnt)
 {
-	size_t	i;
+	int	i;
 
-	i = 0;
-	//RECENTLY ADDED
-	if (!s)
-		return (0);
-	while (s[i] != '\0')
-		i++;
-	return (i);
+	i = -1;
+	while (cnt[++i])
+	{
+		
+	}
+}
+// void	coors(char *cnt)
+// {}
+
+bool	filter_m(t_pov *all)
+{
+	t_pov	*tmp;
+
+	tmp = all;
+	while (tmp)
+	{
+		ft_lstiter(tmp, &dup_check);
+		// ft_lstiter(tmp, &coors);
+	}
 }
