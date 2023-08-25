@@ -1,7 +1,7 @@
 NAME	= cub3D
 
 CC		:= cc
-FLAGS	:= -Wunreachable-code -Ofast #-fsanitize=address -g
+FLAGS	:= -Wunreachable-code -Ofast -fsanitize=address -g
 LIBMLX	:= /Users/$(USER)/MLX42
 LIBS	:= $(LIBMLX)/build/libmlx42.a -ldl -lglfw -pthread -lm
 

@@ -6,7 +6,7 @@
 /*   By: asidqi <asidqi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 22:25:27 by asidqi            #+#    #+#             */
-/*   Updated: 2023/08/23 12:53:39 by asidqi           ###   ########.fr       */
+/*   Updated: 2023/08/24 16:25:28 by asidqi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,3 @@ char	*ft_strdup(char *s1)
 	}
 	return (new);
 }
-/*
-#include<stdio.h>
-int	main (void)
-{
-char	*str1 = "AYMAN.";
-char	*str2 = "AYMAN.";
-printf("%s\n%s\n",ft_strdup("AAAAAAAAAAAAAAAAA"), str1);
-printf("%s\n%s\n",strdup("AAAAAAAAAAAAAAAAA"), str2);
-return (0);
-}
-*/

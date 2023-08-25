@@ -1,28 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   ft_lstiter.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: asidqi <asidqi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/29 14:32:25 by asidqi            #+#    #+#             */
-/*   Updated: 2023/08/24 16:26:01 by asidqi           ###   ########.fr       */
+/*   Created: 2023/08/24 13:39:35 by asidqi            #+#    #+#             */
+/*   Updated: 2023/08/24 22:20:01 by asidqi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "cub3D.h"
 
-void	ft_bzero(void *s, size_t n)
+void	ft_lstiter(t_list *lst, void (*f)(char *, t_fil *), t_fil *fil)
 {
-	ft_memset(s, 0, n);
+	t_list	*tmp;
+
+	tmp = lst;
+	while (tmp)
+	{
+		(*f)(tmp->content, fil);
+		tmp = tmp->next;
+	}
 }
-/*
-   int main (void)
-{
-   char *a;
-
-   a = "Ayman";
-   bzero (a, 2);
-   printf("%s", a);
-   return (0);
-   }*/

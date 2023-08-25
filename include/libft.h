@@ -6,7 +6,7 @@
 /*   By: asidqi <asidqi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 10:21:36 by asidqi            #+#    #+#             */
-/*   Updated: 2023/08/24 11:39:15 by asidqi           ###   ########.fr       */
+/*   Updated: 2023/08/25 15:16:03 by asidqi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ typedef struct s_list
 {
 	char			*content;
 	struct s_list	*next;
+	struct s_list	*prv;
 }				t_list;
 
 // char	*ft_strchr(char *s, int c);
@@ -61,7 +62,6 @@ t_list	*ft_lstnew(char *content);
 void	ft_lstadd_front(t_list **lst, t_list *new);
 int		ft_lstsize(t_list *lst);
 t_list	*ft_lstlast(t_list *lst);
-void	ft_lstiter(t_list *lst, void (*f)(char *));
 void	ft_lstadd_back(t_list **lst, t_list *new);
 void	ft_lstdelone(t_list *lst, void (*del)(void *));
 void	ft_lstclear(t_list **lst, void (*del)(void*));

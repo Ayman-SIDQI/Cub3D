@@ -6,7 +6,7 @@
 /*   By: asidqi <asidqi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 19:21:58 by asidqi            #+#    #+#             */
-/*   Updated: 2023/08/23 22:13:47 by asidqi           ###   ########.fr       */
+/*   Updated: 2023/08/25 15:18:17 by asidqi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,10 @@ void	ft_lstadd_back(t_list **lst, t_list *new)
 	if (!lst || !new)
 		return ;
 	if (*lst)
+	{
+		new->prv = ft_lstlast(*lst);
 		ft_lstlast(*lst)->next = new;
+	}
 	else
 		*lst = new;
 }

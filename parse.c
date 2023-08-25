@@ -6,7 +6,7 @@
 /*   By: asidqi <asidqi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 21:41:59 by asidqi            #+#    #+#             */
-/*   Updated: 2023/08/24 11:22:43 by asidqi           ###   ########.fr       */
+/*   Updated: 2023/08/25 15:50:59 by asidqi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,17 +39,31 @@ void	checkname(char *filename)
 	exit_perror();
 }
 
+void	skip_empty(t_pov *all)
+{
+	t_list	*tmp;
+
+	tmp = all->map_2d;
+	while (tmp && (nasa(tmp->content)))
+		tmp = tmp->next;
+	while (tmp && (!nasa(tmp->content) || !tmp->content[0]))
+		tmp = tmp->next;
+	if (tmp && tmp->next)
+		exit_perror();
+}
 void	jm3str(char *av, t_pov *all)
 {
 	int	i;
 
 	i = 0;
 	all->fd = open(av, O_RDONLY);
-	if (xelem(all) || xmap(all) || filter_m(all))
+	if (xelem(all) || xmap(all))
 	{
 		close(all->fd);
 		return ;
 	}
+	skip_empty(all);
+	filter_m(all);
 	close(all->fd);
 }
 
@@ -57,5 +71,6 @@ bool	parse(char *fmap, t_pov *all)
 {
 	checkname(fmap);
 	jm3str(fmap, all);
+	check_borders(all->map_2d);
 	return (true);
 }

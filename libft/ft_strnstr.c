@@ -6,11 +6,11 @@
 /*   By: asidqi <asidqi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 19:57:15 by asidqi            #+#    #+#             */
-/*   Updated: 2023/08/23 10:26:19 by asidqi           ###   ########.fr       */
+/*   Updated: 2023/08/24 16:25:46 by asidqi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"libft.h"
+#include "libft.h"
 
 char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 {

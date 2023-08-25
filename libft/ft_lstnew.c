@@ -6,7 +6,7 @@
 /*   By: asidqi <asidqi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/16 10:02:09 by asidqi            #+#    #+#             */
-/*   Updated: 2023/08/23 22:31:54 by asidqi           ###   ########.fr       */
+/*   Updated: 2023/08/25 15:16:30 by asidqi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,5 +21,6 @@ t_list	*ft_lstnew(char *value)
 		return (0);
 	new->content = ft_strdup(value);
 	new->next = NULL;
+	new->prv = NULL;
 	return (new);
 }

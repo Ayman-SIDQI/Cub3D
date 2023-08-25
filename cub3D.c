@@ -6,7 +6,7 @@
 /*   By: asidqi <asidqi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 16:06:01 by asidqi            #+#    #+#             */
-/*   Updated: 2023/08/23 23:01:46 by asidqi           ###   ########.fr       */
+/*   Updated: 2023/08/25 15:12:31 by asidqi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,9 @@
 // 	mlx = mlx_init(500, 500, "cub3D", false);
 // }
 
-
 int	main(int ac, char **av)
 {
 	t_pov	all;
-
 
 	if (ac != 2)
 		return (1);
