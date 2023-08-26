@@ -6,7 +6,7 @@
 /*   By: asidqi <asidqi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 16:06:07 by asidqi            #+#    #+#             */
-/*   Updated: 2023/08/24 20:41:29 by asidqi           ###   ########.fr       */
+/*   Updated: 2023/08/26 15:45:33 by asidqi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ struct s_pov
 	int			fd;
 	char		*tmp;
 	char		*elem[6];
+	char		**map;
+	char		**big_map;
 	t_list		*map_2d;
 	t_fil		map_info;
 	mlx_image_t	*img;
@@ -50,5 +52,7 @@ bool	xelem(t_pov *all);
 bool	xmap(t_pov *all);
 bool	nasa(char *line);
 void	filter_m(t_pov *all);
+void	link_toarr(t_list *lst, int n, t_pov *all);
+void	check_borders(t_list *map_info, t_pov *all);
 
 #endif

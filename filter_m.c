@@ -6,7 +6,7 @@
 /*   By: asidqi <asidqi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 11:23:46 by asidqi            #+#    #+#             */
-/*   Updated: 2023/08/25 12:59:26 by asidqi           ###   ########.fr       */
+/*   Updated: 2023/08/25 22:49:28 by asidqi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 void	dup_check(char *cnt, t_fil *fil)
 {
 	int			i;
-	static int	maxwid;
 
 	i = -1;
 	while (cnt[++i])
@@ -54,11 +53,9 @@ void	filter_m(t_pov *all)
 	ft_lstiter(tmp, &dup_check, &all->map_info);
 	if (all->map_info.count != 1)
 		all->map_info.errflag = 1;
-	// ft_lstiter(tmp, &coors, &all->map_info);
 	if (all->map_info.errflag == 1)
 	{
 		// ft_lstclear(&all, &free);
 		exit_perror();
 	}
-	printf("%dHAHAHAHA\n", all->map_info.mwidth);
 }

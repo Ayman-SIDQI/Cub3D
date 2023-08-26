@@ -1,7 +1,7 @@
 NAME	= cub3D
 
 CC		:= cc
-FLAGS	:= -Wunreachable-code -Ofast -fsanitize=address -g
+FLAGS	:= -Wall -Wextra -Werror -Wunreachable-code -Ofast -fsanitize=address -g
 LIBMLX	:= /Users/$(USER)/MLX42
 LIBS	:= $(LIBMLX)/build/libmlx42.a -ldl -lglfw -pthread -lm
 
@@ -18,6 +18,7 @@ SOURCES_LIST =	cub3D.c 		\
 				parse.c 		\
 				error_one.c		\
 				xtractfunc.c	\
+				xtractfunc_2.c	\
 				get_next_line.c	\
 				filter_m.c		\
 				get_next_line_utils.c
@@ -38,6 +39,8 @@ LIBFT_SOURCES_LIST =	ft_split.c		\
 						ft_lstnew.c 	\
 						ft_lstadd_back.c\
 						ft_lstlast.c	\
+						ft_lstsize.c	\
+						ft_lstclear.c	\
 						ft_lstiter.c
 
 LIBFT_SOURCES = $(addprefix $(LIBFT_DIRECTORY), $(LIBFT_SOURCES_LIST))

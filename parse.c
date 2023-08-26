@@ -6,7 +6,7 @@
 /*   By: asidqi <asidqi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 21:41:59 by asidqi            #+#    #+#             */
-/*   Updated: 2023/08/25 15:50:59 by asidqi           ###   ########.fr       */
+/*   Updated: 2023/08/26 16:38:00 by asidqi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,10 +67,32 @@ void	jm3str(char *av, t_pov *all)
 	close(all->fd);
 }
 
+char	**retrieve_py(char **map, t_fil *all)
+{
+	int	i;
+
+	i = -1;
+	while (map[++i])
+	{
+		if (ft_strchr(map[i], 'N') || ft_strchr(map[i], 'E') 
+			|| ft_strchr(map[i], 'W') || ft_strchr(map[i], 'S'))
+		{
+			all->py = i;
+			map[i][all->px] = '0';
+			break ;
+		}
+	}
+	return (map);
+}
+
 bool	parse(char *fmap, t_pov *all)
 {
 	checkname(fmap);
 	jm3str(fmap, all);
-	check_borders(all->map_2d);
+	check_borders(all->map_2d, all);
+	all->map = retrieve_py(all->map, &all->map_info);
+	int i = -1;
+	while(all->map[++i])
+		printf("%s\n", all->map[i]);
 	return (true);
 }
