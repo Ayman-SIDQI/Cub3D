@@ -6,7 +6,7 @@
 /*   By: asidqi <asidqi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 21:41:59 by asidqi            #+#    #+#             */
-/*   Updated: 2023/08/26 16:38:00 by asidqi           ###   ########.fr       */
+/*   Updated: 2023/08/26 20:13:36 by asidqi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ bool	parse(char *fmap, t_pov *all)
 	check_borders(all->map_2d, all);
 	all->map = retrieve_py(all->map, &all->map_info);
 	int i = -1;
-	while(all->map[++i])
-		printf("%s\n", all->map[i]);
+	while (all->map[++i])
+		printf("%s\n", all->big_map[i]);
 	return (true);
 }

@@ -6,7 +6,7 @@
 /*   By: asidqi <asidqi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/25 16:25:48 by asidqi            #+#    #+#             */
-/*   Updated: 2023/08/26 17:10:02 by asidqi           ###   ########.fr       */
+/*   Updated: 2023/08/26 20:12:44 by asidqi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,14 @@ bool	find_zeros(int i, char **map)
 	return (false);
 }
 
+char	map_char(char input)
+{
+	if (input == 'S' || input == 'N' || input == 'E' || input == 'W')
+		return ('0');
+	else
+		return (input);
+}
+
 char	*big_strdup(char *s1, size_t n)
 {
 	char	*new;
@@ -39,19 +47,21 @@ char	*big_strdup(char *s1, size_t n)
 	size_t	o;
 	size_t	t;
 
-	i = -1;
+	i = 0;
 	o = -1;
 	t = -1;
 	new = (char *)malloc (sizeof(char) * ((ft_strlen(s1) * n) + 1));
 	if (!new)
 		return (0);
 	new[(ft_strlen(s1) * n)] = '\0';
-	while (++o != (ft_strlen(s1) * n))
+	while (++o != ft_strlen(s1))
 	{
-		i = -1;
-		while (++i != n)
-			while (++t != (ft_strlen(s1) * n))
-				new[t] = s1[o];
+		t = -1;
+		while (++t != n)
+		{
+			new[i] = map_char(s1[o]);
+			i++;
+		}
 	}
 	return (new);
 }
