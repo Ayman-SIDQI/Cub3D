@@ -6,7 +6,7 @@
 /*   By: asidqi <asidqi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/25 16:25:48 by asidqi            #+#    #+#             */
-/*   Updated: 2023/08/26 20:12:44 by asidqi           ###   ########.fr       */
+/*   Updated: 2023/08/27 11:18:57 by asidqi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,28 +66,47 @@ char	*big_strdup(char *s1, size_t n)
 	return (new);
 }
 
+char	**repeated(char **r, int n, int big_i, char *rep)
+{
+	int	i;
+
+	i = 0;
+	// printf("rep: %s\n", rep);
+	// printf("big_i: %d\n", big_i);
+	while (i != n)
+	{
+		r[big_i] = rep;
+		// printf("r[big_i]: %s\n", r[big_i]);
+		i++;
+		big_i++;
+	}
+	return (r);
+}
+
 void	link_toarr(t_list *lst, int n, t_pov *all)
 {
-	int		count;
 	char	**array;
 	char	**big_array;
 	int		i;
+	int		big_i;
 
-	i = 0;
-	count = ft_lstsize(lst);
-	array = (char **)malloc(sizeof(char *) * (count + 1));
-	big_array = (char **)malloc(sizeof(char *) * ((count * n) + 1));
+	i = -1;
+	big_i = 0;
+	array = (char **)malloc(sizeof(char *) * (ft_lstsize(lst) + 1));
+	big_array = (char **)malloc(sizeof(char *) * ((ft_lstsize(lst) * n) + 1));
 	if (!array || !big_array)
 		return ;
-	while (lst)
+	while (lst->next)
 	{
-		array[i] = ft_strdup(lst->content);
-		big_array[i] = big_strdup(lst->content, n);
+		array[++i] = ft_strdup(lst->content);
+		if (big_i % n == 0)
+			big_array = repeated(big_array, n, big_i, \
+			big_strdup(lst->content, n));
 		lst = lst->next;
-		i++;
+		big_i += 16;
 	}
-	array[i] = NULL;
-	big_array[i] = NULL;
+	array[i + 1] = NULL;
+	big_array[big_i] = NULL;
 	all->map = array;
 	all->big_map = big_array;
 }

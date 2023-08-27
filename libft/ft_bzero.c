@@ -6,7 +6,7 @@
 /*   By: asidqi <asidqi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 14:32:25 by asidqi            #+#    #+#             */
-/*   Updated: 2023/08/24 16:26:01 by asidqi           ###   ########.fr       */
+/*   Updated: 2023/08/26 20:54:24 by asidqi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,3 @@ void	ft_bzero(void *s, size_t n)
 {
 	ft_memset(s, 0, n);
 }
-/*
-   int main (void)
-{
-   char *a;
-
-   a = "Ayman";
-   bzero (a, 2);
-   printf("%s", a);
-   return (0);
-   }*/
