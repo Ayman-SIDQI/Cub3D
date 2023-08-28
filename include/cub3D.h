@@ -6,7 +6,7 @@
 /*   By: hcharia < hcharia@student.1337.ma>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 16:06:07 by asidqi            #+#    #+#             */
-/*   Updated: 2023/08/28 13:20:43 by hcharia          ###   ########.fr       */
+/*   Updated: 2023/08/28 16:19:57 by hcharia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <stdlib.h>
 # include "get_next_line.h"
 # include "libft.h"
+# include <math.h>
 
 typedef struct s_fil
 {

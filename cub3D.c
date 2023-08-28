@@ -6,7 +6,7 @@
 /*   By: hcharia < hcharia@student.1337.ma>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 16:06:01 by asidqi            #+#    #+#             */
-/*   Updated: 2023/08/28 15:56:45 by hcharia          ###   ########.fr       */
+/*   Updated: 2023/08/28 17:40:41 by hcharia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	line_print(t_pov *all, int x, int y, int pxl)
 	int	o;
 
 	o = -1;
-	while (++o < pxl)
+	while (++o < 100000 / pxl)
 		mlx_put_pixel(all->img, x, (y + o), 0xAAAAAAFF);
 	while (o > 0)
 	{
@@ -38,10 +38,17 @@ void	line_print(t_pov *all, int x, int y, int pxl)
 
 void	initializer(t_pov	*all)
 {
-	int	i;
-	int	o;
+	int		i;
+	int		o;
+	double	xofwall;
+	double	yofwall;
+	double	distance;
+	double	angle;
+	int		j;
 
 	i = -1;
+	angle = all->map_info.angle * M_PI / 180;
+	j = -1;
 	all->img = mlx_new_image(all->mlx, 1920, 1080);
 	while (all->big_map[++i])
 	{
@@ -54,7 +61,22 @@ void	initializer(t_pov	*all)
 				mlx_put_pixel(all->img, o, i, 0xBBBBBBFF);
 		}
 	}
-	line_print(all, 960, 540, 500);
+	while (++j < 32)
+	{
+	xofwall = all->map_info.px * 16 - 8;
+	yofwall = all->map_info.py * 16 - 8;
+	distance = 0;
+	while (all->big_map[(int)yofwall][(int)xofwall] != '1')
+	{
+		xofwall += cos((angle - 30 + j * 1.875) * M_PI / 180);
+		yofwall += sin((angle - 30 + j * 1.875) * M_PI / 180);
+		distance += sqrt(xofwall * xofwall + yofwall * yofwall);
+		if (xofwall < 0 || xofwall > 1920 || yofwall < 0 || yofwall > 1080)
+			break ;
+		mlx_put_pixel(all->img, xofwall, yofwall, 0xBBBBDD00);
+	}
+	line_print(all, j * 60, 540, distance / 30);
+	}
 }
 
 void	keys(void *name)
@@ -83,8 +105,8 @@ int	main(int ac, char **av)
 	parse(av[1], &all);
 	all.mlx = mlx_init(1920, 1080, "cub3D", false);
 	initializer(&all);
-	for (int i = 0;all.big_map[i]; i++)
-		printf("%s\n", all.big_map[i]);
+	// for (int i = 0;all.big_map[i]; i++)
+	// 	printf("%s\n", all.big_map[i]);
 	mlx_image_to_window(all.mlx, all.img, 0, 0);
 	mlx_loop_hook(all.mlx, keys, &all);
 	mlx_loop(all.mlx);

@@ -6,7 +6,7 @@
 /*   By: hcharia < hcharia@student.1337.ma>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 21:41:59 by asidqi            #+#    #+#             */
-/*   Updated: 2023/08/28 15:42:19 by hcharia          ###   ########.fr       */
+/*   Updated: 2023/08/28 16:28:26 by hcharia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ char	**retrieve_py(char **map, t_fil *all)
 		{
 			all->py = i;
 			pov(map[all->py][all->px], all);
-			printf("coordinates : X[%d]	Y[%d]", all->px, all->py);
+			// printf("coordinates : X[%d]	Y[%d]", all->px, all->py);
 			map[i][all->px] = '0';
 			break ;
 		}
