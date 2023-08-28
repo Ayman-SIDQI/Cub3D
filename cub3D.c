@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asidqi <asidqi@student.1337.ma>            +#+  +:+       +#+        */
+/*   By: hcharia < hcharia@student.1337.ma>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 16:06:01 by asidqi            #+#    #+#             */
-/*   Updated: 2023/08/26 15:31:24 by asidqi           ###   ########.fr       */
+/*   Updated: 2023/08/28 12:51:47 by hcharia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,6 @@ void	free_2d(char **str)
 	free(str);
 }
 
-
-
 // char	**expander(t_pov *all)
 // {
 // 	// all->big_map = create_bigmap(all->big_map, 16);
@@ -33,12 +31,12 @@ void	free_2d(char **str)
 // 	free_2d(all->map);
 // }
 
-void	initializer(t_pov	*all)
-{
-	// all->big_map = expander(all);
-	all->img = mlx_new_image(all->mlx, 256, 450);
-	mlx_put_pixel(all->img, 300, 50, 0xFF0000FF);
-}
+// void	initializer(t_pov	*all)
+// {
+// 	// all->big_map = expander(all);
+// 	all->img = mlx_new_image(all->mlx, 256, 450);
+// 	mlx_put_pixel(all->img, 300, 50, 0xFF0000FF);
+// }
 
 void	keys(void *name)
 {
@@ -65,8 +63,10 @@ int	main(int ac, char **av)
 		return (1);
 	parse(av[1], &all);
 	all.mlx = mlx_init(1920, 1080, "cub3D", false);
-	initializer(&all);
-	mlx_image_to_window(all.mlx, all.img, 0, 0);
+	// initializer(&all);
+	for (int i = 0;all.big_map[i]; i++)
+		printf("%s\n", all.big_map[i]);
+	// mlx_image_to_window(all.mlx, all.img, 0, 0);
 	mlx_loop_hook(all.mlx, keys, &all);
 	mlx_loop(all.mlx);
 	mlx_terminate(all.mlx);

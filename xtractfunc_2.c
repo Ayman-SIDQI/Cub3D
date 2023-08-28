@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   xtractfunc_2.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asidqi <asidqi@student.1337.ma>            +#+  +:+       +#+        */
+/*   By: hcharia < hcharia@student.1337.ma>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/25 16:25:48 by asidqi            #+#    #+#             */
-/*   Updated: 2023/08/27 11:18:57 by asidqi           ###   ########.fr       */
+/*   Updated: 2023/08/28 12:13:21 by hcharia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,7 @@ bool	find_zeros(int i, char **map)
 			|| ((!(map[i + 1][o]) || map[i + 1][o] <= ' '))
 			|| ((!(map[i][o + 1]) || map[i][o + 1] <= ' '))
 			|| ((!(map[i][o - 1]) || map[i][o - 1] <= ' '))))
-		{
 			return (true);
-		}
 		o++;
 	}
 	return (false);
@@ -121,7 +119,11 @@ void	check_borders(t_list *map_info, t_pov *all)
 	while (all->map[i])
 	{
 		if (find_zeros(i, all->map))
+		{
+			printf("AHAHAHAH\n");
 			exit_perror();
+		}
 		i++;
 	}
+	printf("AHAHAHAH\n");
 }

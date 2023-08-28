@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   filter_m.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asidqi <asidqi@student.1337.ma>            +#+  +:+       +#+        */
+/*   By: hcharia < hcharia@student.1337.ma>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 11:23:46 by asidqi            #+#    #+#             */
-/*   Updated: 2023/08/25 22:49:28 by asidqi           ###   ########.fr       */
+/*   Updated: 2023/08/28 12:50:11 by hcharia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ void	dup_check(char *cnt, t_fil *fil)
 	if (fil->mwidth < i)
 		fil->mwidth = i;
 }
-
 
 void	initialize(t_fil *info)
 {
