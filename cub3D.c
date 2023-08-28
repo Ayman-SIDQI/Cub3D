@@ -6,7 +6,7 @@
 /*   By: hcharia < hcharia@student.1337.ma>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 16:06:01 by asidqi            #+#    #+#             */
-/*   Updated: 2023/08/28 12:51:47 by hcharia          ###   ########.fr       */
+/*   Updated: 2023/08/28 15:56:45 by hcharia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,21 +22,40 @@ void	free_2d(char **str)
 	free(str);
 }
 
-// char	**expander(t_pov *all)
-// {
-// 	// all->big_map = create_bigmap(all->big_map, 16);
-// 	while (all->map)
-// 	{
-// 	}
-// 	free_2d(all->map);
-// }
+void	line_print(t_pov *all, int x, int y, int pxl)
+{
+	int	o;
 
-// void	initializer(t_pov	*all)
-// {
-// 	// all->big_map = expander(all);
-// 	all->img = mlx_new_image(all->mlx, 256, 450);
-// 	mlx_put_pixel(all->img, 300, 50, 0xFF0000FF);
-// }
+	o = -1;
+	while (++o < pxl)
+		mlx_put_pixel(all->img, x, (y + o), 0xAAAAAAFF);
+	while (o > 0)
+	{
+		mlx_put_pixel(all->img, x, (y - o), 0xAAAAAAFF);
+		o--;
+	}
+}
+
+void	initializer(t_pov	*all)
+{
+	int	i;
+	int	o;
+
+	i = -1;
+	all->img = mlx_new_image(all->mlx, 1920, 1080);
+	while (all->big_map[++i])
+	{
+		o = -1;
+		while (all->big_map[i][++o])
+		{
+			if (all->big_map[i][o] == '1')
+				mlx_put_pixel(all->img, o, i, 0xC35B00FF);
+			else if (all->big_map[i][o] == '0')
+				mlx_put_pixel(all->img, o, i, 0xBBBBBBFF);
+		}
+	}
+	line_print(all, 960, 540, 500);
+}
 
 void	keys(void *name)
 {
@@ -63,10 +82,10 @@ int	main(int ac, char **av)
 		return (1);
 	parse(av[1], &all);
 	all.mlx = mlx_init(1920, 1080, "cub3D", false);
-	// initializer(&all);
+	initializer(&all);
 	for (int i = 0;all.big_map[i]; i++)
 		printf("%s\n", all.big_map[i]);
-	// mlx_image_to_window(all.mlx, all.img, 0, 0);
+	mlx_image_to_window(all.mlx, all.img, 0, 0);
 	mlx_loop_hook(all.mlx, keys, &all);
 	mlx_loop(all.mlx);
 	mlx_terminate(all.mlx);

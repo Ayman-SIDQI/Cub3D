@@ -16,6 +16,7 @@ HEADERS = $(addprefix $(HEADERS_DIRECTORY), $(HEADERS_LIST))
 SOURCES_DIRECTORY =	./
 SOURCES_LIST =	cub3D.c 		\
 				parse.c 		\
+				raycast.c 		\
 				error_one.c		\
 				xtractfunc.c	\
 				xtractfunc_2.c	\

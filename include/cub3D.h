@@ -6,7 +6,7 @@
 /*   By: hcharia < hcharia@student.1337.ma>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 16:06:07 by asidqi            #+#    #+#             */
-/*   Updated: 2023/08/28 12:28:10 by hcharia          ###   ########.fr       */
+/*   Updated: 2023/08/28 13:20:43 by hcharia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ struct s_pov
 	t_list		*map_2d;
 	t_fil		map_info;
 	mlx_image_t	*img;
+	// mlx_image_t	*h_img;
 	mlx_t		*mlx;
 };
 typedef struct s_pov	t_pov;
