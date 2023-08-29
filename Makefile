@@ -29,11 +29,13 @@ SOURCES = $(addprefix $(SOURCES_DIRECTORY), $(SOURCES_LIST))
 LIBFT_DIRECTORY =	libft/
 LIBFT_SOURCES_LIST =	ft_split.c		\
 						ft_strchr.c		\
+						ft_atoi.c		\
 						ft_bzero.c		\
 						ft_strjoin.c	\
 						ft_memset.c 	\
 						ft_strnstr.c	\
 						ft_strlen.c 	\
+						ft_strncmp.c 	\
 						ft_strdup.c 	\
 						ft_calloc.c 	\
 						ft_substr.c 	\

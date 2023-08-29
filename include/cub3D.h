@@ -6,7 +6,7 @@
 /*   By: asidqi <asidqi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 16:06:07 by asidqi            #+#    #+#             */
-/*   Updated: 2023/08/28 20:48:53 by asidqi           ###   ########.fr       */
+/*   Updated: 2023/08/30 00:03:51 by asidqi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,10 @@ typedef struct s_fil
 	int			mheight;
 	int			errflag;
 	int			count;
+	char		**c;
+	char		**f;
+	int			cn;
+	int			fn;
 }t_fil;
 
 struct s_pov
@@ -43,7 +47,6 @@ struct s_pov
 	t_list		*map_2d;
 	t_fil		map_info;
 	mlx_image_t	*img;
-	// mlx_image_t	*h_img;
 	mlx_t		*mlx;
 };
 typedef struct s_pov	t_pov;
@@ -57,6 +60,7 @@ bool	xelem(t_pov *all);
 bool	xmap(t_pov *all);
 bool	nasa(char *line);
 void	filter_m(t_pov *all);
+void	cf_ext(t_pov *all);
 void	link_toarr(t_list *lst, int n, t_pov *all);
 void	check_borders(t_list *map_info, t_pov *all);
 
