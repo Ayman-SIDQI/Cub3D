@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hcharia < hcharia@student.1337.ma>         +#+  +:+       +#+        */
+/*   By: asidqi <asidqi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 21:41:59 by asidqi            #+#    #+#             */
-/*   Updated: 2023/08/28 16:28:26 by hcharia          ###   ########.fr       */
+/*   Updated: 2023/08/28 22:38:32 by asidqi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,9 +90,8 @@ char	**retrieve_py(char **map, t_fil *all)
 			|| ft_strchr(map[i], 'W') || ft_strchr(map[i], 'S'))
 		{
 			all->py = i;
-			pov(map[all->py][all->px], all);
-			// printf("coordinates : X[%d]	Y[%d]", all->px, all->py);
-			map[i][all->px] = '0';
+			pov(map[(int)all->py][(int)all->px], all);
+			map[i][(int)all->px] = '0';
 			break ;
 		}
 	}

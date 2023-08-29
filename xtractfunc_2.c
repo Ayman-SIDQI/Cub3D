@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   xtractfunc_2.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hcharia < hcharia@student.1337.ma>         +#+  +:+       +#+        */
+/*   By: asidqi <asidqi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/25 16:25:48 by asidqi            #+#    #+#             */
-/*   Updated: 2023/08/28 12:13:21 by hcharia          ###   ########.fr       */
+/*   Updated: 2023/08/28 20:49:32 by asidqi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,12 +69,9 @@ char	**repeated(char **r, int n, int big_i, char *rep)
 	int	i;
 
 	i = 0;
-	// printf("rep: %s\n", rep);
-	// printf("big_i: %d\n", big_i);
 	while (i != n)
 	{
 		r[big_i] = rep;
-		// printf("r[big_i]: %s\n", r[big_i]);
 		i++;
 		big_i++;
 	}
@@ -101,7 +98,7 @@ void	link_toarr(t_list *lst, int n, t_pov *all)
 			big_array = repeated(big_array, n, big_i, \
 			big_strdup(lst->content, n));
 		lst = lst->next;
-		big_i += 16;
+		big_i += N;
 	}
 	array[i + 1] = NULL;
 	big_array[big_i] = NULL;
@@ -113,17 +110,13 @@ void	check_borders(t_list *map_info, t_pov *all)
 {
 	int	i;
 
-	link_toarr(map_info, 16, all);
+	link_toarr(map_info, N, all);
 	ft_lstclear(&all->map_2d, &free);
 	i = 0;
 	while (all->map[i])
 	{
 		if (find_zeros(i, all->map))
-		{
-			printf("AHAHAHAH\n");
 			exit_perror();
-		}
 		i++;
 	}
-	printf("AHAHAHAH\n");
 }

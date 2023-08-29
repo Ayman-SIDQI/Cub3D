@@ -3,15 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hcharia < hcharia@student.1337.ma>         +#+  +:+       +#+        */
+/*   By: asidqi <asidqi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 16:06:07 by asidqi            #+#    #+#             */
-/*   Updated: 2023/08/28 16:19:57 by hcharia          ###   ########.fr       */
+/*   Updated: 2023/08/28 20:48:53 by asidqi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
+
+# define N 16
 
 # include <MLX42/MLX42.h>
 # include <stdio.h>
@@ -22,8 +24,8 @@
 
 typedef struct s_fil
 {
-	int			px;
-	int			py;
+	float		px;
+	float		py;
 	int			angle;
 	int			mwidth;
 	int			mheight;
