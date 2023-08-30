@@ -6,7 +6,7 @@
 /*   By: asidqi <asidqi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 16:06:07 by asidqi            #+#    #+#             */
-/*   Updated: 2023/08/30 00:03:51 by asidqi           ###   ########.fr       */
+/*   Updated: 2023/08/30 11:49:59 by asidqi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,17 +24,19 @@
 
 typedef struct s_fil
 {
-	float		px;
-	float		py;
-	int			angle;
-	int			mwidth;
-	int			mheight;
-	int			errflag;
-	int			count;
-	char		**c;
-	char		**f;
-	int			cn;
-	int			fn;
+	float			px;
+	float			py;
+	float			bpx;
+	float			bpy;
+	int				angle;
+	int				mwidth;
+	int				mheight;
+	int				errflag;
+	int				count;
+	char			**c;
+	char			**f;
+	unsigned int	fn;
+	unsigned int	cn;
 }t_fil;
 
 struct s_pov

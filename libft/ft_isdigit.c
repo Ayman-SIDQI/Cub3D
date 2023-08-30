@@ -6,24 +6,22 @@
 /*   By: asidqi <asidqi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 12:44:51 by asidqi            #+#    #+#             */
-/*   Updated: 2022/10/08 21:53:49 by asidqi           ###   ########.fr       */
+/*   Updated: 2023/08/30 10:41:39 by asidqi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"libft.h"
+#include "libft.h"
 
-int	ft_isdigit(int c)
+short	ft_isdigit(char *c)
 {
-	if (c >= '0' && c <= '9')
+	int	i;
+
+	i = 0;
+	while (/*c[i] && */c[i] >= '0' && c[i] <= '9')
+	{
+		i++;
+	}
+	if (c[i] != '\0')
 		return (1);
 	return (0);
 }
-/*
-int	main (void)
-{
-	char hehe;
-	hehe = 'A';
-	hehe = ft_isdigit(hehe);
-	printf("%d", hehe);
-	return (0);
-}*/

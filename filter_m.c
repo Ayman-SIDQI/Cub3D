@@ -6,7 +6,7 @@
 /*   By: asidqi <asidqi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 11:23:46 by asidqi            #+#    #+#             */
-/*   Updated: 2023/08/28 20:50:48 by asidqi           ###   ########.fr       */
+/*   Updated: 2023/08/30 11:56:23 by asidqi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	dup_check(char *cnt, t_fil *fil)
 		{
 			fil->count++;
 			fil->px = i;
+			fil->bpx = fil->px * N - (N / 2);
 		}
 		if (cnt[i] != 'N' && cnt[i] != 'E' && cnt[i] != 'W' 
 			&& cnt[i] != 'S' && cnt[i] != ' ' && cnt[i] != '0'

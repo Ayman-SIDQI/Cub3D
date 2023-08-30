@@ -6,7 +6,7 @@
 /*   By: asidqi <asidqi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 21:41:59 by asidqi            #+#    #+#             */
-/*   Updated: 2023/08/30 00:03:30 by asidqi           ###   ########.fr       */
+/*   Updated: 2023/08/30 11:51:41 by asidqi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,7 @@ char	**retrieve_py(char **map, t_fil *all)
 			|| ft_strchr(map[i], 'W') || ft_strchr(map[i], 'S'))
 		{
 			all->py = i;
+			all->bpy = all->py * N - (N / 2);
 			pov(map[(int)all->py][(int)all->px], all);
 			map[i][(int)all->px] = '0';
 			break ;
