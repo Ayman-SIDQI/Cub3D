@@ -6,7 +6,7 @@
 /*   By: asidqi <asidqi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 16:06:01 by asidqi            #+#    #+#             */
-/*   Updated: 2023/08/30 22:22:24 by asidqi           ###   ########.fr       */
+/*   Updated: 2023/08/30 22:53:22 by asidqi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,20 +135,6 @@ void	graphic(void *name)
 	}
 }
 
-// void	putblk(t_pov *all, int i, int j, char *path)
-// {
-// 	mlx_load_png(path);
-// }
-
-// void	sprite_dance(short y, short x, t_pov *all)
-// {
-// 	static int	anima;
-
-// 	anima++;
-// 	while()
-// 	anima = 0;
-// }
-
 void	cf_background(void *name)
 {
 	t_pov	*all;
@@ -168,7 +154,6 @@ void	cf_background(void *name)
 				mlx_put_pixel(all->img, x, y, all->map_info.fn);
 		}
 	}
-	// sprite_dance(all);
 }
 
 void	sway(double x, double y, void *name)
@@ -198,6 +183,21 @@ void	init_frm(t_pov *all)
 	}
 }
 
+void	sprite_dance(void *name)
+{
+	t_pov		*all;
+	static int	anima;
+
+	all = name;
+	anima++;
+	if (all->swg)
+		mlx_delete_image(all->mlx, all->swg);
+	all->swg = mlx_texture_to_image(all->mlx, all->frm[(anima)]);
+	mlx_image_to_window(all->mlx, all->swg, 940, 0);
+	if (anima == 96)
+		anima -= 96;
+}
+
 int	main(int ac, char **av)
 {
 	t_pov	all;
@@ -209,11 +209,17 @@ int	main(int ac, char **av)
 	all.mlx = mlx_init(1920, 1080, "cub3D", false);
 	all.img = mlx_new_image(all.mlx, 1920, 1080);
 	mlx_image_to_window(all.mlx, all.img, 0, 0);
+
+	all.swg = mlx_texture_to_image(all.mlx, all.frm[60]);
+	mlx_image_to_window(all.mlx, all.swg, 940, 520);
+
 	mlx_cursor_hook(all.mlx, sway, &all);
 	mlx_loop_hook(all.mlx, cf_background, &all);
+	// mlx_loop_hook(all.mlx, sprite_dance, &all);
 	mlx_loop_hook(all.mlx, keys, &all);
 	mlx_loop_hook(all.mlx, minimap, &all);
 	mlx_loop_hook(all.mlx, graphic, &all);
+
 	mlx_loop(all.mlx);
 	mlx_terminate(all.mlx);
 	return (0);

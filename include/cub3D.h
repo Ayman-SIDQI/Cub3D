@@ -6,7 +6,7 @@
 /*   By: asidqi <asidqi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 16:06:07 by asidqi            #+#    #+#             */
-/*   Updated: 2023/08/30 22:07:29 by asidqi           ###   ########.fr       */
+/*   Updated: 2023/08/30 22:41:57 by asidqi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ struct s_pov
 	t_list				*map_2d;
 	t_fil				map_info;
 	mlx_image_t			*img;
+	mlx_image_t			*swg;
 	mlx_t				*mlx;
 	mlx_texture_t		*frm[97];
 };
