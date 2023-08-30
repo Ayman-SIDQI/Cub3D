@@ -6,7 +6,7 @@
 /*   By: asidqi <asidqi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 16:06:01 by asidqi            #+#    #+#             */
-/*   Updated: 2023/08/30 16:26:17 by asidqi           ###   ########.fr       */
+/*   Updated: 2023/08/30 22:22:24 by asidqi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,14 +114,13 @@ void	graphic(void *name)
 	{
 		xofwall = all->map_info.bpx;
 		yofwall = all->map_info.bpy;
-		printf ("%d\n", all->map_info.angle);
+		// printf ("%d\n", all->map_info.angle);
 		distance = 0;
 		while (all->big_map[(int)yofwall][(int)xofwall] != '1')
 		{
 			xofwall += cos((angle - 30 + j * 0.05859375) * M_PI / 180);
 			yofwall += sin((angle - 30 + j * 0.05859375) * M_PI / 180);
 			distance += sqrt(xofwall * xofwall + yofwall * yofwall);
-			//printf("[%f]\n", distance);
 			if (all->big_map[(int)yofwall][(int)(xofwall - cos((angle - 30 + j * 0.05859375) * M_PI / 180))] == '1' \
 				&& all->big_map[(int)(yofwall - sin((angle - 30 + j * 0.05859375) * M_PI / 180))][(int)xofwall] == '1')
 				break ;
@@ -132,9 +131,24 @@ void	graphic(void *name)
 		// distance = sqrt((xofwall - all->map_info.bpx) * (xofwall - all->map_info.bpx)
 		// 			+ (yofwall - all->map_info.bpy) * (yofwall - all->map_info.bpy));
 		// distance = distance * cos(((angle - 30 + j * 0.05859375) - angle) * M_PI / 180);
-		line_print(all, j * 2, 540, distance/10);
+		line_print(all, j * 2, 540, distance / 10);
 	}
 }
+
+// void	putblk(t_pov *all, int i, int j, char *path)
+// {
+// 	mlx_load_png(path);
+// }
+
+// void	sprite_dance(short y, short x, t_pov *all)
+// {
+// 	static int	anima;
+
+// 	anima++;
+// 	while()
+// 	anima = 0;
+// }
+
 void	cf_background(void *name)
 {
 	t_pov	*all;
@@ -154,6 +168,34 @@ void	cf_background(void *name)
 				mlx_put_pixel(all->img, x, y, all->map_info.fn);
 		}
 	}
+	// sprite_dance(all);
+}
+
+void	sway(double x, double y, void *name)
+{
+	t_pov	*all;
+
+	all = name;
+	(void)y;
+	mlx_set_cursor_mode(all->mlx, MLX_MOUSE_HIDDEN);
+	mlx_set_mouse_pos(all->mlx, 960, 540);
+	all->map_info.angle += (x - 960) / 2;
+}
+
+void	init_frm(t_pov *all)
+{
+	int		i;
+	char	*joined;
+
+	i = 0;
+	while (++i < 98)
+	{
+		joined = ft_strjoin("./frames/", ft_itoa(i));
+		all->frm[i - 1] = mlx_load_png(joined);
+		free(joined);
+		if (!all->frm[i - 1])
+			exit_perror();
+	}
 }
 
 int	main(int ac, char **av)
@@ -163,12 +205,14 @@ int	main(int ac, char **av)
 	if (ac != 2)
 		return (1);
 	parse(av[1], &all);
+	init_frm(&all);
 	all.mlx = mlx_init(1920, 1080, "cub3D", false);
 	all.img = mlx_new_image(all.mlx, 1920, 1080);
 	mlx_image_to_window(all.mlx, all.img, 0, 0);
+	mlx_cursor_hook(all.mlx, sway, &all);
 	mlx_loop_hook(all.mlx, cf_background, &all);
-	mlx_loop_hook(all.mlx, minimap, &all);
 	mlx_loop_hook(all.mlx, keys, &all);
+	mlx_loop_hook(all.mlx, minimap, &all);
 	mlx_loop_hook(all.mlx, graphic, &all);
 	mlx_loop(all.mlx);
 	mlx_terminate(all.mlx);

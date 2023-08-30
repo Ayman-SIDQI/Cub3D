@@ -6,7 +6,7 @@
 /*   By: asidqi <asidqi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 12:10:18 by asidqi            #+#    #+#             */
-/*   Updated: 2023/08/23 12:02:34 by asidqi           ###   ########.fr       */
+/*   Updated: 2023/08/30 22:17:10 by asidqi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ char	*ft_strjoin(char *s1, char *s2)
 	while (s2[i])
 		ret[len++] = s2[i++];
 	ret[len] = '\0';
+	free(s2);
 	return (ret);
 }
 

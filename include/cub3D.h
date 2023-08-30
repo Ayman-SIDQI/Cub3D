@@ -6,7 +6,7 @@
 /*   By: asidqi <asidqi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 16:06:07 by asidqi            #+#    #+#             */
-/*   Updated: 2023/08/30 11:49:59 by asidqi           ###   ########.fr       */
+/*   Updated: 2023/08/30 22:07:29 by asidqi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,15 +41,16 @@ typedef struct s_fil
 
 struct s_pov
 {
-	int			fd;
-	char		*tmp;
-	char		*elem[6];
-	char		**map;
-	char		**big_map;
-	t_list		*map_2d;
-	t_fil		map_info;
-	mlx_image_t	*img;
-	mlx_t		*mlx;
+	int					fd;
+	char				*tmp;
+	char				*elem[6];
+	char				**map;
+	char				**big_map;
+	t_list				*map_2d;
+	t_fil				map_info;
+	mlx_image_t			*img;
+	mlx_t				*mlx;
+	mlx_texture_t		*frm[97];
 };
 typedef struct s_pov	t_pov;
 
@@ -65,5 +66,6 @@ void	filter_m(t_pov *all);
 void	cf_ext(t_pov *all);
 void	link_toarr(t_list *lst, int n, t_pov *all);
 void	check_borders(t_list *map_info, t_pov *all);
+void	pov(char c, t_fil *all);
 
 #endif

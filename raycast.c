@@ -3,14 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hcharia < hcharia@student.1337.ma>         +#+  +:+       +#+        */
+/*   By: asidqi <asidqi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 11:41:56 by hcharia           #+#    #+#             */
-/*   Updated: 2023/08/28 12:58:28 by hcharia          ###   ########.fr       */
+/*   Updated: 2023/08/30 19:21:03 by asidqi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-// raycast()
-// {}
+void	pov(char c, t_fil *all)
+{
+	if (c == 'N')
+		all->angle = 270;
+	if (c == 'W')
+		all->angle = 180;
+	if (c == 'E')
+		all->angle = 0;
+	if (c == 'S')
+		all->angle = 90;
+}

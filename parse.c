@@ -6,7 +6,7 @@
 /*   By: asidqi <asidqi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 21:41:59 by asidqi            #+#    #+#             */
-/*   Updated: 2023/08/30 15:32:34 by asidqi           ###   ########.fr       */
+/*   Updated: 2023/08/30 19:20:55 by asidqi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,18 +66,6 @@ void	jm3str(char *av, t_pov *all)
 	filter_m(all);
 	cf_ext(all);
 	close(all->fd);
-}
-
-void	pov(char c, t_fil *all)
-{
-	if (c == 'N')
-		all->angle = 270;
-	if (c == 'W')
-		all->angle = 180;
-	if (c == 'E')
-		all->angle = 0;
-	if (c == 'S')
-		all->angle = 90;
 }
 
 char	**retrieve_py(char **map, t_fil *all)

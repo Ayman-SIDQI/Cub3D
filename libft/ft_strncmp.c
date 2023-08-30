@@ -6,7 +6,7 @@
 /*   By: asidqi <asidqi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 16:07:11 by asidqi            #+#    #+#             */
-/*   Updated: 2023/08/30 00:51:32 by asidqi           ###   ########.fr       */
+/*   Updated: 2023/08/30 22:20:56 by asidqi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,3 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 	}
 	return (0);
 }
-/*
-int	main (void)
-{
-	char	* a,b;
-	a = "AYMAN";
-	b = *a;
-	printf("%d\n", ft_strncmp(&b, a, 10));
-	printf("%d\n", strncmp(&b, a, 10));
-	
-	return (0);
-}*/

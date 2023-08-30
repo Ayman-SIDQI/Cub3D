@@ -6,7 +6,7 @@
 /*   By: asidqi <asidqi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 11:18:05 by asidqi            #+#    #+#             */
-/*   Updated: 2023/08/30 11:33:53 by asidqi           ###   ########.fr       */
+/*   Updated: 2023/08/30 22:20:44 by asidqi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,10 +74,10 @@ void	cf_ext(t_pov *all)
 		exit_perror();
 		return ;
 	} //free 2d arrays here
-	printf("[%s]\n", all->map_info.f[0]);
-	printf("[%s]\n", all->map_info.f[1]);
-	printf("[%s]\n", all->map_info.f[2]);
-	printf("[%s]\n", all->map_info.f[3]);
+	// printf("[%s]\n", all->map_info.f[0]);
+	// printf("[%s]\n", all->map_info.f[1]);
+	// printf("[%s]\n", all->map_info.f[2]);
+	// printf("[%s]\n", all->map_info.f[3]);
 	all->map_info.fn = ft_pixel(ft_atoi(all->map_info.f[0]), \
 	ft_atoi(all->map_info.f[1]), ft_atoi(all->map_info.f[2]), 255);
 	all->map_info.cn = ft_pixel(ft_atoi(all->map_info.c[0]), \
