@@ -6,7 +6,7 @@
 /*   By: asidqi <asidqi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 15:01:36 by asidqi            #+#    #+#             */
-/*   Updated: 2023/08/23 22:48:27 by asidqi           ###   ########.fr       */
+/*   Updated: 2023/08/31 10:36:58 by asidqi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ size_t	ft_strlen(char *s)
 	size_t	i;
 
 	i = 0;
-	//RECENTLY ADDED
 	if (!s)
 		return (0);
 	while (s[i] != '\0')

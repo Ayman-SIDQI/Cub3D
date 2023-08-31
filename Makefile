@@ -20,6 +20,7 @@ SOURCES_LIST =	cub3D.c 		\
 				error_one.c		\
 				xtractfunc.c	\
 				xtractfunc_2.c	\
+				xtractfunc_3.c	\
 				get_next_line.c	\
 				filter_m.c		\
 				get_next_line_utils.c

@@ -6,7 +6,7 @@
 /*   By: asidqi <asidqi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/25 16:25:48 by asidqi            #+#    #+#             */
-/*   Updated: 2023/08/28 20:49:32 by asidqi           ###   ########.fr       */
+/*   Updated: 2023/08/31 10:42:42 by asidqi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,19 +104,4 @@ void	link_toarr(t_list *lst, int n, t_pov *all)
 	big_array[big_i] = NULL;
 	all->map = array;
 	all->big_map = big_array;
-}
-
-void	check_borders(t_list *map_info, t_pov *all)
-{
-	int	i;
-
-	link_toarr(map_info, N, all);
-	ft_lstclear(&all->map_2d, &free);
-	i = 0;
-	while (all->map[i])
-	{
-		if (find_zeros(i, all->map))
-			exit_perror();
-		i++;
-	}
 }

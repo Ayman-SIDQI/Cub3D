@@ -6,56 +6,11 @@
 /*   By: asidqi <asidqi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 16:06:01 by asidqi            #+#    #+#             */
-/*   Updated: 2023/08/30 22:53:22 by asidqi           ###   ########.fr       */
+/*   Updated: 2023/08/31 11:42:02 by asidqi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
-
-void	free_2d(char **str)
-{
-	int	o;
-
-	o = 0;
-	while (str[o])
-		free(str[o++]);
-	free(str);
-}
-
-void	line_print(t_pov *all, int x, int y, int pxl)
-{
-	int	o;
-
-	o = -1;
-	while (++o < 100000 / pxl && o < 540)
-		mlx_put_pixel(all->img, x, (y + o), 0xAAAAAAFF);
-	while (o > 0)
-	{
-		mlx_put_pixel(all->img, x, (y - o), 0xAAAAAAFF);
-		o--;
-	}
-}
-
-void	minimap(void *name)
-{
-	t_pov	*all;
-	int		i;
-	int		o;
-
-	all = name;
-	i = -1;
-	while (all->big_map[++i])
-	{
-		o = -1;
-		while (all->big_map[i][++o])
-		{
-			if (all->big_map[i][o] == '1')
-				mlx_put_pixel(all->img, o, i, 0xC35B00FF);
-			else if (all->big_map[i][o] == '0')
-				mlx_put_pixel(all->img, o, i, 0xBBBBBBFF);
-		}
-	}
-}
 
 void	keys(void *name)
 {
@@ -96,43 +51,6 @@ void	keys(void *name)
 		all->map_info.angle -= 2;
 	if (mlx_is_key_down(all->mlx, MLX_KEY_RIGHT))
 		all->map_info.angle += 2;
-}
-
-void	graphic(void *name)
-{
-	t_pov	*all;
-	int		j;
-	double	xofwall;
-	double	yofwall;
-	double	distance;
-	double	angle;
-
-	all = name;
-	j = -1;
-	angle = all->map_info.angle;
-	while (++j < 1024)
-	{
-		xofwall = all->map_info.bpx;
-		yofwall = all->map_info.bpy;
-		// printf ("%d\n", all->map_info.angle);
-		distance = 0;
-		while (all->big_map[(int)yofwall][(int)xofwall] != '1')
-		{
-			xofwall += cos((angle - 30 + j * 0.05859375) * M_PI / 180);
-			yofwall += sin((angle - 30 + j * 0.05859375) * M_PI / 180);
-			distance += sqrt(xofwall * xofwall + yofwall * yofwall);
-			if (all->big_map[(int)yofwall][(int)(xofwall - cos((angle - 30 + j * 0.05859375) * M_PI / 180))] == '1' \
-				&& all->big_map[(int)(yofwall - sin((angle - 30 + j * 0.05859375) * M_PI / 180))][(int)xofwall] == '1')
-				break ;
-			if (xofwall < 0 || xofwall > 1920 || yofwall < 0 || yofwall > 1080)
-				break ;
-			mlx_put_pixel(all->img, xofwall, yofwall, 0xBBBBDD00);
-		}
-		// distance = sqrt((xofwall - all->map_info.bpx) * (xofwall - all->map_info.bpx)
-		// 			+ (yofwall - all->map_info.bpy) * (yofwall - all->map_info.bpy));
-		// distance = distance * cos(((angle - 30 + j * 0.05859375) - angle) * M_PI / 180);
-		line_print(all, j * 2, 540, distance / 10);
-	}
 }
 
 void	cf_background(void *name)
@@ -183,21 +101,6 @@ void	init_frm(t_pov *all)
 	}
 }
 
-void	sprite_dance(void *name)
-{
-	t_pov		*all;
-	static int	anima;
-
-	all = name;
-	anima++;
-	if (all->swg)
-		mlx_delete_image(all->mlx, all->swg);
-	all->swg = mlx_texture_to_image(all->mlx, all->frm[(anima)]);
-	mlx_image_to_window(all->mlx, all->swg, 940, 0);
-	if (anima == 96)
-		anima -= 96;
-}
-
 int	main(int ac, char **av)
 {
 	t_pov	all;
@@ -210,16 +113,15 @@ int	main(int ac, char **av)
 	all.img = mlx_new_image(all.mlx, 1920, 1080);
 	mlx_image_to_window(all.mlx, all.img, 0, 0);
 
-	all.swg = mlx_texture_to_image(all.mlx, all.frm[60]);
-	mlx_image_to_window(all.mlx, all.swg, 940, 520);
+	// all.swg = mlx_texture_to_image(all.mlx, all.frm[60]);
+	// mlx_image_to_window(all.mlx, all.swg, 940, 520);
 
 	mlx_cursor_hook(all.mlx, sway, &all);
 	mlx_loop_hook(all.mlx, cf_background, &all);
-	// mlx_loop_hook(all.mlx, sprite_dance, &all);
+	mlx_loop_hook(all.mlx, sprite_dance, &all);
 	mlx_loop_hook(all.mlx, keys, &all);
 	mlx_loop_hook(all.mlx, minimap, &all);
 	mlx_loop_hook(all.mlx, graphic, &all);
-
 	mlx_loop(all.mlx);
 	mlx_terminate(all.mlx);
 	return (0);

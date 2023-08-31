@@ -6,7 +6,7 @@
 /*   By: asidqi <asidqi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 21:41:59 by asidqi            #+#    #+#             */
-/*   Updated: 2023/08/30 19:20:55 by asidqi           ###   ########.fr       */
+/*   Updated: 2023/08/31 10:35:53 by asidqi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ void	skip_empty(t_pov *all)
 	if (tmp && tmp->next)
 		exit_perror();
 }
+
 void	jm3str(char *av, t_pov *all)
 {
 	int	i;
