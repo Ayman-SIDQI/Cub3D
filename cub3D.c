@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asidqi <asidqi@student.1337.ma>            +#+  +:+       +#+        */
+/*   By: hcharia < hcharia@student.1337.ma>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 16:06:01 by asidqi            #+#    #+#             */
-/*   Updated: 2023/08/31 11:42:02 by asidqi           ###   ########.fr       */
+/*   Updated: 2023/08/31 14:35:44 by hcharia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,10 +112,8 @@ int	main(int ac, char **av)
 	all.mlx = mlx_init(1920, 1080, "cub3D", false);
 	all.img = mlx_new_image(all.mlx, 1920, 1080);
 	mlx_image_to_window(all.mlx, all.img, 0, 0);
-
 	// all.swg = mlx_texture_to_image(all.mlx, all.frm[60]);
 	// mlx_image_to_window(all.mlx, all.swg, 940, 520);
-
 	mlx_cursor_hook(all.mlx, sway, &all);
 	mlx_loop_hook(all.mlx, cf_background, &all);
 	mlx_loop_hook(all.mlx, sprite_dance, &all);

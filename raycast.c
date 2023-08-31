@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asidqi <asidqi@student.1337.ma>            +#+  +:+       +#+        */
+/*   By: hcharia < hcharia@student.1337.ma>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 11:41:56 by hcharia           #+#    #+#             */
-/*   Updated: 2023/08/31 10:28:20 by asidqi           ###   ########.fr       */
+/*   Updated: 2023/08/31 15:03:29 by hcharia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	graphic(void *name)
 	all = name;
 	j = -1;
 	angle = all->map_info.angle;
-	while (++j < 1024)
+	while (++j < 1920)
 	{
 		xofwall = all->map_info.bpx;
 		yofwall = all->map_info.bpy;
@@ -58,20 +58,18 @@ void	graphic(void *name)
 		distance = 0;
 		while (all->big_map[(int)yofwall][(int)xofwall] != '1')
 		{
-			xofwall += cos((angle - 30 + j * 0.05859375) * M_PI / 180);
-			yofwall += sin((angle - 30 + j * 0.05859375) * M_PI / 180);
+			xofwall += cos((angle - 30 + j * 0.03125) * M_PI / 180);
+			yofwall += sin((angle - 30 + j * 0.03125) * M_PI / 180);
 			distance += sqrt(xofwall * xofwall + yofwall * yofwall);
-			if (all->big_map[(int)yofwall][(int)(xofwall - cos((angle - 30 + j * 0.05859375) * M_PI / 180))] == '1' \
-				&& all->big_map[(int)(yofwall - sin((angle - 30 + j * 0.05859375) * M_PI / 180))][(int)xofwall] == '1')
+			if (all->big_map[(int)yofwall][(int)(xofwall - cos((angle - 30 + j * 0.03125) * M_PI / 180))] == '1' \
+				&& all->big_map[(int)(yofwall - sin((angle - 30 + j * 0.03125) * M_PI / 180))][(int)xofwall] == '1')
 				break ;
 			if (xofwall < 0 || xofwall > 1920 || yofwall < 0 || yofwall > 1080)
 				break ;
 			mlx_put_pixel(all->img, xofwall, yofwall, 0xBBBBDD00);
 		}
-		// distance = sqrt((xofwall - all->map_info.bpx) * (xofwall - all->map_info.bpx)
-		// 			+ (yofwall - all->map_info.bpy) * (yofwall - all->map_info.bpy));
-		// distance = distance * cos(((angle - 30 + j * 0.05859375) - angle) * M_PI / 180);
-		line_print(all, j * 2, 540, distance / 10);
+		//wallheight = (64 / distance) * 540 / tan(30);
+		line_print(all, j, 540, distance / 10);
 	}
 }
 
