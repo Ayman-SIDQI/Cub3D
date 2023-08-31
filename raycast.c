@@ -6,7 +6,7 @@
 /*   By: hcharia < hcharia@student.1337.ma>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 11:41:56 by hcharia           #+#    #+#             */
-/*   Updated: 2023/08/31 17:26:26 by hcharia          ###   ########.fr       */
+/*   Updated: 2023/08/31 17:42:54 by hcharia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,8 @@ void	graphic(void *name)
 		distance = 0;
 		while (all->big_map[(int)yofwall][(int)xofwall] != '1')
 		{
-			xofwall += cos((angle - 30 + j * 0.03125) * M_PI / 180);
-			yofwall += sin((angle - 30 + j * 0.03125) * M_PI / 180);
+			xofwall += cos((angle - 30 + j * 0.03125) * M_PI / 180) * 0.06;
+			yofwall += sin((angle - 30 + j * 0.03125) * M_PI / 180) * 0.06;
 			
 			if (all->big_map[(int)yofwall][(int)(xofwall - cos((angle - 30 + j * 0.03125) * M_PI / 180))] == '1' \
 				&& all->big_map[(int)(yofwall - sin((angle - 30 + j * 0.03125) * M_PI / 180))][(int)xofwall] == '1')
@@ -69,8 +69,8 @@ void	graphic(void *name)
 			mlx_put_pixel(all->img, xofwall, yofwall, 0xBBBBDD00);
 		}
 		distance = sqrt((xofwall - all->map_info.bpx) * (xofwall - all->map_info.bpx) + (yofwall - all->map_info.bpy) * (yofwall - all->map_info.bpy)) * cos((- 30 + j * 0.03125) * M_PI / 180);
-		wallheight = -(64 / distance) * 540 / tan(30);
-		printf ("%f\n", wallheight);
+		// wallheight = -(64 / distance) * 540 / tan(30);
+		wallheight = (16 * 1080) / distance;
 		line_print(all, j, 540, wallheight);
 	}
 }
