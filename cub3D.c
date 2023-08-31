@@ -6,7 +6,7 @@
 /*   By: hcharia < hcharia@student.1337.ma>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 16:06:01 by asidqi            #+#    #+#             */
-/*   Updated: 2023/08/31 14:35:44 by hcharia          ###   ########.fr       */
+/*   Updated: 2023/08/31 16:49:51 by hcharia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,20 @@ void	init_frm(t_pov *all)
 	int		i;
 	char	*joined;
 
+	// i = -1;
+	// while (++i < 4)
+	// {
+	// 	if (all->elem[i][0] == 'N')
+	// 		all->wal[i] = mlx_load_png("./frames/walls/mages.png");
+	// 	if (all->elem[i][0] == 'S')
+	// 		all->wal[i] = mlx_load_png("./frames/walls/mages.png");
+	// 	if (all->elem[i][0] == 'W')
+	// 		all->wal[i] = mlx_load_png("./frames/walls/mages.png");
+	// 	if (all->elem[i][0] == 'E')
+	// 		all->wal[i] = mlx_load_png("./frames/walls/mages.png");
+	// 	if (!all->wal[i])
+	// 		exit_perror();
+	// }
 	i = 0;
 	while (++i < 98)
 	{
@@ -112,8 +126,6 @@ int	main(int ac, char **av)
 	all.mlx = mlx_init(1920, 1080, "cub3D", false);
 	all.img = mlx_new_image(all.mlx, 1920, 1080);
 	mlx_image_to_window(all.mlx, all.img, 0, 0);
-	// all.swg = mlx_texture_to_image(all.mlx, all.frm[60]);
-	// mlx_image_to_window(all.mlx, all.swg, 940, 520);
 	mlx_cursor_hook(all.mlx, sway, &all);
 	mlx_loop_hook(all.mlx, cf_background, &all);
 	mlx_loop_hook(all.mlx, sprite_dance, &all);

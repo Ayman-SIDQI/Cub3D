@@ -6,7 +6,7 @@
 /*   By: hcharia < hcharia@student.1337.ma>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 11:41:56 by hcharia           #+#    #+#             */
-/*   Updated: 2023/08/31 15:03:29 by hcharia          ###   ########.fr       */
+/*   Updated: 2023/08/31 17:26:26 by hcharia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	line_print(t_pov *all, int x, int y, int pxl)
 	int	o;
 
 	o = -1;
-	while (++o < 100000 / pxl && o < 540)
+	while (++o < pxl && o < 540)
 		mlx_put_pixel(all->img, x, (y + o), 0xAAAAAAFF);
 	while (o > 0)
 	{
@@ -46,7 +46,8 @@ void	graphic(void *name)
 	double	yofwall;
 	double	distance;
 	double	angle;
-
+	double	wallheight;
+	
 	all = name;
 	j = -1;
 	angle = all->map_info.angle;
@@ -54,13 +55,12 @@ void	graphic(void *name)
 	{
 		xofwall = all->map_info.bpx;
 		yofwall = all->map_info.bpy;
-		// printf ("%d\n", all->map_info.angle);
 		distance = 0;
 		while (all->big_map[(int)yofwall][(int)xofwall] != '1')
 		{
 			xofwall += cos((angle - 30 + j * 0.03125) * M_PI / 180);
 			yofwall += sin((angle - 30 + j * 0.03125) * M_PI / 180);
-			distance += sqrt(xofwall * xofwall + yofwall * yofwall);
+			
 			if (all->big_map[(int)yofwall][(int)(xofwall - cos((angle - 30 + j * 0.03125) * M_PI / 180))] == '1' \
 				&& all->big_map[(int)(yofwall - sin((angle - 30 + j * 0.03125) * M_PI / 180))][(int)xofwall] == '1')
 				break ;
@@ -68,8 +68,10 @@ void	graphic(void *name)
 				break ;
 			mlx_put_pixel(all->img, xofwall, yofwall, 0xBBBBDD00);
 		}
-		//wallheight = (64 / distance) * 540 / tan(30);
-		line_print(all, j, 540, distance / 10);
+		distance = sqrt((xofwall - all->map_info.bpx) * (xofwall - all->map_info.bpx) + (yofwall - all->map_info.bpy) * (yofwall - all->map_info.bpy)) * cos((- 30 + j * 0.03125) * M_PI / 180);
+		wallheight = -(64 / distance) * 540 / tan(30);
+		printf ("%f\n", wallheight);
+		line_print(all, j, 540, wallheight);
 	}
 }
 
@@ -108,3 +110,19 @@ void	sprite_dance(void *name)
 	if (anima == 96)
 		anima -= 96;
 }
+
+// void	example(void *name)
+// {
+// 	t_pov		*all;
+// 	static int	pop;
+// 	// static int 	s;
+
+// 	all = name;
+// 	pop++;
+// 	if (all->wal_img)
+// 		mlx_delete_image(all->mlx, all->wal_img);
+// 	all->wal_img = mlx_texture_to_image(all->mlx, all->wal[pop]);
+// 	mlx_image_to_window(all->mlx, all->wal_img, 300, 300);
+// 	if (pop == 3)
+// 		pop -= 3;
+// }

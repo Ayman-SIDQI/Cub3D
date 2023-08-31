@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asidqi <asidqi@student.1337.ma>            +#+  +:+       +#+        */
+/*   By: hcharia < hcharia@student.1337.ma>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 16:06:07 by asidqi            #+#    #+#             */
-/*   Updated: 2023/08/31 10:45:10 by asidqi           ###   ########.fr       */
+/*   Updated: 2023/08/31 16:47:43 by hcharia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,14 @@ struct s_pov
 	t_fil				map_info;
 	mlx_image_t			*img;
 	mlx_image_t			*swg;
+	mlx_image_t			*wal_img;
+	mlx_texture_t		*wal[4];
 	mlx_t				*mlx;
 	mlx_texture_t		*frm[97];
 };
 typedef struct s_pov	t_pov;
 
-// init_map(mlx_t *mlx);
+
 void			ft_lstiter(t_list *lst, void (*f)(char *, t_fil *), t_fil *fil);
 void			checkname(char *filename);
 bool			parse(char *fmap, t_pov *all);
@@ -78,5 +80,7 @@ bool			xmap(t_pov *all);
 bool			find_zeros(int i, char **map);
 char			*s_spc(char *l);
 unsigned int	ft_pixel(int r, int g, int b, int a);
+
+void			example(void *name);
 
 #endif
