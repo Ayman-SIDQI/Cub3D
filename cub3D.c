@@ -6,7 +6,7 @@
 /*   By: hcharia < hcharia@student.1337.ma>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 16:06:01 by asidqi            #+#    #+#             */
-/*   Updated: 2023/08/31 16:49:51 by hcharia          ###   ########.fr       */
+/*   Updated: 2023/09/01 15:06:00 by hcharia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,20 +90,20 @@ void	init_frm(t_pov *all)
 	int		i;
 	char	*joined;
 
-	// i = -1;
-	// while (++i < 4)
-	// {
-	// 	if (all->elem[i][0] == 'N')
-	// 		all->wal[i] = mlx_load_png("./frames/walls/mages.png");
-	// 	if (all->elem[i][0] == 'S')
-	// 		all->wal[i] = mlx_load_png("./frames/walls/mages.png");
-	// 	if (all->elem[i][0] == 'W')
-	// 		all->wal[i] = mlx_load_png("./frames/walls/mages.png");
-	// 	if (all->elem[i][0] == 'E')
-	// 		all->wal[i] = mlx_load_png("./frames/walls/mages.png");
-	// 	if (!all->wal[i])
-	// 		exit_perror();
-	// }
+	i = -1;
+	while (++i < 4)
+	{
+		if (all->elem[i][0] == 'N')
+			all->wal[i] = mlx_load_png("./frames/walls/mages.png");
+		if (all->elem[i][0] == 'S')
+			all->wal[i] = mlx_load_png("./frames/walls/mages.png");
+		if (all->elem[i][0] == 'W')
+			all->wal[i] = mlx_load_png("./frames/walls/mages.png");
+		if (all->elem[i][0] == 'E')
+			all->wal[i] = mlx_load_png("./frames/walls/mages.png");
+		if (!all->wal[i])
+			exit_perror();
+	}
 	i = 0;
 	while (++i < 98)
 	{

@@ -6,7 +6,7 @@
 /*   By: hcharia < hcharia@student.1337.ma>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 16:06:07 by asidqi            #+#    #+#             */
-/*   Updated: 2023/08/31 16:47:43 by hcharia          ###   ########.fr       */
+/*   Updated: 2023/09/02 15:47:05 by hcharia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 # define CUB3D_H
 
 # define N 16
+# define SCREENWIDTH 1920
+# define SCREENHIGH 1080
+# define FOV 60
 
 # include <MLX42/MLX42.h>
 # include <stdio.h>
@@ -55,6 +58,7 @@ struct s_pov
 	mlx_t				*mlx;
 	mlx_texture_t		*frm[97];
 };
+//	ft_pixel(all.wal[0].pixels[0], all.wal[0], all.wal[0], all.wal[0]) 
 typedef struct s_pov	t_pov;
 
 
@@ -75,7 +79,7 @@ void			minimap(void *name);
 void			sprite_dance(void *name);
 void			check_borders(t_list *map_info, t_pov *all);
 void			free_2d(char **str);
-void			line_print(t_pov *all, int x, int y, int pxl);
+void			line_print(t_pov *all, int x, int pxl);
 bool			xmap(t_pov *all);
 bool			find_zeros(int i, char **map);
 char			*s_spc(char *l);
