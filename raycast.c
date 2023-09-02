@@ -6,7 +6,7 @@
 /*   By: hcharia < hcharia@student.1337.ma>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 11:41:56 by hcharia           #+#    #+#             */
-/*   Updated: 2023/09/02 17:12:10 by hcharia          ###   ########.fr       */
+/*   Updated: 2023/09/02 17:47:26 by hcharia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,7 @@ void	line_print(t_pov *all, int x, int pxl)
 	int				down;
 	static int 		right;
 	static int		b;
-	// int			green;
-	// int			blue;
 	int			a;
-
 
 	o = SCREENHIGH / 2 - pxl / 2;
 	a = 0;
@@ -41,20 +38,20 @@ void	line_print(t_pov *all, int x, int pxl)
 	while (++o < SCREENHIGH / 2 + pxl / 2)
 	{
 		down ++;
-		if (down == 16)
+		if (down == pxl / 16)
 		{
 			down = -1;
 			a++;	
 		}
 		if (o < SCREENHIGH && o > 0)
 			mlx_put_pixel(all->img, x, o, 
-			ft_pixel(all->wal[0]->pixels[b % 16 + 0 + a * all->wal[0]->width], 
-					all->wal[0]->pixels[b % 16 + 1 + a * all->wal[0]->width], 
-					all->wal[0]->pixels[b % 16 + 2 + a * all->wal[0]->width], 
-					all->wal[0]->pixels[b % 16 + 3 + a * all->wal[0]->width]));
+			ft_pixel(all->wal[0]->pixels[x % pxl / 16 + 0 + (a % pxl / 16) * all->wal[0]->width], 
+					all->wal[0]->pixels [x % pxl / 16 + 1 + (a % pxl / 16) * all->wal[0]->width], 
+					all->wal[0]->pixels [x % pxl / 16 + 2 + (a % pxl / 16) * all->wal[0]->width], 
+					all->wal[0]->pixels [x % pxl / 16 + 3 + (a % pxl / 16) * all->wal[0]->width]));
 	}
 	right++;
-	if (right == 16)
+	if (right == pxl / 16)
 	{
 		b++;
 		right = 0;
@@ -104,9 +101,9 @@ float raycast(t_pov *all,float xofwall,float yofwall, int screenpos)
 	while (all->big_map[(int)yofwall][(int)xofwall] != '1')
 		{
 			xofwall += cos((all->map_info.angle - FOV / 2 +
-			 screenpos * (float) FOV / SCREENWIDTH) * M_PI / 180) * 0.1;
+			 screenpos * (float) FOV / SCREENWIDTH) * M_PI / 180) * 0.5;
 			yofwall += sin((all->map_info.angle - FOV / 2 +
-			 screenpos * (float) FOV / SCREENWIDTH) * M_PI / 180) * 0.1;
+			 screenpos * (float) FOV / SCREENWIDTH) * M_PI / 180) * 0.5;
 			if (all->big_map[(int)yofwall][(int)(xofwall - cos((all->map_info.angle \
 			- FOV / 2 + screenpos * (float) FOV / SCREENWIDTH) * M_PI / 180))] == '1' \
 				&& all->big_map[(int)(yofwall - sin((all->map_info.angle - FOV / 2 + \
