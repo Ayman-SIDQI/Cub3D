@@ -6,7 +6,7 @@
 /*   By: hcharia < hcharia@student.1337.ma>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 16:06:01 by asidqi            #+#    #+#             */
-/*   Updated: 2023/09/01 15:06:00 by hcharia          ###   ########.fr       */
+/*   Updated: 2023/09/04 18:29:44 by hcharia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,28 @@ void	sway(double x, double y, void *name)
 	all->map_info.angle += (x - 960) / 2;
 }
 
+void	fillcolors (t_pov *all)
+{
+	int	i;
+	int	j;
+	int	k;
+
+	i = -1;
+	j = 0;
+	k = 0;
+	while (++i < 4)
+	{
+		while (k < 16 * 16)
+		{
+			all->tc[i][k++] = ft_pixel(all->wal[i]->pixels[j], 
+									all->wal[i]->pixels[j + 1],
+									all->wal[i]->pixels[j + 2],
+									all->wal[i]->pixels[j + 3]);
+			j += 4;
+		}
+	}
+}
+
 void	init_frm(t_pov *all)
 {
 	int		i;
@@ -94,13 +116,26 @@ void	init_frm(t_pov *all)
 	while (++i < 4)
 	{
 		if (all->elem[i][0] == 'N')
+		{
 			all->wal[i] = mlx_load_png("./frames/walls/mages.png");
+			all->tc[i] = malloc(16 * 16 * sizeof(int));
+		}
 		if (all->elem[i][0] == 'S')
+		{
 			all->wal[i] = mlx_load_png("./frames/walls/mages.png");
+			all->tc[i] = malloc(16 * 16 * sizeof(int));
+		}
 		if (all->elem[i][0] == 'W')
+		{
 			all->wal[i] = mlx_load_png("./frames/walls/mages.png");
+			all->tc[i] = malloc(16 * 16 * sizeof(int));
+		}
 		if (all->elem[i][0] == 'E')
+		{
 			all->wal[i] = mlx_load_png("./frames/walls/mages.png");
+			all->tc[i] = malloc(16 * 16 * sizeof(int));
+		}
+		fillcolors (all);
 		if (!all->wal[i])
 			exit_perror();
 	}
@@ -126,7 +161,7 @@ int	main(int ac, char **av)
 	all.mlx = mlx_init(1920, 1080, "cub3D", false);
 	all.img = mlx_new_image(all.mlx, 1920, 1080);
 	mlx_image_to_window(all.mlx, all.img, 0, 0);
-	mlx_cursor_hook(all.mlx, sway, &all);
+	// mlx_cursor_hook(all.mlx, sway, &all);
 	mlx_loop_hook(all.mlx, cf_background, &all);
 	mlx_loop_hook(all.mlx, sprite_dance, &all);
 	mlx_loop_hook(all.mlx, keys, &all);
