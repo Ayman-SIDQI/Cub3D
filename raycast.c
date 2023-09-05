@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hcharia < hcharia@student.1337.ma>         +#+  +:+       +#+        */
+/*   By: hcharia <hcharia@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 11:41:56 by hcharia           #+#    #+#             */
-/*   Updated: 2023/09/04 18:38:14 by hcharia          ###   ########.fr       */
+/*   Updated: 2023/09/05 19:35:46 by hcharia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,12 @@ void	line_print(t_pov *all, int x, int xwall, int pxl)
 	{
 		if (y < SCREENHIGH && y > 0)
 		{
-			if (b == 16)
+			if (b == 256)
 			{
 				a++;
 				b = 0;
 			}
-			mlx_put_pixel(all->img, x, y, all->tc[0][xwall % pxl / 16 + a * 16]);
+			mlx_put_pixel(all->img, x, y, all->tc[0][xwall % pxl / 256 + a * 256]);
 			b++;
 		}
 	}
@@ -59,8 +59,6 @@ void    graphic(void *name)
 	double	angle;
 	int		wallheight;
 	int		ytla3;	
-	// int		a;
-	// int		b;
 
 	double	x_percentage;
 	double	old_x_ray, old_y_ray;
@@ -117,9 +115,9 @@ void    graphic(void *name)
 		// a = 0;
 		// b = 0;
 
-		double	slop = 16.0 / wallheight;
+		double	slop = 256.0 / wallheight;
 		double	b = - slop * ytla3;
-		int		x_pos = x_percentage * 16;
+		int		x_pos = x_percentage * 256;
 		// --ytla3;
 		int	y = -1;
 		while (++y < (int)wallheight)
@@ -132,58 +130,14 @@ void    graphic(void *name)
 				int	y_pos = slop * (double)(ytla3 + y) + b;
 				(void)x_pos;(void)y_pos;
 				// if (x_pos > 15 || y_pos > 15 || y == (int)wallheight - 1 || 1)
-				// 	printf("[%d %d] {%u}\n", x_pos, y_pos, all->tc[0][y_pos * 16 + x_pos]);
-				mlx_put_pixel(all->img, j, y + ytla3, all->tc[0][y_pos * 16 + x_pos]);
+				// 	printf("[%d %d] {%u}\n", x_pos, y_pos, all->tc[0][y_pos * 256 + x_pos]);
+				mlx_put_pixel(all->img, j, y + ytla3, all->tc[0][y_pos * 256 + x_pos]);
 			}
 		}
 		//line_print(all, j, xofwall, wallheight);
 	}
 }
 
-// float raycast(t_pov *all,float xofwall,float yofwall, int screenpos)
-// {
-// 	while (all->big_map[(int)yofwall][(int)xofwall] != '1')
-// 		{
-// 			xofwall += cos((all->map_info.angle - FOV / 2 +
-// 			 screenpos * (float) FOV / SCREENWIDTH) * M_PI / 180) * 0.5;
-// 			yofwall += sin((all->map_info.angle - FOV / 2 +
-// 			 screenpos * (float) FOV / SCREENWIDTH) * M_PI / 180) * 0.5;
-// 			if (all->big_map[(int)yofwall][(int)(xofwall - cos((all->map_info.angle \
-// 			- FOV / 2 + screenpos * (float) FOV / SCREENWIDTH) * M_PI / 180))] == '1' \
-// 				&& all->big_map[(int)(yofwall - sin((all->map_info.angle - FOV / 2 + \
-// 				screenpos * (float) FOV / SCREENWIDTH) * M_PI / 180))][(int)xofwall] == '1')
-// 				break ;
-// 			if (xofwall < 0 || xofwall > SCREENWIDTH || yofwall < 0 || yofwall > 1080)
-// 				break ;
-// 			mlx_put_pixel(all->img, xofwall, yofwall, 0xBBBBDD00);
-// 		}
-// 		return (sqrt((xofwall - all->map_info.bpx) * (xofwall - all->map_info.bpx) 
-// 		+ (yofwall - all->map_info.bpy) * (yofwall - all->map_info.bpy)) 
-// 		* cos((- 30 + screenpos * (float) FOV / SCREENWIDTH) * M_PI / 180));
-// }
-
-// void	graphic(void *name)
-// {
-// 	t_pov	*all;
-// 	int		screenpos;
-// 	double	xofwall;
-// 	double	yofwall;
-// 	double	distance;
-// 	double	wallheight;
-	
-// 	all = name;
-// 	screenpos = -1;
-// 	while (++screenpos < SCREENWIDTH)
-// 	{
-// 		xofwall = all->map_info.bpx;
-// 		yofwall = all->map_info.bpy;
-// 		distance = raycast(all, xofwall, yofwall, screenpos);
-// 		//wallheight = -(64 / distance) * 540 / tan(30);
-// 		 wallheight = (16 * 1080) / distance;
-// 		//printf("%f\n", wallheight);
-// 		line_print(all, screenpos, wallheight);
-// 	}
-// }
 
 void	minimap(void *name)
 {
@@ -220,19 +174,3 @@ void	sprite_dance(void *name)
 	if (anima == 96)
 		anima -= 96;
 }
-
-// void	example(void *name)
-// {
-// 	t_pov		*all;
-// 	static int	pop;
-// 	// static int 	s;
-
-// 	all = name;
-// 	pop++;
-// 	if (all->wal_img)
-// 		mlx_delete_image(all->mlx, all->wal_img);
-// 	all->wal_img = mlx_texture_to_image(all->mlx, all->wal[pop]);
-// 	mlx_image_to_window(all->mlx, all->wal_img, 300, 300);
-// 	if (pop == 3)
-// 		pop -= 3;
-// }

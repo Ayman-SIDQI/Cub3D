@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asidqi <asidqi@student.1337.ma>            +#+  +:+       +#+        */
+/*   By: hcharia <hcharia@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 21:41:59 by asidqi            #+#    #+#             */
-/*   Updated: 2023/08/31 10:35:53 by asidqi           ###   ########.fr       */
+/*   Updated: 2023/09/05 11:22:00 by hcharia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,6 @@ void	skip_empty(t_pov *all)
 
 void	jm3str(char *av, t_pov *all)
 {
-	int	i;
-
-	i = 0;
 	all->fd = open(av, O_RDONLY);
 	if (xelem(all) || xmap(all))
 	{
