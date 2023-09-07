@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hcharia <hcharia@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: hcharia < hcharia@student.1337.ma>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 16:06:01 by asidqi            #+#    #+#             */
-/*   Updated: 2023/09/05 19:35:08 by hcharia          ###   ########.fr       */
+/*   Updated: 2023/09/07 15:16:33 by hcharia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ void	fillcolors (t_pov *all)
 	k = 0;
 	while (++i < 4)
 	{
-		while (k < 256 * 256)
+		while (k <256 *256)
 		{
 			all->tc[i][k++] = ft_pixel(all->wal[i]->pixels[j], 
 									all->wal[i]->pixels[j + 1],
@@ -118,7 +118,7 @@ void	init_frm(t_pov *all)
 		if (all->elem[i][0] == 'N')
 		{
 			all->wal[i] = mlx_load_png("./frames/walls/mages.png");
-			all->tc[i] = malloc(256 * 256 * sizeof(int));
+			all->tc[i] = malloc(256 *256 * sizeof(int));
 		}
 		if (all->elem[i][0] == 'S')
 		{

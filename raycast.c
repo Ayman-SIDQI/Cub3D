@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hcharia <hcharia@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: hcharia < hcharia@student.1337.ma>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 11:41:56 by hcharia           #+#    #+#             */
-/*   Updated: 2023/09/05 19:35:46 by hcharia          ###   ########.fr       */
+/*   Updated: 2023/09/07 18:43:23 by hcharia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,48 +24,23 @@ void	pov(char c, t_fil *all)
 		all->angle = 90;
 }
 
-void	line_print(t_pov *all, int x, int xwall, int pxl)
-{
-	int				y;
-	int				a;
-	 int			b;
-
-	y = SCREENHIGH / 2 - pxl / 2;
-	a = 0;
-	b = 0;
-	while (++y < SCREENHIGH / 2 + pxl / 2)
-	{
-		if (y < SCREENHIGH && y > 0)
-		{
-			if (b == 256)
-			{
-				a++;
-				b = 0;
-			}
-			mlx_put_pixel(all->img, x, y, all->tc[0][xwall % pxl / 256 + a * 256]);
-			b++;
-		}
-	}
-
-}
-
 void    graphic(void *name)
 {
 	t_pov	*all;
 	int		j;
-	double	xofwall;
-	double	yofwall;
-	double	distance;
+	float	xofwall;
+	float	yofwall;
+	float	distance;
 	double	angle;
-	int		wallheight;
-	int		ytla3;	
+	float	wallheight;
+	int		start_point;
 
 	double	x_percentage;
 	double	old_x_ray, old_y_ray;
 
 	all = name;
 	j = -1;
-	angle = all->map_info.angle;// + 30 + j * 0.03125;
+	angle = all->map_info.angle;
 	
 	while (++j < 1920)
 	{
@@ -90,9 +65,11 @@ void    graphic(void *name)
 				mlx_put_pixel(all->img, xofwall, yofwall, 0xBBBBDD00);
 		}
 
-		distance = sqrt((xofwall - all->map_info.bpx) * (xofwall - all->map_info.bpx) + (yofwall - all->map_info.bpy) * (yofwall - all->map_info.bpy)) * cos((- 30 + j * 0.03125) * M_PI / 180);
-		wallheight = (1080) / distance;
-		
+		xofwall /= 16;
+		yofwall /= 16;
+		old_x_ray /= 16;
+		old_y_ray /= 16;
+		printf("[%f]\n", wallheight);
 		{
 			if ((int)xofwall != (int)old_x_ray)
 			{
@@ -107,37 +84,30 @@ void    graphic(void *name)
 				x_percentage = xofwall - (int)xofwall;
 			}
 		}
-
+		distance = sqrt((xofwall - all->map_info.px) * (xofwall - all->map_info.px) 
+		+ (yofwall - all->map_info.py) * (yofwall - all->map_info.py)) * cos((- 30 + j * 0.03125) * M_PI / 180);
 		
-		// printf("%lf - %lf  [%lf, %lf] {%lf, %lf}\n", xofwall, yofwall, old_x_ray, old_y_ray, all->map_info.bpx, all->map_info.bpy);
+		wallheight = (1080 / distance);
 		
-		ytla3 = SCREENHIGH / 2 - wallheight / 2;
-		// a = 0;
-		// b = 0;
+		start_point = SCREENHIGH / 2 - wallheight / 2;
 
 		double	slop = 256.0 / wallheight;
-		double	b = - slop * ytla3;
-		int		x_pos = x_percentage * 256;
-		// --ytla3;
+		double	b = - slop * start_point;
+		int		x_pos = (int)(x_percentage * 256);
+		//int		x_pos = (int)(x_percentage * 256);
 		int	y = -1;
 		while (++y < (int)wallheight)
 		{
-			if (ytla3 + y >= SCREENHIGH)
+			if (start_point + y >= SCREENHIGH)
 				break ;
-			else if (ytla3 + y >= 0)
+			else if (start_point + y >= 0)
 			{
-				// printf("[%d -- %f]\n", y, wallheight);
-				int	y_pos = slop * (double)(ytla3 + y) + b;
-				(void)x_pos;(void)y_pos;
-				// if (x_pos > 15 || y_pos > 15 || y == (int)wallheight - 1 || 1)
-				// 	printf("[%d %d] {%u}\n", x_pos, y_pos, all->tc[0][y_pos * 256 + x_pos]);
-				mlx_put_pixel(all->img, j, y + ytla3, all->tc[0][y_pos * 256 + x_pos]);
+				int	y_pos = slop * (double)(start_point + y) + b;
+				mlx_put_pixel(all->img, j, y + start_point, all->tc[0][y_pos * 256 + x_pos]);
 			}
 		}
-		//line_print(all, j, xofwall, wallheight);
 	}
 }
-
 
 void	minimap(void *name)
 {
