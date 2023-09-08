@@ -6,7 +6,7 @@
 /*   By: hcharia < hcharia@student.1337.ma>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 16:06:01 by asidqi            #+#    #+#             */
-/*   Updated: 2023/09/07 15:16:33 by hcharia          ###   ########.fr       */
+/*   Updated: 2023/09/08 18:10:09 by hcharia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,31 +21,31 @@ void	keys(void *name)
 		mlx_close_window(all->mlx);
 	if (mlx_is_key_down(all->mlx, MLX_KEY_W))
 	{
-		if (all->big_map[(int)(all->map_info.bpy + sin(all->map_info.angle * M_PI / 180))][(int)(all->map_info.bpx + cos(all->map_info.angle * M_PI / 180))] == '1')
+		if (all->map[(int)(all->map_info.py + sin(all->map_info.angle * M_PI / 180))][(int)(all->map_info.px + cos(all->map_info.angle * M_PI / 180))] == '1')
 			return ;
-		all->map_info.bpy += sin(all->map_info.angle * M_PI / 180);
-		all->map_info.bpx += cos(all->map_info.angle * M_PI / 180);
+		all->map_info.py += sin(all->map_info.angle * M_PI / 180) * 0.05;
+		all->map_info.px += cos(all->map_info.angle * M_PI / 180) * 0.05;
 	}
 	if (mlx_is_key_down(all->mlx, MLX_KEY_S))
 	{
-		if (all->big_map[(int)(all->map_info.bpy - sin(all->map_info.angle * M_PI / 180))][(int)(all->map_info.bpx - cos(all->map_info.angle * M_PI / 180))] == '1')
+		if (all->map[(int)(all->map_info.py - sin(all->map_info.angle * M_PI / 180))][(int)(all->map_info.px - cos(all->map_info.angle * M_PI / 180))] == '1')
 			return ;
-		all->map_info.bpy -= sin(all->map_info.angle * M_PI / 180);
-		all->map_info.bpx -= cos(all->map_info.angle * M_PI / 180);
+		all->map_info.py -= sin(all->map_info.angle * M_PI / 180) * 0.05;
+		all->map_info.px -= cos(all->map_info.angle * M_PI / 180) * 0.05;
 	}
 	if (mlx_is_key_down(all->mlx, MLX_KEY_A))
 	{
-		if (all->big_map[(int)(all->map_info.bpy + sin((all->map_info.angle * M_PI / 180) - M_PI / 2))][(int)(all->map_info.bpx + cos((all->map_info.angle * M_PI / 180) - M_PI / 2))] == '1')
+		if (all->map[(int)(all->map_info.py + sin((all->map_info.angle * M_PI / 180) - M_PI / 2))][(int)(all->map_info.px + cos((all->map_info.angle * M_PI / 180) - M_PI / 2))] == '1')
 			return ;
-		all->map_info.bpy += sin((all->map_info.angle * M_PI / 180) - M_PI / 2);
-		all->map_info.bpx += cos((all->map_info.angle * M_PI / 180) - M_PI / 2);
+		all->map_info.py += sin((all->map_info.angle * M_PI / 180) - M_PI / 2) * 0.05;
+		all->map_info.px += cos((all->map_info.angle * M_PI / 180) - M_PI / 2) * 0.05;
 	}
 	if (mlx_is_key_down(all->mlx, MLX_KEY_D))
 	{
-		if (all->big_map[(int)(all->map_info.bpy - sin((all->map_info.angle * M_PI / 180) - M_PI / 2))][(int)(all->map_info.bpx - cos((all->map_info.angle * M_PI / 180) - M_PI / 2))] == '1')
+		if (all->map[(int)(all->map_info.py - sin((all->map_info.angle * M_PI / 180) - M_PI / 2))][(int)(all->map_info.px - cos((all->map_info.angle * M_PI / 180) - M_PI / 2))] == '1')
 			return ;
-		all->map_info.bpy -= sin((all->map_info.angle * M_PI / 180) - M_PI / 2);
-		all->map_info.bpx -= cos((all->map_info.angle * M_PI / 180) - M_PI / 2);
+		all->map_info.py -= sin((all->map_info.angle * M_PI / 180) - M_PI / 2) * 0.05;
+		all->map_info.px -= cos((all->map_info.angle * M_PI / 180) - M_PI / 2) * 0.05;
 	}
 	if (mlx_is_key_down(all->mlx, MLX_KEY_LEFT))
 		all->map_info.angle -= 2;

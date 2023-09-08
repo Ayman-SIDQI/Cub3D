@@ -6,7 +6,7 @@
 /*   By: hcharia < hcharia@student.1337.ma>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 16:06:07 by asidqi            #+#    #+#             */
-/*   Updated: 2023/09/07 17:12:21 by hcharia          ###   ########.fr       */
+/*   Updated: 2023/09/08 17:51:09 by hcharia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 # define CUB3D_H
 
 # define N 16
-# define SCREENWIDTH 1920
-# define SCREENHIGH 1080
+# define SWIDTH 1920
+# define SHIGH 1080
 # define FOV 60
 
 # include <MLX42/MLX42.h>
