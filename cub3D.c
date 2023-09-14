@@ -6,11 +6,17 @@
 /*   By: hcharia < hcharia@student.1337.ma>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 16:06:01 by asidqi            #+#    #+#             */
-/*   Updated: 2023/09/08 18:10:09 by hcharia          ###   ########.fr       */
+/*   Updated: 2023/09/14 16:56:55 by hcharia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
+
+void	changeoriginal(t_pov *all)
+{
+	all->map_info.px = all->map_info.bpx / 16;
+	all->map_info.py = all->map_info.bpy / 16;
+}
 
 void	keys(void *name)
 {
@@ -21,36 +27,45 @@ void	keys(void *name)
 		mlx_close_window(all->mlx);
 	if (mlx_is_key_down(all->mlx, MLX_KEY_W))
 	{
-		if (all->map[(int)(all->map_info.py + sin(all->map_info.angle * M_PI / 180))][(int)(all->map_info.px + cos(all->map_info.angle * M_PI / 180))] == '1')
+		if (all->big_map[(int)(all->map_info.bpy + sin(all->map_info.angle))][(int)(all->map_info.bpx + cos(all->map_info.angle))] == '1')
 			return ;
-		all->map_info.py += sin(all->map_info.angle * M_PI / 180) * 0.05;
-		all->map_info.px += cos(all->map_info.angle * M_PI / 180) * 0.05;
+		all->map_info.bpy += sin(all->map_info.angle);
+		all->map_info.bpx += cos(all->map_info.angle);
+		changeoriginal(all);
 	}
 	if (mlx_is_key_down(all->mlx, MLX_KEY_S))
 	{
-		if (all->map[(int)(all->map_info.py - sin(all->map_info.angle * M_PI / 180))][(int)(all->map_info.px - cos(all->map_info.angle * M_PI / 180))] == '1')
+		if (all->big_map[(int)(all->map_info.bpy - sin(all->map_info.angle))][(int)(all->map_info.bpx - cos(all->map_info.angle))] == '1')
 			return ;
-		all->map_info.py -= sin(all->map_info.angle * M_PI / 180) * 0.05;
-		all->map_info.px -= cos(all->map_info.angle * M_PI / 180) * 0.05;
+		all->map_info.bpy -= sin(all->map_info.angle);
+		all->map_info.bpx -= cos(all->map_info.angle);
+		changeoriginal(all);
 	}
 	if (mlx_is_key_down(all->mlx, MLX_KEY_A))
 	{
-		if (all->map[(int)(all->map_info.py + sin((all->map_info.angle * M_PI / 180) - M_PI / 2))][(int)(all->map_info.px + cos((all->map_info.angle * M_PI / 180) - M_PI / 2))] == '1')
+		if (all->big_map[(int)(all->map_info.bpy + sin((all->map_info.angle) - M_PI / 2))][(int)(all->map_info.bpx + cos((all->map_info.angle) - M_PI / 2))] == '1')
 			return ;
-		all->map_info.py += sin((all->map_info.angle * M_PI / 180) - M_PI / 2) * 0.05;
-		all->map_info.px += cos((all->map_info.angle * M_PI / 180) - M_PI / 2) * 0.05;
+		all->map_info.bpy += sin((all->map_info.angle) - M_PI / 2);
+		all->map_info.bpx += cos((all->map_info.angle) - M_PI / 2);
+		changeoriginal(all);
 	}
 	if (mlx_is_key_down(all->mlx, MLX_KEY_D))
 	{
-		if (all->map[(int)(all->map_info.py - sin((all->map_info.angle * M_PI / 180) - M_PI / 2))][(int)(all->map_info.px - cos((all->map_info.angle * M_PI / 180) - M_PI / 2))] == '1')
+		if (all->big_map[(int)(all->map_info.bpy - sin((all->map_info.angle) - M_PI / 2))][(int)(all->map_info.bpx - cos((all->map_info.angle) - M_PI / 2))] == '1')
 			return ;
-		all->map_info.py -= sin((all->map_info.angle * M_PI / 180) - M_PI / 2) * 0.05;
-		all->map_info.px -= cos((all->map_info.angle * M_PI / 180) - M_PI / 2) * 0.05;
+		all->map_info.bpy -= sin((all->map_info.angle) - M_PI / 2);
+		all->map_info.bpx -= cos((all->map_info.angle) - M_PI / 2);
+		changeoriginal(all);
 	}
 	if (mlx_is_key_down(all->mlx, MLX_KEY_LEFT))
-		all->map_info.angle -= 2;
+		all->map_info.angle -= 0.03;
 	if (mlx_is_key_down(all->mlx, MLX_KEY_RIGHT))
-		all->map_info.angle += 2;
+		all->map_info.angle += 0.03;
+	if(all->map_info.angle < 0)
+		all->map_info.angle += 2 * M_PI;
+	if(all->map_info.angle > 2 * M_PI)
+		all->map_info.angle -= 2 * M_PI;
+		
 }
 
 void	cf_background(void *name)
@@ -61,10 +76,10 @@ void	cf_background(void *name)
 
 	all = name;
 	y = -1;
-	while (++y < 1080)
+	while (++y < SHEIGH)
 	{
 		x = -1;
-		while (++x < 1920)
+		while (++x < SWIDTH)
 		{
 			if (y < 540)
 				mlx_put_pixel(all->img, x, y, all->map_info.cn);
@@ -96,7 +111,7 @@ void	fillcolors (t_pov *all)
 	k = 0;
 	while (++i < 4)
 	{
-		while (k <256 *256)
+		while (k <256 * 256)
 		{
 			all->tc[i][k++] = ft_pixel(all->wal[i]->pixels[j], 
 									all->wal[i]->pixels[j + 1],
@@ -158,12 +173,12 @@ int	main(int ac, char **av)
 		return (1);
 	parse(av[1], &all);
 	init_frm(&all);
-	all.mlx = mlx_init(1920, 1080, "cub3D", false);
-	all.img = mlx_new_image(all.mlx, 1920, 1080);
+	all.mlx = mlx_init(SWIDTH, SHEIGH, "cub3D", false);
+	all.img = mlx_new_image(all.mlx, SWIDTH, SHEIGH);
 	mlx_image_to_window(all.mlx, all.img, 0, 0);
-	// mlx_cursor_hook(all.mlx, sway, &all);
+	//mlx_cursor_hook(all.mlx, sway, &all);
 	mlx_loop_hook(all.mlx, cf_background, &all);
-	mlx_loop_hook(all.mlx, sprite_dance, &all);
+	//mlx_loop_hook(all.mlx, sprite_dance, &all);
 	mlx_loop_hook(all.mlx, keys, &all);
 	mlx_loop_hook(all.mlx, minimap, &all);
 	mlx_loop_hook(all.mlx, graphic, &all);

@@ -6,17 +6,17 @@
 /*   By: hcharia < hcharia@student.1337.ma>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 16:06:07 by asidqi            #+#    #+#             */
-/*   Updated: 2023/09/08 17:51:09 by hcharia          ###   ########.fr       */
+/*   Updated: 2023/09/14 16:50:04 by hcharia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
-# define N 16
-# define SWIDTH 1920
-# define SHIGH 1080
-# define FOV 60
+# define N			16
+# define SHEIGH		1080
+# define SWIDTH		1920
+# define FOV		M_PI / 3.0
 
 # include <MLX42/MLX42.h>
 # include <stdio.h>
@@ -31,7 +31,7 @@ typedef struct s_fil
 	float			py;
 	float			bpx;
 	float			bpy;
-	int				angle;
+	float			angle;
 	int				mwidth;
 	int				mheight;
 	int				errflag;
@@ -40,6 +40,14 @@ typedef struct s_fil
 	char			**f;
 	unsigned int	fn;
 	unsigned int	cn;
+	float			xhwall;
+	float			yhwall;
+	float			xvwall;
+	float			yvwall;
+	int				wmap;
+	int				hmap;
+	float			dist;
+	char			direct;
 }t_fil;
 
 struct s_pov
@@ -57,11 +65,9 @@ struct s_pov
 	mlx_texture_t		*wal[4];
 	mlx_t				*mlx;
 	mlx_texture_t		*frm[97];
-	int					*tc[4];
+	int				*tc[4];
 };
-//	ft_pixel(all.wal[0].pixels[0], all.wal[0], all.wal[0], all.wal[0]) 
 typedef struct s_pov	t_pov;
-
 
 void			ft_lstiter(t_list *lst, void (*f)(char *, t_fil *), t_fil *fil);
 void			checkname(char *filename);
@@ -80,7 +86,7 @@ void			minimap(void *name);
 void			sprite_dance(void *name);
 void			check_borders(t_list *map_info, t_pov *all);
 void			free_2d(char **str);
-void			line_print(t_pov *all, int x, int xwall, int pxl);
+void			line_print(t_pov *all, int x, int y, int pxl);
 bool			xmap(t_pov *all);
 bool			find_zeros(int i, char **map);
 char			*s_spc(char *l);
