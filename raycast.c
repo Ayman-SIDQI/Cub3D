@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hcharia <hcharia@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: hcharia < hcharia@student.1337.ma>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 11:41:56 by hcharia           #+#    #+#             */
-/*   Updated: 2023/09/14 23:09:24 by hcharia          ###   ########.fr       */
+/*   Updated: 2023/09/15 16:22:01 by hcharia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	pov(char c, t_fil *all)
 
 int	israyfacingup(float	angle)
 {
-	if (angle > 0 && angle < M_PI)
+	if (angle > 0 && angle <= M_PI)
 		return (0);
 	else
 		return (1);
@@ -37,7 +37,7 @@ int	israyfacingup(float	angle)
 
 int	israyfacingright(float	angle)
 {
-	if (angle > (0.5 * M_PI) && angle < (1.5 * M_PI))
+	if (angle > (0.5 * M_PI) && angle <= (1.5 * M_PI))
 		return (0);
 	else
 		return (1);
@@ -74,7 +74,7 @@ void	horzontal(t_pov	*all, float angle)
 	if (!israyfacingup(angle))
 		nexty += N;
 	else
-		nexty -= 0.001;
+		nexty -= 0.000024;
 	nextx = all->map_info.bpx + (nexty - all->map_info.bpy) / tan (angle);
 	ystep = N;
 	xstep = N / tan(angle);
@@ -136,7 +136,7 @@ void vertical(t_pov *all, float angle)
     if (israyfacingright(angle))
         nextx += N;
     else
-        nextx -= 0.001;
+        nextx -= 0.000024;
 
     nexty = all->map_info.bpy + (nextx - all->map_info.bpx) * tan(angle);
     xstep = N;
@@ -170,11 +170,19 @@ float	raycast(t_pov	*all, float	angle)
 	if (hor > vert)
 	{
 		all->map_info.direct = 'v';
+		if (israyfacingup(all->map_info.angle))
+			all->compus = 0;
+		else
+			all->compus = 1;
 		drawline (all, all->map_info.xvwall, all->map_info.yvwall);
 		return (vert);
 	}
 	else
 	{
+		if (israyfacingright(all->map_info.angle))
+			all->compus = 2;
+		else
+			all->compus = 3;
 		all->map_info.direct = 'h';
 		drawline (all, all->map_info.xhwall, all->map_info.yhwall);
 		return (hor);
@@ -202,30 +210,70 @@ void	graphic(void *name)
 		if (angle < 0)
 			angle += 2 * M_PI;
 		lineH = SHEIGH / (raycast(all, angle) * cos(angle - all->map_info.angle));
+		float	hs = lineH + (SHEIGH / 2 - (lineH / 2));
 		int y = -1;
-		int	line_start = SHEIGH / 2 - lineH / 2;
-		while (++y < (int)lineH)
+		float	line_start = SHEIGH / 2 - (lineH / 2);
+
+		
+		float	yinc = (float) (hs - line_start) / all->wal[0]->height;
+		float	idx = 0;
+		int		xt;
+		float	yt;
+		float	temp;
+		
+		while (idx < all->wal[all->compus]->width)
 		{
-			if (line_start + y >= SHEIGH)
-				break;
-			else if (line_start + y >= 0)
+			if( all->map_info.direct == 'h')
+				xt = (int)(all->map_info.xhwall * (all->wal[all->compus]->width / N)) %  all->wal[all->compus]->width;
+			else
+				xt = (int)(all->map_info.yvwall * (all->wal[all->compus]->width / N)) %  all->wal[all->compus]->width;
+			temp = line_start;
+			while (temp < line_start + yinc)
 			{
-				if (israyfacingup(angle) && all->map_info.direct == 'h')
-					mlx_put_pixel(all->img, j, y + (int)line_start, 0xffb8d5ff);
-				if (!israyfacingup(angle) && all->map_info.direct == 'h')
-					mlx_put_pixel(all->img, j, y + (int)line_start, 0xaee4ffff);
-				if (israyfacingright(angle) && all->map_info.direct == 'v')
-					mlx_put_pixel(all->img, j, y + (int)line_start, 0xfee5e1ff);
-				if (!israyfacingright(angle) && all->map_info.direct == 'v')
-					mlx_put_pixel(all->img, j, y + (int)line_start, 0x033495ff);
-				
-			}
-				
+				int i = idx * all->wal[all->compus]->width + xt;
+				// printf("%d %f\n", j, temp);
+				if (temp >= 0 && temp <= SHEIGH)
+					mlx_put_pixel(all->img, j, temp, all->tc[all->compus][i]);
+				temp++;
+			}	
+			idx++;
+			line_start += yinc;
 		}
+
+
+		
+		// while (++y < (int)lineH)
+		// {
+		// 	if (line_start + y >= SHEIGH)
+		// 		break;
+		// 	else if (line_start + y >= 0)
+		// 	{
+		// 		if (israyfacingup(angle) && all->map_info.direct == 'h')
+		// 			mlx_put_pixel(all->img, j, y + (int)line_start, 0xffb8d5ff);
+		// 		if (!israyfacingup(angle) && all->map_info.direct == 'h')
+		// 			mlx_put_pixel(all->img, j, y + (int)line_start, 0xaee4ffff);
+		// 		if (israyfacingright(angle) && all->map_info.direct == 'v')
+		// 			mlx_put_pixel(all->img, j, y + (int)line_start, 0xfee5e1ff);
+		// 		if (!israyfacingright(angle) && all->map_info.direct == 'v')
+		// 			mlx_put_pixel(all->img, j, y + (int)line_start, 0x033495ff);
+				
+		// 	}
+				
+		// }
 		
 	}
 }
-
+typedef struct text
+{
+	int		*tex;
+	int		x;
+	double	y;
+	double	yinc;
+	int		idx;
+	double	coh;
+	int		wid;
+	int		hei;
+}	t_text;
 
 void	minimap(void *name)
 {

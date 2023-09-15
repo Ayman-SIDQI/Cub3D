@@ -6,7 +6,7 @@
 /*   By: hcharia < hcharia@student.1337.ma>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 16:06:07 by asidqi            #+#    #+#             */
-/*   Updated: 2023/09/14 16:50:04 by hcharia          ###   ########.fr       */
+/*   Updated: 2023/09/15 16:10:25 by hcharia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,9 @@ struct s_pov
 	mlx_texture_t		*wal[4];
 	mlx_t				*mlx;
 	mlx_texture_t		*frm[97];
-	int				*tc[4];
+	int					*tc[4];
+	int					compus;
+	
 };
 typedef struct s_pov	t_pov;
 
