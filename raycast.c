@@ -6,7 +6,7 @@
 /*   By: hcharia < hcharia@student.1337.ma>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 11:41:56 by hcharia           #+#    #+#             */
-/*   Updated: 2023/09/15 16:22:01 by hcharia          ###   ########.fr       */
+/*   Updated: 2023/09/15 16:58:02 by hcharia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	pov(char c, t_fil *all)
 
 int	israyfacingup(float	angle)
 {
-	if (angle > 0 && angle <= M_PI)
+	if (angle > 0 && angle < M_PI)
 		return (0);
 	else
 		return (1);
@@ -37,7 +37,7 @@ int	israyfacingup(float	angle)
 
 int	israyfacingright(float	angle)
 {
-	if (angle > (0.5 * M_PI) && angle <= (1.5 * M_PI))
+	if (angle > (0.5 * M_PI) && angle < (1.5 * M_PI))
 		return (0);
 	else
 		return (1);
@@ -47,17 +47,17 @@ float	calcdistance(t_pov	*all, float x, float y)
 {
 	float	distance;
 
-	distance = sqrt((x / 16 - all->map_info.bpx / 16) * (x / 16 - all->map_info.bpx / 16)
-	+ (y / 16 - all->map_info.bpy / 16) * (y / 16 - all->map_info.bpy / 16));
+	distance = sqrt((x / N - all->map_info.bpx / N) * (x / N - all->map_info.bpx / N)
+	+ (y / N - all->map_info.bpy / N) * (y / N - all->map_info.bpy / N));
 	return(distance);
 }
 
 int	wallhit(t_pov *all, float x, float y)
 {
-	if (y / 16 < 0 || y / 16 > all->map_info.hmap || x / 16 > ft_strlen(all->map[(int)y / 16]) || x / 16 < 0)
+	if (y / N < 0 || y / N > all->map_info.hmap || x / N > ft_strlen(all->map[(int)y / N]) || x / N < 0)
 		return (1);
 	
-	if (all->map[(int)y / 16][(int)x / 16] == '1')
+	if (all->map[(int)y / N][(int)x / N] == '1')
 		return (1);
 	return (0);
 }
@@ -170,23 +170,15 @@ float	raycast(t_pov	*all, float	angle)
 	if (hor > vert)
 	{
 		all->map_info.direct = 'v';
-		if (israyfacingup(all->map_info.angle))
-			all->compus = 0;
-		else
-			all->compus = 1;
 		drawline (all, all->map_info.xvwall, all->map_info.yvwall);
 		return (vert);
 	}
 	else
 	{
-		if (israyfacingright(all->map_info.angle))
-			all->compus = 2;
-		else
-			all->compus = 3;
 		all->map_info.direct = 'h';
 		drawline (all, all->map_info.xhwall, all->map_info.yhwall);
 		return (hor);
-	} 
+	}
 }
 
 void	graphic(void *name)
@@ -221,6 +213,14 @@ void	graphic(void *name)
 		float	yt;
 		float	temp;
 		
+		if (israyfacingright(angle) && all->map_info.direct == 'v')
+			all->compus = 0;
+		else if (!israyfacingright(angle) && all->map_info.direct == 'v')
+			all->compus = 1;
+		else if (!israyfacingup(angle) && all->map_info.direct == 'h')
+			all->compus = 2;
+		else if (israyfacingup(angle) && all->map_info.direct == 'h')
+			all->compus = 3;
 		while (idx < all->wal[all->compus]->width)
 		{
 			if( all->map_info.direct == 'h')
@@ -292,7 +292,7 @@ void	minimap(void *name)
 				mlx_put_pixel(all->img, o, i, 0xC35B00FF);
 			else if (all->big_map[i][o] == '0')
 			{
-				if (i % 16 == 0 || o % 16 == 0)
+				if (i % N == 0 || o % N == 0)
 					mlx_put_pixel(all->img, o, i, 0x00000000);
 				else
 					mlx_put_pixel(all->img, o, i, 0xBBBBBBFF);

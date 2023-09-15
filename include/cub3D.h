@@ -6,7 +6,7 @@
 /*   By: hcharia < hcharia@student.1337.ma>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 16:06:07 by asidqi            #+#    #+#             */
-/*   Updated: 2023/09/15 16:10:25 by hcharia          ###   ########.fr       */
+/*   Updated: 2023/09/15 17:18:31 by hcharia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,8 @@ bool			xmap(t_pov *all);
 bool			find_zeros(int i, char **map);
 char			*s_spc(char *l);
 unsigned int	ft_pixel(int r, int g, int b, int a);
+int				israyfacingup(float angle);
+int				israyfacingight(float angle);
 
 void			example(void *name);
 
