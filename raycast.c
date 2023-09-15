@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hcharia < hcharia@student.1337.ma>         +#+  +:+       +#+        */
+/*   By: asidqi <asidqi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 11:41:56 by hcharia           #+#    #+#             */
-/*   Updated: 2023/09/15 16:58:02 by hcharia          ###   ########.fr       */
+/*   Updated: 2023/09/15 21:44:38 by asidqi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,36 +125,35 @@ void	drawline (t_pov *all, float xwall, float ywall)
 	}
 }
 
-void vertical(t_pov *all, float angle)
+void	vertical(t_pov *all, float angle)
 {
-    float nextx;
-    float nexty;
-    int xstep;
-    float ystep;
+	float	nextx;
+	float	nexty;
+	int		xstep;
+	float	ystep;
 
-    nextx = floor(all->map_info.bpx / N) * N;
-    if (israyfacingright(angle))
-        nextx += N;
-    else
-        nextx -= 0.000024;
-
-    nexty = all->map_info.bpy + (nextx - all->map_info.bpx) * tan(angle);
-    xstep = N;
+	nextx = floor(all->map_info.bpx / N) * N;
+	if (israyfacingright(angle))
+		nextx += N;
+	else
+		nextx -= 0.000024;
+	nexty = all->map_info.bpy + (nextx - all->map_info.bpx) * tan(angle);
+	xstep = N;
 	if (!israyfacingright(angle))
 		xstep *= -1;
-    ystep = N * tan(angle);
-	if ((ystep > 0 && israyfacingup(angle)) || (ystep < 0 && !israyfacingup(angle)))
+	ystep = N * tan(angle);
+	if ((ystep > 0 && israyfacingup(angle)) \
+	|| (ystep < 0 && !israyfacingup(angle)))
 		ystep *= -1;
-		
-    while (!wallhit(all, nextx, nexty))
-    {
+	while (!wallhit(all, nextx, nexty))
+	{
 		if (wallhit(all, nextx + N, nexty) && !israyfacingright(angle))
 			break ;
-			nextx += xstep;
-			nexty += ystep;
-    }
-    all->map_info.xvwall = nextx;
-    all->map_info.yvwall = nexty;
+		nextx += xstep;
+		nexty += ystep;
+	}
+	all->map_info.xvwall = nextx;
+	all->map_info.yvwall = nexty;
 }
 
 
@@ -260,20 +259,8 @@ void	graphic(void *name)
 		// 	}
 				
 		// }
-		
 	}
 }
-typedef struct text
-{
-	int		*tex;
-	int		x;
-	double	y;
-	double	yinc;
-	int		idx;
-	double	coh;
-	int		wid;
-	int		hei;
-}	t_text;
 
 void	minimap(void *name)
 {

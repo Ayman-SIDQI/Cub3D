@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hcharia <hcharia@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: asidqi <asidqi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 21:41:59 by asidqi            #+#    #+#             */
-/*   Updated: 2023/09/11 08:11:53 by hcharia          ###   ########.fr       */
+/*   Updated: 2023/09/15 22:20:03 by asidqi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ char	**retrieve_py(char **map, t_fil *all)
 			|| ft_strchr(map[i], 'W') || ft_strchr(map[i], 'S'))
 		{
 			all->py = i;
-			all->bpy = all->py * N - (N / 2);
+			all->bpy = all->py * N + (N / 2);
 			pov(map[(int)all->py][(int)all->px], all);
 			map[i][(int)all->px] = '0';
 			break ;
@@ -91,6 +91,7 @@ bool	parse(char *fmap, t_pov *all)
 	checkname(fmap);
 	jm3str(fmap, all);
 	check_borders(all->map_2d, all);
+	check_comma(all);
 	all->map = retrieve_py(all->map, &all->map_info);
 	return (true);
 }

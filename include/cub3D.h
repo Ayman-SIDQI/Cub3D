@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hcharia < hcharia@student.1337.ma>         +#+  +:+       +#+        */
+/*   By: asidqi <asidqi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 16:06:07 by asidqi            #+#    #+#             */
-/*   Updated: 2023/09/15 17:18:31 by hcharia          ###   ########.fr       */
+/*   Updated: 2023/09/15 22:19:56 by asidqi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,6 @@ struct s_pov
 	mlx_texture_t		*frm[97];
 	int					*tc[4];
 	int					compus;
-	
 };
 typedef struct s_pov	t_pov;
 
@@ -86,16 +85,17 @@ void			pov(char c, t_fil *all);
 void			graphic(void *name);
 void			minimap(void *name);
 void			sprite_dance(void *name);
-void			check_borders(t_list *map_info, t_pov *all);
 void			free_2d(char **str);
-void			line_print(t_pov *all, int x, int y, int pxl);
-bool			xmap(t_pov *all);
 bool			find_zeros(int i, char **map);
 char			*s_spc(char *l);
 unsigned int	ft_pixel(int r, int g, int b, int a);
 int				israyfacingup(float angle);
-int				israyfacingight(float angle);
-
-void			example(void *name);
+void			changeoriginal(t_pov *all);
+void			moveup(t_pov *all);
+void			movedown(t_pov *all);
+void			moveleft(t_pov *all);
+void			moveright(t_pov *all);
+void			init_frm(t_pov *all);
+void			check_comma(t_pov	*all);
 
 #endif

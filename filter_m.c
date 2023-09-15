@@ -6,7 +6,7 @@
 /*   By: asidqi <asidqi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 11:23:46 by asidqi            #+#    #+#             */
-/*   Updated: 2023/08/30 11:56:23 by asidqi           ###   ########.fr       */
+/*   Updated: 2023/09/15 22:31:41 by asidqi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	dup_check(char *cnt, t_fil *fil)
 		{
 			fil->count++;
 			fil->px = i;
-			fil->bpx = fil->px * N - (N / 2);
+			fil->bpx = fil->px * N + (N / 2);
 		}
 		if (cnt[i] != 'N' && cnt[i] != 'E' && cnt[i] != 'W' 
 			&& cnt[i] != 'S' && cnt[i] != ' ' && cnt[i] != '0'
@@ -58,4 +58,87 @@ void	filter_m(t_pov *all)
 		// ft_lstclear(&all, &free);
 		exit_perror();
 	}
+}
+
+void	fillcolors(t_pov *all)
+{
+	int	i;
+	int	j;
+	int	k;
+
+	i = -1;
+	while (++i < 4)
+	{
+		j = 0;
+		k = 0;
+		while (k < all->wal[i]->width * all->wal[i]->height)
+		{
+			all->tc[i][k++] = ft_pixel(all->wal[i]->pixels[j], \
+			all->wal[i]->pixels[j + 1], all->wal[i]->pixels[j + 2], \
+			all->wal[i]->pixels[j + 3]);
+			j += all->wal[i]->bytes_per_pixel;
+		}
+	}
+}
+
+void	colorize(t_pov *all, char *joined)
+{
+	int	i;
+
+	fillcolors (all);
+	i = 0;
+	while (++i < 98)
+	{
+		joined = ft_strjoin("./frames/", ft_itoa(i));
+		all->frm[i - 1] = mlx_load_png(joined);
+		free(joined);
+		if (!all->frm[i - 1])
+			exit_perror();
+	}
+}
+
+void	init_frm(t_pov *all)
+{
+	int		i;
+	int		j;
+	char	*joined;
+
+	i = -1;
+	j = -1;
+	while (++i < 4)
+	{
+		if (all->elem[i][0] == 'N')
+		{
+			all->wal[++j] = mlx_load_png("./frames/walls/mages.png");
+			all->tc[j] = malloc(all->wal[j]->width * all->wal[j]->height * sizeof(int));
+		}
+		if (all->elem[i][0] == 'S')
+		{
+			all->wal[++j] = mlx_load_png("./frames/walls/mages2.png");
+			all->tc[j] = malloc(all->wal[j]->width * all->wal[j]->height * sizeof(int));
+		}
+		if (all->elem[i][0] == 'W')
+		{
+			all->wal[++j] = mlx_load_png("./frames/walls/mages3.png");
+			all->tc[j] = malloc(all->wal[j]->width * all->wal[j]->height * sizeof(int));
+		}
+		if (all->elem[i][0] == 'E')
+		{
+			all->wal[++j] = mlx_load_png("./frames/walls/mages4.png");
+			all->tc[j] = malloc(all->wal[j]->width * all->wal[j]->height * sizeof(int));
+		}
+		if (!all->wal[i])
+			exit_perror();
+	}
+	colorize(all, joined);
+	// fillcolors (all);
+	// i = 0;
+	// while (++i < 98)
+	// {
+	// 	joined = ft_strjoin("./frames/", ft_itoa(i));
+	// 	all->frm[i - 1] = mlx_load_png(joined);
+	// 	free(joined);
+	// 	if (!all->frm[i - 1])
+	// 		exit_perror();
+	// }
 }

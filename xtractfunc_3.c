@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   xtractfunc_3.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hcharia < hcharia@student.1337.ma>         +#+  +:+       +#+        */
+/*   By: asidqi <asidqi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 10:38:31 by asidqi            #+#    #+#             */
-/*   Updated: 2023/09/12 18:28:10 by hcharia          ###   ########.fr       */
+/*   Updated: 2023/09/15 22:19:42 by asidqi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,4 +56,27 @@ char	*s_spc(char *l)
 	while (*l && *l <= ' ')
 		l++;
 	return (l);
+}
+
+void	check_comma(t_pov	*all)
+{
+	int	i;
+	int	o;
+	int	counter;
+
+	i = -1;
+	while (all->elem[++i])
+	{
+		counter = 0;
+		o = -1;
+		while (all->elem[i][++o] \
+		&& (ft_strnstr(&all->elem[i][0], "F ", 2) \
+		|| ft_strnstr(&all->elem[i][0], "C ", 2)))
+		{
+			if (all->elem[i][o] == ',')
+				counter++;
+		}
+		if (counter > 2)
+			exit_perror();
+	}
 }

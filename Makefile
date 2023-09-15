@@ -23,6 +23,7 @@ SOURCES_LIST =	cub3D.c 		\
 				xtractfunc_3.c	\
 				get_next_line.c	\
 				filter_m.c		\
+				movs.c			\
 				get_next_line_utils.c
 
 SOURCES = $(addprefix $(SOURCES_DIRECTORY), $(SOURCES_LIST))
