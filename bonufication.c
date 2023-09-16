@@ -6,7 +6,7 @@
 /*   By: asidqi <asidqi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 15:09:00 by asidqi            #+#    #+#             */
-/*   Updated: 2023/09/16 15:11:59 by asidqi           ###   ########.fr       */
+/*   Updated: 2023/09/16 17:00:02 by asidqi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,12 +46,16 @@ void	sprite_anim(void *name)
 	all = name;
 	anima++;
 	if (all->swg)
+	{
 		mlx_delete_image(all->mlx, all->swg);
+		all->swg = NULL;
+	}
 	all->swg = mlx_texture_to_image(all->mlx, all->frm[(anima)]);
 	mlx_image_to_window(all->mlx, all->swg, 940, 0);
 	if (anima == 96)
 		anima -= 96;
 }
+
 void	load_wall_and_allocate_tc(t_pov *all, int *j, char *wall_path)
 {
 	all->wal[++(*j)] = mlx_load_png(wall_path);

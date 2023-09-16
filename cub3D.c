@@ -6,7 +6,7 @@
 /*   By: asidqi <asidqi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 16:06:01 by asidqi            #+#    #+#             */
-/*   Updated: 2023/09/16 15:08:02 by asidqi           ###   ########.fr       */
+/*   Updated: 2023/09/16 20:12:01 by asidqi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,12 +75,13 @@ int	main(int ac, char **av)
 		return (1);
 	parse(av[1], &all);
 	init_frm(&all);
+	all.swg = NULL;
 	all.mlx = mlx_init(SWIDTH, SHEIGH, "cub3D", false);
 	all.img = mlx_new_image(all.mlx, SWIDTH, SHEIGH);
 	mlx_image_to_window(all.mlx, all.img, 0, 0);
+	mlx_loop_hook(all.mlx, sprite_anim, &all);
 	mlx_cursor_hook(all.mlx, sway, &all);
 	mlx_loop_hook(all.mlx, cf_background, &all);
-	mlx_loop_hook(all.mlx, sprite_anim, &all);
 	mlx_loop_hook(all.mlx, minimap, &all);
 	mlx_loop_hook(all.mlx, keys, &all);
 	mlx_loop_hook(all.mlx, graphic, &all);

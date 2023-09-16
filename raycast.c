@@ -6,7 +6,7 @@
 /*   By: asidqi <asidqi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 11:41:56 by hcharia           #+#    #+#             */
-/*   Updated: 2023/09/16 15:09:24 by asidqi           ###   ########.fr       */
+/*   Updated: 2023/09/16 20:11:58 by asidqi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	pov(char c, t_fil *all)
 	if (c == 'W')
 		all->angle = 180 * M_PI / 180;
 	if (c == 'E')
-		all->angle = 0;
+		all->angle = 2 * M_PI;
 	if (c == 'S')
 		all->angle = 90 * M_PI / 180;
 }
@@ -223,7 +223,7 @@ void	graphic(void *name)
 			while (temp < line_start + yinc)
 			{
 				int i = idx * all->wal[all->compus]->width + xt;
-				if (temp >= 0 && temp <= SHEIGH)
+				if (temp >= 0 && temp < SHEIGH)
 					mlx_put_pixel(all->img, j, temp, all->tc[all->compus][i]);
 				temp++;
 			}
