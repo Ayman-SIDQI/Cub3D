@@ -6,7 +6,7 @@
 /*   By: asidqi <asidqi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 11:23:46 by asidqi            #+#    #+#             */
-/*   Updated: 2023/09/15 22:31:41 by asidqi           ###   ########.fr       */
+/*   Updated: 2023/09/16 15:11:54 by asidqi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ void	fillcolors(t_pov *all)
 	}
 }
 
-void	colorize(t_pov *all, char *joined)
+void	colorize_swg(t_pov *all, char *joined)
 {
 	int	i;
 
@@ -95,50 +95,4 @@ void	colorize(t_pov *all, char *joined)
 		if (!all->frm[i - 1])
 			exit_perror();
 	}
-}
-
-void	init_frm(t_pov *all)
-{
-	int		i;
-	int		j;
-	char	*joined;
-
-	i = -1;
-	j = -1;
-	while (++i < 4)
-	{
-		if (all->elem[i][0] == 'N')
-		{
-			all->wal[++j] = mlx_load_png("./frames/walls/mages.png");
-			all->tc[j] = malloc(all->wal[j]->width * all->wal[j]->height * sizeof(int));
-		}
-		if (all->elem[i][0] == 'S')
-		{
-			all->wal[++j] = mlx_load_png("./frames/walls/mages2.png");
-			all->tc[j] = malloc(all->wal[j]->width * all->wal[j]->height * sizeof(int));
-		}
-		if (all->elem[i][0] == 'W')
-		{
-			all->wal[++j] = mlx_load_png("./frames/walls/mages3.png");
-			all->tc[j] = malloc(all->wal[j]->width * all->wal[j]->height * sizeof(int));
-		}
-		if (all->elem[i][0] == 'E')
-		{
-			all->wal[++j] = mlx_load_png("./frames/walls/mages4.png");
-			all->tc[j] = malloc(all->wal[j]->width * all->wal[j]->height * sizeof(int));
-		}
-		if (!all->wal[i])
-			exit_perror();
-	}
-	colorize(all, joined);
-	// fillcolors (all);
-	// i = 0;
-	// while (++i < 98)
-	// {
-	// 	joined = ft_strjoin("./frames/", ft_itoa(i));
-	// 	all->frm[i - 1] = mlx_load_png(joined);
-	// 	free(joined);
-	// 	if (!all->frm[i - 1])
-	// 		exit_perror();
-	// }
 }

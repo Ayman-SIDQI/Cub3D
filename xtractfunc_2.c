@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   xtractfunc_2.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hcharia < hcharia@student.1337.ma>         +#+  +:+       +#+        */
+/*   By: asidqi <asidqi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/25 16:25:48 by asidqi            #+#    #+#             */
-/*   Updated: 2023/09/15 12:26:23 by hcharia          ###   ########.fr       */
+/*   Updated: 2023/09/16 15:05:57 by asidqi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,12 +80,16 @@ char	**repeated(char **r, int n, int big_i, char *rep)
 
 int	which_width(t_pov *all)
 {
-	int	i = 0;
-	int	j = 0;
-	int	w = ft_strlen(all->map[0]);
+	int	i;
+	int	j;
+	int	w;
+
+	i = 0;
+	j = 0;
+	w = ft_strlen(all->map[0]);
 	while (all->map[++i])
 	{
-		if(ft_strlen(all->map[i]) > w)
+		if (ft_strlen(all->map[i]) > w)
 			w = ft_strlen(all->map[i]);
 	}
 	return (w);
@@ -97,7 +101,7 @@ void	link_toarr(t_list *lst, int n, t_pov *all)
 	char	**big_array;
 	int		i;
 	int		big_i;
-	t_list *tmp;
+	t_list	*tmp;
 
 	i = -1;
 	big_i = 0;
@@ -119,9 +123,6 @@ void	link_toarr(t_list *lst, int n, t_pov *all)
 	big_array[big_i] = NULL;
 	all->map = array;
 	all->big_map = big_array;
-	all->map_info.hmap = (ft_lstsize(lst) - 1);//will cause pain
+	all->map_info.hmap = (ft_lstsize(lst) - 1);
 	all->map_info.wmap = which_width(all);
-	//printf ("the bigger BBC is %d\n", all->map_info.wmap);
-	// printf("big_array[%zu]	array[%zu]", ft_strlen(*big_array), ft_strlen(*array));
-	//printf("hmap[%d]	wmap[%zu]", all->map_info.hmap, ft_strlen(lst->content));
 }

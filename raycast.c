@@ -6,7 +6,7 @@
 /*   By: asidqi <asidqi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 11:41:56 by hcharia           #+#    #+#             */
-/*   Updated: 2023/09/15 21:44:38 by asidqi           ###   ########.fr       */
+/*   Updated: 2023/09/16 15:09:24 by asidqi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,18 +24,15 @@ void	pov(char c, t_fil *all)
 		all->angle = 90 * M_PI / 180;
 }
 
-
-
-int	israyfacingup(float	angle)
+int	israyfacingup(float angle)
 {
 	if (angle > 0 && angle < M_PI)
 		return (0);
 	else
 		return (1);
-	
 }
 
-int	israyfacingright(float	angle)
+int	israyfacingright(float angle)
 {
 	if (angle > (0.5 * M_PI) && angle < (1.5 * M_PI))
 		return (0);
@@ -47,16 +44,17 @@ float	calcdistance(t_pov	*all, float x, float y)
 {
 	float	distance;
 
-	distance = sqrt((x / N - all->map_info.bpx / N) * (x / N - all->map_info.bpx / N)
-	+ (y / N - all->map_info.bpy / N) * (y / N - all->map_info.bpy / N));
-	return(distance);
+	distance = sqrt((x / N - all->map_info.bpx / N) \
+	* (x / N - all->map_info.bpx / N) + (y / N - all->map_info.bpy / N) \
+	* (y / N - all->map_info.bpy / N));
+	return (distance);
 }
 
 int	wallhit(t_pov *all, float x, float y)
 {
-	if (y / N < 0 || y / N > all->map_info.hmap || x / N > ft_strlen(all->map[(int)y / N]) || x / N < 0)
+	if (y / N < 0 || y / N > all->map_info.hmap \
+	|| x / N > ft_strlen(all->map[(int)y / N]) || x / N < 0)
 		return (1);
-	
 	if (all->map[(int)y / N][(int)x / N] == '1')
 		return (1);
 	return (0);
@@ -69,7 +67,6 @@ void	horzontal(t_pov	*all, float angle)
 	int		ystep;
 	float	xstep;
 
-
 	nexty = floor(all->map_info.bpy / N) * N ;
 	if (!israyfacingup(angle))
 		nexty += N;
@@ -78,10 +75,10 @@ void	horzontal(t_pov	*all, float angle)
 	nextx = all->map_info.bpx + (nexty - all->map_info.bpy) / tan (angle);
 	ystep = N;
 	xstep = N / tan(angle);
-
 	if (israyfacingup(angle))
 		ystep *= -1;
-	if ((!israyfacingright(angle) && xstep > 0) || (israyfacingright(angle) && xstep < 0))
+	if ((!israyfacingright(angle) && xstep > 0) \
+	|| (israyfacingright(angle) && xstep < 0))
 		xstep *= -1;
 	while (!wallhit(all, nextx, nexty))
 	{
@@ -156,7 +153,6 @@ void	vertical(t_pov *all, float angle)
 	all->map_info.yvwall = nexty;
 }
 
-
 float	raycast(t_pov	*all, float	angle)
 {
 	float	hor;
@@ -204,14 +200,11 @@ void	graphic(void *name)
 		float	hs = lineH + (SHEIGH / 2 - (lineH / 2));
 		int y = -1;
 		float	line_start = SHEIGH / 2 - (lineH / 2);
-
-		
 		float	yinc = (float) (hs - line_start) / all->wal[0]->height;
 		float	idx = 0;
 		int		xt;
 		float	yt;
 		float	temp;
-		
 		if (israyfacingright(angle) && all->map_info.direct == 'v')
 			all->compus = 0;
 		else if (!israyfacingright(angle) && all->map_info.direct == 'v')
@@ -230,76 +223,12 @@ void	graphic(void *name)
 			while (temp < line_start + yinc)
 			{
 				int i = idx * all->wal[all->compus]->width + xt;
-				// printf("%d %f\n", j, temp);
 				if (temp >= 0 && temp <= SHEIGH)
 					mlx_put_pixel(all->img, j, temp, all->tc[all->compus][i]);
 				temp++;
-			}	
+			}
 			idx++;
 			line_start += yinc;
 		}
-
-
-		
-		// while (++y < (int)lineH)
-		// {
-		// 	if (line_start + y >= SHEIGH)
-		// 		break;
-		// 	else if (line_start + y >= 0)
-		// 	{
-		// 		if (israyfacingup(angle) && all->map_info.direct == 'h')
-		// 			mlx_put_pixel(all->img, j, y + (int)line_start, 0xffb8d5ff);
-		// 		if (!israyfacingup(angle) && all->map_info.direct == 'h')
-		// 			mlx_put_pixel(all->img, j, y + (int)line_start, 0xaee4ffff);
-		// 		if (israyfacingright(angle) && all->map_info.direct == 'v')
-		// 			mlx_put_pixel(all->img, j, y + (int)line_start, 0xfee5e1ff);
-		// 		if (!israyfacingright(angle) && all->map_info.direct == 'v')
-		// 			mlx_put_pixel(all->img, j, y + (int)line_start, 0x033495ff);
-				
-		// 	}
-				
-		// }
 	}
 }
-
-void	minimap(void *name)
-{
-	t_pov	*all;
-	int		i;
-	int		o;
-
-	all = name;
-	i = -1;
-	while (all->big_map[++i])
-	{
-		o = -1;
-		while (all->big_map[i][++o])
-		{
-			if (all->big_map[i][o] == '1')
-				mlx_put_pixel(all->img, o, i, 0xC35B00FF);
-			else if (all->big_map[i][o] == '0')
-			{
-				if (i % N == 0 || o % N == 0)
-					mlx_put_pixel(all->img, o, i, 0x00000000);
-				else
-					mlx_put_pixel(all->img, o, i, 0xBBBBBBFF);
-			}
-		}
-	}
-}
-
-void	sprite_dance(void *name)
-{
-	t_pov		*all;
-	static int	anima;
-
-	all = name;
-	anima++;
-	if (all->swg)
-		mlx_delete_image(all->mlx, all->swg);
-	all->swg = mlx_texture_to_image(all->mlx, all->frm[(anima)]);
-	mlx_image_to_window(all->mlx, all->swg, 940, 0);
-	if (anima == 96)
-		anima -= 96;
-}
-

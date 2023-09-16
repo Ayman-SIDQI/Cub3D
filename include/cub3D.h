@@ -6,7 +6,7 @@
 /*   By: asidqi <asidqi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 16:06:07 by asidqi            #+#    #+#             */
-/*   Updated: 2023/09/15 22:19:56 by asidqi           ###   ########.fr       */
+/*   Updated: 2023/09/16 15:13:23 by asidqi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,8 +83,6 @@ void			link_toarr(t_list *lst, int n, t_pov *all);
 void			check_borders(t_list *map_info, t_pov *all);
 void			pov(char c, t_fil *all);
 void			graphic(void *name);
-void			minimap(void *name);
-void			sprite_dance(void *name);
 void			free_2d(char **str);
 bool			find_zeros(int i, char **map);
 char			*s_spc(char *l);
@@ -97,5 +95,8 @@ void			moveleft(t_pov *all);
 void			moveright(t_pov *all);
 void			init_frm(t_pov *all);
 void			check_comma(t_pov	*all);
+void			minimap(void *name);
+void			sprite_anim(void *name);
+void			colorize_swg(t_pov *all, char *joined);
 
 #endif
