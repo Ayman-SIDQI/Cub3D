@@ -6,7 +6,7 @@
 /*   By: asidqi <asidqi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 11:18:05 by asidqi            #+#    #+#             */
-/*   Updated: 2023/09/16 22:00:35 by asidqi           ###   ########.fr       */
+/*   Updated: 2023/09/17 13:25:12 by asidqi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,7 @@ bool	xelem(t_pov *all)
 			free(all->elem[i]);
 		all->elem[i] = get_next_line(all->fd);
 	}
+	free(all->elem[i]);
 	if (i != 6)
 		return (true);
 	return (false);

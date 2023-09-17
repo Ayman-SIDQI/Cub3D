@@ -6,7 +6,7 @@
 /*   By: asidqi <asidqi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 15:09:00 by asidqi            #+#    #+#             */
-/*   Updated: 2023/09/16 22:36:29 by asidqi           ###   ########.fr       */
+/*   Updated: 2023/09/17 12:19:55 by asidqi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,20 +56,28 @@ void	sprite_anim(void *name)
 void	load_wall_and_allocate_tc(t_pov *all, int *j, char *wall_path)
 {
 	all->wal[++(*j)] = mlx_load_png(wall_path);
-	all->tc[*j] = malloc(all->wal[*j]->width \
-	* all->wal[*j]->height * sizeof(int));
+	all->tc[*j] = malloc(all->wal[*j]->width * all->wal[*j]->height * sizeof(int));
 	printf("tc[%d]:%p\n", *j, all->tc[*j]);
 	if (!all->tc[*j] || all->wal[*j] == NULL)
 		exit_perror(all);
 }
 
+// char	*sns(char **elem, char *s)
+// {
+// 	int	i;
+
+// 	i = 0;
+	
+// 	return (elem[i]);
+// }
+
 void	init_frm(t_pov *all)
 {
-	int		i;
+	// int		i;
 	int		j;
 	char	*joined;
 
-	i = -1;
+	// i = -1;
 	j = -1;
 	load_wall_and_allocate_tc(all, &j, "./frames/walls/mages.png");
 	load_wall_and_allocate_tc(all, &j, "./frames/walls/mages2.png");

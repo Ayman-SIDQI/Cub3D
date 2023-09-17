@@ -1,7 +1,7 @@
-NO ./frames/images
-SO ./frames/images
-WE ./frames/images
-EA ./frames/images
+NO ./frames/walls/mages.png
+SO ./frames/walls/mages2.png
+WE ./frames/walls/mages3.png
+EA ./frames/walls/mages4.png
 
 F 2,10,24
 C 205,30,250
