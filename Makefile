@@ -27,6 +27,7 @@ SOURCES_LIST =	cub3D.c 		\
 				bonufication.c	\
 				clean_up.c		\
 				xtra_func.c		\
+				xtra_func_2.c	\
 				get_next_line_utils.c
 
 SOURCES = $(addprefix $(SOURCES_DIRECTORY), $(SOURCES_LIST))

@@ -6,7 +6,7 @@
 /*   By: asidqi <asidqi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 16:06:07 by asidqi            #+#    #+#             */
-/*   Updated: 2023/09/17 16:32:19 by asidqi           ###   ########.fr       */
+/*   Updated: 2023/09/17 21:34:21 by asidqi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,25 @@ struct s_pov
 	mlx_texture_t		*frm[97];
 	int					*tc[4];
 	int					compus;
+
+	float				njm;
+	float				lh;
+	float				hs;
+	int					y;
+	float				line_start;
+	float				yinc;
+	float				idx;
+	int					xt;
+	float				yt;
+	float				temp;
+	float				agl;
+	float				angin;
+	int					steps;
+	float				xstep;
+	float				ystep;
+
+	float				nx;
+	float				ny;
 };
 typedef struct s_pov	t_pov;
 
@@ -101,5 +120,13 @@ void			colorize_swg(t_pov *all, char *joined);
 void			nullification(t_pov *all);
 char			map_char(char input);
 char			*big_strdup(char *s1, size_t n);
+void			cog(t_pov *all, int j);
+void			drawline(t_pov *all, float xwall, float ywall);
+void			horzontal(t_pov	*all, float angle);
+void			vertical(t_pov *all, float angle);
+int				israyfacingright(float angle);
+int				wallhit(t_pov *all, float x, float y);
+
+
 
 #endif
