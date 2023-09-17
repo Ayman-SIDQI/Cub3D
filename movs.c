@@ -6,7 +6,7 @@
 /*   By: asidqi <asidqi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/15 20:42:48 by asidqi            #+#    #+#             */
-/*   Updated: 2023/09/15 21:52:25 by asidqi           ###   ########.fr       */
+/*   Updated: 2023/09/17 16:32:19 by asidqi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@ void	moveup(t_pov *all)
 	{
 		y = all->map_info.bpy + sin(all->map_info.angle);
 		x = all->map_info.bpx + cos(all->map_info.angle);
-		if (all->big_map[y][(int)(all->map_info.bpx)] != '1' 
-		&& all->big_map[y][x] != '1' \
-		&& all->big_map[(int)(all->map_info.bpy)][x] != '1')
+		if (all->bm[y][(int)(all->map_info.bpx)] != '1' 
+		&& all->bm[y][x] != '1' \
+		&& all->bm[(int)(all->map_info.bpy)][x] != '1')
 		{
 			all->map_info.bpy += sin(all->map_info.angle);
 			all->map_info.bpx += cos(all->map_info.angle);
@@ -47,9 +47,9 @@ void	movedown(t_pov *all)
 	{
 		y = all->map_info.bpy - sin(all->map_info.angle);
 		x = all->map_info.bpx - cos(all->map_info.angle);
-		if (all->big_map[y][(int)(all->map_info.bpx)] != '1' 
-			&& all->big_map[y][x] != '1' \
-			&& all->big_map[(int)(all->map_info.bpy)][x] != '1')
+		if (all->bm[y][(int)(all->map_info.bpx)] != '1' 
+			&& all->bm[y][x] != '1' \
+			&& all->bm[(int)(all->map_info.bpy)][x] != '1')
 		{
 			all->map_info.bpy -= sin(all->map_info.angle);
 			all->map_info.bpx -= cos(all->map_info.angle);
@@ -66,9 +66,9 @@ void	moveleft(t_pov *all)
 	{
 		y = all->map_info.bpy + sin((all->map_info.angle) - M_PI / 2);
 		x = all->map_info.bpx + cos((all->map_info.angle) - M_PI / 2);
-		if (all->big_map[y][(int)(all->map_info.bpx)] != '1' \
-		&& all->big_map[y][x] != '1' 
-		&& all->big_map[(int)(all->map_info.bpy)][x] != '1')
+		if (all->bm[y][(int)(all->map_info.bpx)] != '1' \
+		&& all->bm[y][x] != '1' 
+		&& all->bm[(int)(all->map_info.bpy)][x] != '1')
 		{
 			all->map_info.bpy += sin((all->map_info.angle) - M_PI / 2);
 			all->map_info.bpx += cos((all->map_info.angle) - M_PI / 2);
@@ -85,9 +85,9 @@ void	moveright(t_pov *all)
 	{
 		y = all->map_info.bpy - sin((all->map_info.angle) - M_PI / 2);
 		x = all->map_info.bpx - cos((all->map_info.angle) - M_PI / 2);
-		if (all->big_map[y][(int)(all->map_info.bpx)] != '1' 
-		&& all->big_map[y][x] != '1' \
-		&& all->big_map[(int)(all->map_info.bpy)][x] != '1')
+		if (all->bm[y][(int)(all->map_info.bpx)] != '1' 
+		&& all->bm[y][x] != '1' \
+		&& all->bm[(int)(all->map_info.bpy)][x] != '1')
 		{
 			all->map_info.bpy -= sin((all->map_info.angle) - M_PI / 2);
 			all->map_info.bpx -= cos((all->map_info.angle) - M_PI / 2);

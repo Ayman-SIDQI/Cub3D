@@ -1,7 +1,7 @@
 NAME	= cub3D
 
 CC		:= cc
-FLAGS	:=  -Wunreachable-code -Ofast #-fsanitize=address -g
+FLAGS	:=  -Wunreachable-code -Ofast -fsanitize=address -g
 LIBMLX	:= /USERS/$(USER)/MLX42
 LIBS	:= $(LIBMLX)/build/libmlx42.a -ldl -lglfw -pthread -lm
 
@@ -26,6 +26,7 @@ SOURCES_LIST =	cub3D.c 		\
 				movs.c			\
 				bonufication.c	\
 				clean_up.c		\
+				xtra_func.c		\
 				get_next_line_utils.c
 
 SOURCES = $(addprefix $(SOURCES_DIRECTORY), $(SOURCES_LIST))

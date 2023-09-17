@@ -6,7 +6,7 @@
 /*   By: asidqi <asidqi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 16:06:07 by asidqi            #+#    #+#             */
-/*   Updated: 2023/09/16 21:56:04 by asidqi           ###   ########.fr       */
+/*   Updated: 2023/09/17 16:32:19 by asidqi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # define N			16
 # define SHEIGH		1080
 # define SWIDTH		1920
-# define FOV		M_PI / 3.0
+# define FOV		1.0471975511965976
 
 # include <MLX42/MLX42.h>
 # include <stdio.h>
@@ -56,7 +56,7 @@ struct s_pov
 	char				*tmp;
 	char				*elem[6];
 	char				**map;
-	char				**big_map;
+	char				**bm;
 	t_list				*map_2d;
 	t_fil				map_info;
 	mlx_image_t			*img;
@@ -99,5 +99,7 @@ void			minimap(void *name);
 void			sprite_anim(void *name);
 void			colorize_swg(t_pov *all, char *joined);
 void			nullification(t_pov *all);
+char			map_char(char input);
+char			*big_strdup(char *s1, size_t n);
 
 #endif

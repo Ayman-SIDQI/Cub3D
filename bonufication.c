@@ -6,7 +6,7 @@
 /*   By: asidqi <asidqi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 15:09:00 by asidqi            #+#    #+#             */
-/*   Updated: 2023/09/17 12:19:55 by asidqi           ###   ########.fr       */
+/*   Updated: 2023/09/17 16:32:19 by asidqi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,14 @@ void	minimap(void *name)
 
 	all = name;
 	i = -1;
-	while (all->big_map[++i])
+	while (all->bm[++i])
 	{
 		o = -1;
-		while (all->big_map[i][++o])
+		while (all->bm[i][++o])
 		{
-			if (all->big_map[i][o] == '1')
+			if (all->bm[i][o] == '1')
 				mlx_put_pixel(all->img, o, i, 0xC35B00FF);
-			else if (all->big_map[i][o] == '0')
+			else if (all->bm[i][o] == '0')
 			{
 				if (i % N == 0 || o % N == 0)
 					mlx_put_pixel(all->img, o, i, 0x00000000);
@@ -56,32 +56,31 @@ void	sprite_anim(void *name)
 void	load_wall_and_allocate_tc(t_pov *all, int *j, char *wall_path)
 {
 	all->wal[++(*j)] = mlx_load_png(wall_path);
-	all->tc[*j] = malloc(all->wal[*j]->width * all->wal[*j]->height * sizeof(int));
-	printf("tc[%d]:%p\n", *j, all->tc[*j]);
+	all->tc[*j] = malloc(all->wal[*j]->width \
+	* all->wal[*j]->height * sizeof(int));
 	if (!all->tc[*j] || all->wal[*j] == NULL)
 		exit_perror(all);
 }
 
-// char	*sns(char **elem, char *s)
-// {
-// 	int	i;
+char	*sns(char **elem, char *s)
+{
+	int	i;
 
-// 	i = 0;
-	
-// 	return (elem[i]);
-// }
+	i = -1;
+	while (elem[++i] && ft_strncmp(elem[i], s, 3))
+		;
+	return (elem[i] + 3);
+}
 
 void	init_frm(t_pov *all)
 {
-	// int		i;
 	int		j;
 	char	*joined;
 
-	// i = -1;
 	j = -1;
-	load_wall_and_allocate_tc(all, &j, "./frames/walls/mages.png");
-	load_wall_and_allocate_tc(all, &j, "./frames/walls/mages2.png");
-	load_wall_and_allocate_tc(all, &j, "./frames/walls/mages3.png");
-	load_wall_and_allocate_tc(all, &j, "./frames/walls/mages4.png");
+	load_wall_and_allocate_tc(all, &j, sns(all->elem, "NO "));
+	load_wall_and_allocate_tc(all, &j, sns(all->elem, "SO "));
+	load_wall_and_allocate_tc(all, &j, sns(all->elem, "WE "));
+	load_wall_and_allocate_tc(all, &j, sns(all->elem, "EA "));
 	colorize_swg(all, joined);
 }

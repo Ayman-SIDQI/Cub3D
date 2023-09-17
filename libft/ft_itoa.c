@@ -6,7 +6,7 @@
 /*   By: asidqi <asidqi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 19:37:12 by asidqi            #+#    #+#             */
-/*   Updated: 2023/09/17 12:21:16 by asidqi           ###   ########.fr       */
+/*   Updated: 2023/09/17 13:54:46 by asidqi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,6 @@ char	*ft_itoa(int n)
 	i = n;
 	size = chalmndigit(n);
 	ret = (char *)malloc ((sizeof(char) * size) + 1);
-	// printf("itoa ret:%p\n", ret);
 	if (!ret)
 		return (0);
 	ret[size] = '\0';

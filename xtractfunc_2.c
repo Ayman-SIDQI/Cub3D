@@ -6,7 +6,7 @@
 /*   By: asidqi <asidqi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/25 16:25:48 by asidqi            #+#    #+#             */
-/*   Updated: 2023/09/16 22:43:43 by asidqi           ###   ########.fr       */
+/*   Updated: 2023/09/17 16:36:24 by asidqi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,33 +36,6 @@ char	map_char(char input)
 		return ('0');
 	else
 		return (input);
-}
-
-char	*big_strdup(char *s1, size_t n)
-{
-	char	*new;
-	size_t	i;
-	size_t	o;
-	size_t	t;
-
-	i = 0;
-	o = -1;
-	t = -1;
-	new = (char *)malloc (sizeof(char) * ((ft_strlen(s1) * n) + 1));
-	printf("big new:%p\n", new);
-	if (!new)
-		return (0);
-	new[(ft_strlen(s1) * n)] = '\0';
-	while (++o != ft_strlen(s1))
-	{
-		t = -1;
-		while (++t != n)
-		{
-			new[i] = map_char(s1[o]);
-			i++;
-		}
-	}
-	return (new);
 }
 
 char	**repeated(char **r, int n, int big_i, char *rep)
@@ -99,7 +72,6 @@ int	which_width(t_pov *all)
 void	link_toarr(t_list *lst, int n, t_pov *all)
 {
 	char	**array;
-	char	**big_array;
 	int		i;
 	int		big_i;
 	t_list	*tmp;
@@ -107,24 +79,20 @@ void	link_toarr(t_list *lst, int n, t_pov *all)
 	i = -1;
 	big_i = 0;
 	tmp = lst;
-	array = (char **)malloc(sizeof(char *) * (ft_lstsize(lst) + 1));
-	printf("array:%p\n", array);
-	big_array = (char **)malloc(sizeof(char *) * ((ft_lstsize(lst) * n) + 1));
-	printf("big_array:%p\n", big_array);
-	if (!array || !big_array)
+	all->map = (char **)malloc(sizeof(char *) * (ft_lstsize(lst) + 1));
+	all->bm = (char **)malloc(sizeof(char *) * ((ft_lstsize(lst) * n) + 1));
+	if (!all->map || !all->bm)
 		return ;
 	while (tmp->next)
 	{
-		array[++i] = ft_strdup(tmp->content);
+		all->map[++i] = ft_strdup(tmp->content);
 		if (big_i % n == 0)
-			big_array = repeated(big_array, n, big_i, big_strdup(tmp->content, n));
+			all->bm = repeated(all->bm, n, big_i, big_strdup(tmp->content, n));
 		tmp = tmp->next;
 		big_i += N;
 	}
-	array[i + 1] = NULL;
-	big_array[big_i] = NULL;
-	all->map = array;
-	all->big_map = big_array;
+	all->map[i + 1] = NULL;
+	all->bm[big_i] = NULL;
 	all->map_info.hmap = (ft_lstsize(lst) - 1);
 	all->map_info.wmap = which_width(all);
 }

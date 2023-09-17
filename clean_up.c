@@ -6,7 +6,7 @@
 /*   By: asidqi <asidqi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 10:29:14 by asidqi            #+#    #+#             */
-/*   Updated: 2023/09/16 22:04:39 by asidqi           ###   ########.fr       */
+/*   Updated: 2023/09/17 16:32:19 by asidqi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ void	free_2d(char **str)
 	int	o;
 
 	o = 0;
+	if (!str)
+		return ;
 	while (str[o])
 		free(str[o++]);
 	free(str);
@@ -24,11 +26,15 @@ void	free_2d(char **str)
 
 void	nullification(t_pov *all)
 {
-	all->tc[0] = NULL;
-	all->tc[1] = NULL;
-	all->tc[2] = NULL;
-	all->tc[3] = NULL;
-	all->big_map = NULL;
+	int	i;
+
+	i = -1;
+	while (++i < 4)
+		all->tc[i] = NULL;
+	i = -1;
+	while (++i < 6)
+		all->elem[i] = NULL;
+	all->bm = NULL;
 	all->map = NULL;
 	all->swg = NULL;
 }

@@ -6,7 +6,7 @@
 /*   By: asidqi <asidqi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 11:18:05 by asidqi            #+#    #+#             */
-/*   Updated: 2023/09/17 13:25:12 by asidqi           ###   ########.fr       */
+/*   Updated: 2023/09/17 16:35:38 by asidqi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,11 +61,23 @@ void	cf_ext(t_pov *all)
 	{
 		exit_perror(all);
 		return ;
-	} //free 2d arrays here
+	}
 	all->map_info.fn = ft_pixel(ft_atoi(all->map_info.f[0]), \
 	ft_atoi(all->map_info.f[1]), ft_atoi(all->map_info.f[2]), 255);
 	all->map_info.cn = ft_pixel(ft_atoi(all->map_info.c[0]), \
 ft_atoi(all->map_info.c[1]), ft_atoi(all->map_info.c[2]), 255);
+}
+
+bool	fndr(t_pov *all, int i)
+{
+	if (ft_strnstr(s_spc(all->elem[i]), "NO ", 3) \
+		|| ft_strnstr(s_spc(all->elem[i]), "SO ", 3) \
+		|| ft_strnstr(s_spc(all->elem[i]), "WE ", 3) \
+		|| ft_strnstr(s_spc(all->elem[i]), "EA ", 3) \
+		|| ft_strnstr(s_spc(all->elem[i]), "F ", 2) \
+		|| ft_strnstr(s_spc(all->elem[i]), "C ", 2))
+		return (true);
+	return (false);
 }
 
 bool	xelem(t_pov *all)
@@ -76,12 +88,7 @@ bool	xelem(t_pov *all)
 	all->elem[i] = get_next_line(all->fd);
 	while (i < 6 && (all->elem[i] != NULL))
 	{
-		if (ft_strnstr(s_spc(all->elem[i]), "NO ", 3) \
-		|| ft_strnstr(s_spc(all->elem[i]), "SO ", 3) \
-		|| ft_strnstr(s_spc(all->elem[i]), "WE ", 3) \
-		|| ft_strnstr(s_spc(all->elem[i]), "EA ", 3) \
-		|| ft_strnstr(s_spc(all->elem[i]), "F ", 2) \
-		|| ft_strnstr(s_spc(all->elem[i]), "C ", 2))
+		if (fndr(all, i))
 			i++;
 		else if (nasa(all->elem[i]))
 		{
@@ -92,8 +99,8 @@ bool	xelem(t_pov *all)
 			free(all->elem[i]);
 		all->elem[i] = get_next_line(all->fd);
 	}
-	free(all->elem[i]);
 	if (i != 6)
 		return (true);
+	free(all->elem[i]);
 	return (false);
 }

@@ -1,33 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error_one.c                                        :+:      :+:    :+:   */
+/*   xtra_func.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: asidqi <asidqi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/23 15:14:21 by asidqi            #+#    #+#             */
-/*   Updated: 2023/09/17 16:36:58 by asidqi           ###   ########.fr       */
+/*   Created: 2023/09/17 16:25:27 by asidqi            #+#    #+#             */
+/*   Updated: 2023/09/17 16:25:38 by asidqi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-void	exit_perror(t_pov *all)
+char	*big_strdup(char *s1, size_t n)
 {
-	int	i;
+	char	*new;
+	size_t	i;
+	size_t	o;
+	size_t	t;
 
-	i = -1;
-	if (all == NULL)
+	i = 0;
+	o = -1;
+	t = -1;
+	new = (char *)malloc (sizeof(char) * ((ft_strlen(s1) * n) + 1));
+	if (!new)
+		return (0);
+	new[(ft_strlen(s1) * n)] = '\0';
+	while (++o != ft_strlen(s1))
 	{
-		printf("Error\n");
-		exit(1);
+		t = -1;
+		while (++t != n)
+		{
+			new[i] = map_char(s1[o]);
+			i++;
+		}
 	}
-	while (++i < 4)
-		free(all->tc[i]);
-	free_2d(all->bm);
-	free_2d(all->map);
-	free_2d(all->map);
-	ft_lstclear(&all->map_2d, &free);
-	perror("Error\nInvalid map ¯\\_(ツ)_/¯\n");
-	exit(1);
+	return (new);
 }

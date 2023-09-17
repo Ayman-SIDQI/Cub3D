@@ -6,7 +6,7 @@
 /*   By: asidqi <asidqi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 19:27:52 by asidqi            #+#    #+#             */
-/*   Updated: 2023/09/17 12:21:51 by asidqi           ###   ########.fr       */
+/*   Updated: 2023/09/17 13:54:19 by asidqi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ char	*sd_stash(char *line)
 	}
 	ret[i] = '\0';
 	free(line);
-	printf("sd_stach ret:%p\n", ret);
 	return (ret);
 }
 
@@ -59,7 +58,6 @@ char	*readfile(int fd, char *stash)
 
 	i = 1;
 	buff = malloc(sizeof(char) * (BUFFER_SIZE + 1));
-	printf("buff:%p]\n", buff);
 	if (!buff)
 		return (NULL);
 	buff[0] = '\0';

@@ -6,7 +6,7 @@
 /*   By: asidqi <asidqi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 10:38:31 by asidqi            #+#    #+#             */
-/*   Updated: 2023/09/16 22:51:48 by asidqi           ###   ########.fr       */
+/*   Updated: 2023/09/17 13:54:42 by asidqi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ void	check_borders(t_list *map_info, t_pov *all)
 	int	i;
 
 	link_toarr(map_info, N, all);
-	// printf("%p %s\n", all->map_2d, all->map_2d->content);
 	ft_lstclear(&all->map_2d, &free);
 	i = 0;
 	while (all->map[i])

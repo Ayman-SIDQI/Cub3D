@@ -6,7 +6,7 @@
 /*   By: asidqi <asidqi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/15 10:34:06 by asidqi            #+#    #+#             */
-/*   Updated: 2023/09/17 12:21:05 by asidqi           ###   ########.fr       */
+/*   Updated: 2023/09/17 13:54:53 by asidqi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,6 @@ char	**ft_split(char *so, char dm)
 		return (0);
 	wcount = wordcounter(so, dm);
 	ret = (char **)malloc(sizeof(char *) * (wcount + 1));
-	// printf("split ret:%p\n", ret);
 	if (!ret)
 		return (0);
 	ret = allocator(so, ret, dm, wcount);
