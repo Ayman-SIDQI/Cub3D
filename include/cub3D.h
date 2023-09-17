@@ -6,7 +6,7 @@
 /*   By: asidqi <asidqi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 16:06:07 by asidqi            #+#    #+#             */
-/*   Updated: 2023/09/17 21:34:21 by asidqi           ###   ########.fr       */
+/*   Updated: 2023/09/17 21:42:14 by asidqi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,6 @@ struct s_pov
 	mlx_texture_t		*frm[97];
 	int					*tc[4];
 	int					compus;
-
 	float				njm;
 	float				lh;
 	float				hs;
@@ -83,9 +82,10 @@ struct s_pov
 	int					steps;
 	float				xstep;
 	float				ystep;
-
-	float				nx;
-	float				ny;
+	float				v_nx;
+	float				vny;
+	float				hnx;
+	double				hny;
 };
 typedef struct s_pov	t_pov;
 
@@ -126,7 +126,5 @@ void			horzontal(t_pov	*all, float angle);
 void			vertical(t_pov *all, float angle);
 int				israyfacingright(float angle);
 int				wallhit(t_pov *all, float x, float y);
-
-
 
 #endif

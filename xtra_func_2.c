@@ -6,7 +6,7 @@
 /*   By: asidqi <asidqi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 21:25:10 by asidqi            #+#    #+#             */
-/*   Updated: 2023/09/17 21:35:11 by asidqi           ###   ########.fr       */
+/*   Updated: 2023/09/17 21:41:17 by asidqi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,17 +26,15 @@ void	pov(char c, t_fil *all)
 
 void	horzontal(t_pov	*all, float angle)
 {
-	float	nextx;
-	double	nexty;
 	int		ystep;
 	float	xstep;
 
-	nexty = floor(all->map_info.bpy / N) * N ;
+	all->hny = floor(all->map_info.bpy / N) * N ;
 	if (!israyfacingup(angle))
-		nexty += N;
+		all->hny += N;
 	else
-		nexty -= 0.000024;
-	nextx = all->map_info.bpx + (nexty - all->map_info.bpy) / tan (angle);
+		all->hny -= 0.000024;
+	all->hnx = all->map_info.bpx + (all->hny - all->map_info.bpy) / tan (angle);
 	ystep = N;
 	xstep = N / tan(angle);
 	if (israyfacingup(angle))
@@ -44,15 +42,15 @@ void	horzontal(t_pov	*all, float angle)
 	if ((!israyfacingright(angle) && xstep > 0) \
 	|| (israyfacingright(angle) && xstep < 0))
 		xstep *= -1;
-	while (!wallhit(all, nextx, nexty))
+	while (!wallhit(all, all->hnx, all->hny))
 	{
-		if (wallhit(all, nextx, nexty + N) && israyfacingup(angle))
+		if (wallhit(all, all->hnx, all->hny + N) && israyfacingup(angle))
 			break ;
-		nextx += xstep;
-		nexty += ystep;
+		all->hnx += xstep;
+		all->hny += ystep;
 	}
-	all->map_info.xhwall = nextx;
-	all->map_info.yhwall = nexty;
+	all->map_info.xhwall = all->hnx;
+	all->map_info.yhwall = all->hny;
 }
 
 void	vertical(t_pov *all, float angle)
@@ -60,12 +58,12 @@ void	vertical(t_pov *all, float angle)
 	int		xstep;
 	float	ystep;
 
-	all->nx = floor(all->map_info.bpx / N) * N;
+	all->v_nx = floor(all->map_info.bpx / N) * N;
 	if (israyfacingright(angle))
-		all->nx += N;
+		all->v_nx += N;
 	else
-		all->nx -= 0.000024;
-	all->ny = all->map_info.bpy + (all->nx - all->map_info.bpx) * tan(angle);
+		all->v_nx -= 0.000024;
+	all->vny = all->map_info.bpy + (all->v_nx - all->map_info.bpx) * tan(angle);
 	xstep = N;
 	if (!israyfacingright(angle))
 		xstep *= -1;
@@ -73,13 +71,13 @@ void	vertical(t_pov *all, float angle)
 	if ((ystep > 0 && israyfacingup(angle)) \
 	|| (ystep < 0 && !israyfacingup(angle)))
 		ystep *= -1;
-	while (!wallhit(all, all->nx, all->ny))
+	while (!wallhit(all, all->v_nx, all->vny))
 	{
-		if (wallhit(all, all->nx + N, all->ny) && !israyfacingright(angle))
+		if (wallhit(all, all->v_nx + N, all->vny) && !israyfacingright(angle))
 			break ;
-		all->nx += xstep;
-		all->ny += ystep;
+		all->v_nx += xstep;
+		all->vny += ystep;
 	}
-	all->map_info.xvwall = all->nx;
-	all->map_info.yvwall = all->ny;
+	all->map_info.xvwall = all->v_nx;
+	all->map_info.yvwall = all->vny;
 }

@@ -6,7 +6,7 @@
 /*   By: asidqi <asidqi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 11:41:56 by hcharia           #+#    #+#             */
-/*   Updated: 2023/09/17 21:32:11 by asidqi           ###   ########.fr       */
+/*   Updated: 2023/09/17 21:55:08 by asidqi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ float	raycast(t_pov	*all, float angle)
 	}
 }
 
-void	checker(t_pov *all, int j)
+void	rc(t_pov *all, int j)
 {
 	all->agl = all->njm + j * all->angin;
 	if (all->agl > 2 * M_PI)
@@ -79,7 +79,7 @@ void	graphic(void *name)
 	all->angin = (float)FOV / (float)SWIDTH;
 	while (++j < SWIDTH)
 	{
-		checker(all, j);
+		rc(all, j);
 		if (israyfacingright(all->agl) && all->map_info.direct == 'v')
 			all->compus = 0;
 		else if (!israyfacingright(all->agl) && all->map_info.direct == 'v')

@@ -6,7 +6,7 @@
 /*   By: asidqi <asidqi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 16:06:01 by asidqi            #+#    #+#             */
-/*   Updated: 2023/09/16 20:30:39 by asidqi           ###   ########.fr       */
+/*   Updated: 2023/09/17 21:54:26 by asidqi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	cf_background(void *name)
 		x = -1;
 		while (++x < SWIDTH)
 		{
-			if (y < 540)
+			if (y < (SHEIGH / 2))
 				mlx_put_pixel(all->img, x, y, all->map_info.cn);
 			else
 				mlx_put_pixel(all->img, x, y, all->map_info.fn);
