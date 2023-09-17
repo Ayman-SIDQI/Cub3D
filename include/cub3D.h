@@ -6,7 +6,7 @@
 /*   By: asidqi <asidqi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 16:06:07 by asidqi            #+#    #+#             */
-/*   Updated: 2023/09/16 15:13:23 by asidqi           ###   ########.fr       */
+/*   Updated: 2023/09/16 21:56:04 by asidqi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ typedef struct s_pov	t_pov;
 void			ft_lstiter(t_list *lst, void (*f)(char *, t_fil *), t_fil *fil);
 void			checkname(char *filename);
 bool			parse(char *fmap, t_pov *all);
-void			exit_perror(void);
+void			exit_perror(t_pov *all);
 bool			xelem(t_pov *all);
 bool			xmap(t_pov *all);
 bool			nasa(char *line);
@@ -98,5 +98,6 @@ void			check_comma(t_pov	*all);
 void			minimap(void *name);
 void			sprite_anim(void *name);
 void			colorize_swg(t_pov *all, char *joined);
+void			nullification(t_pov *all);
 
 #endif

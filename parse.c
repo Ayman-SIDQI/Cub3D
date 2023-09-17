@@ -6,7 +6,7 @@
 /*   By: asidqi <asidqi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 21:41:59 by asidqi            #+#    #+#             */
-/*   Updated: 2023/09/16 20:03:05 by asidqi           ###   ########.fr       */
+/*   Updated: 2023/09/16 22:12:34 by asidqi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	checkname(char *filename)
 	}
 	if (j == 4)
 		return ;
-	exit_perror();
+	exit_perror(NULL);
 }
 
 void	skip_empty(t_pov *all)
@@ -49,7 +49,7 @@ void	skip_empty(t_pov *all)
 	while (tmp && (!nasa(tmp->content) || !tmp->content[0]))
 		tmp = tmp->next;
 	if (tmp && tmp->next)
-		exit_perror();
+		exit_perror(all);
 }
 
 void	jm3str(char *av, t_pov *all)

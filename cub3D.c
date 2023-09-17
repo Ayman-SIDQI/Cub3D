@@ -6,7 +6,7 @@
 /*   By: asidqi <asidqi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 16:06:01 by asidqi            #+#    #+#             */
-/*   Updated: 2023/09/16 20:12:01 by asidqi           ###   ########.fr       */
+/*   Updated: 2023/09/16 20:30:39 by asidqi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ int	main(int ac, char **av)
 
 	if (ac != 2)
 		return (1);
+	nullification(&all);
 	parse(av[1], &all);
 	init_frm(&all);
 	all.swg = NULL;

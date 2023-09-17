@@ -6,7 +6,7 @@
 /*   By: asidqi <asidqi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 11:23:46 by asidqi            #+#    #+#             */
-/*   Updated: 2023/09/16 20:03:01 by asidqi           ###   ########.fr       */
+/*   Updated: 2023/09/16 22:01:14 by asidqi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	filter_m(t_pov *all)
 	if (all->map_info.errflag == 1)
 	{
 		// ft_lstclear(&all, &free);
-		exit_perror();
+		exit_perror(all);
 	}
 }
 
@@ -93,6 +93,6 @@ void	colorize_swg(t_pov *all, char *joined)
 		all->frm[i - 1] = mlx_load_png(joined);
 		free(joined);
 		if (!all->frm[i - 1])
-			exit_perror();
+			exit_perror(all);
 	}
 }

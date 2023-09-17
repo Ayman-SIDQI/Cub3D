@@ -6,7 +6,7 @@
 /*   By: asidqi <asidqi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 11:18:05 by asidqi            #+#    #+#             */
-/*   Updated: 2023/08/31 10:51:41 by asidqi           ###   ########.fr       */
+/*   Updated: 2023/09/16 22:00:35 by asidqi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	cf_ext(t_pov *all)
 	}
 	if (filtr(all->map_info.f) || filtr(all->map_info.c))
 	{
-		exit_perror();
+		exit_perror(all);
 		return ;
 	} //free 2d arrays here
 	all->map_info.fn = ft_pixel(ft_atoi(all->map_info.f[0]), \
@@ -86,7 +86,7 @@ bool	xelem(t_pov *all)
 		else if (nasa(all->elem[i]))
 		{
 			free(all->elem[i]);
-			exit_perror();
+			exit_perror(all);
 		}
 		else
 			free(all->elem[i]);

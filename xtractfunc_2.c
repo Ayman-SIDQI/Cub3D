@@ -6,7 +6,7 @@
 /*   By: asidqi <asidqi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/25 16:25:48 by asidqi            #+#    #+#             */
-/*   Updated: 2023/09/16 15:05:57 by asidqi           ###   ########.fr       */
+/*   Updated: 2023/09/16 22:43:43 by asidqi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ char	*big_strdup(char *s1, size_t n)
 	o = -1;
 	t = -1;
 	new = (char *)malloc (sizeof(char) * ((ft_strlen(s1) * n) + 1));
+	printf("big new:%p\n", new);
 	if (!new)
 		return (0);
 	new[(ft_strlen(s1) * n)] = '\0';
@@ -107,15 +108,16 @@ void	link_toarr(t_list *lst, int n, t_pov *all)
 	big_i = 0;
 	tmp = lst;
 	array = (char **)malloc(sizeof(char *) * (ft_lstsize(lst) + 1));
+	printf("array:%p\n", array);
 	big_array = (char **)malloc(sizeof(char *) * ((ft_lstsize(lst) * n) + 1));
+	printf("big_array:%p\n", big_array);
 	if (!array || !big_array)
 		return ;
 	while (tmp->next)
 	{
 		array[++i] = ft_strdup(tmp->content);
 		if (big_i % n == 0)
-			big_array = repeated(big_array, n, big_i, \
-			big_strdup(tmp->content, n));
+			big_array = repeated(big_array, n, big_i, big_strdup(tmp->content, n));
 		tmp = tmp->next;
 		big_i += N;
 	}

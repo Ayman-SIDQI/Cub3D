@@ -6,7 +6,7 @@
 /*   By: asidqi <asidqi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 10:21:36 by asidqi            #+#    #+#             */
-/*   Updated: 2023/08/30 10:41:50 by asidqi           ###   ########.fr       */
+/*   Updated: 2023/09/16 22:42:42 by asidqi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 # include <unistd.h>
 # include <stdlib.h>
+
+# include <stdio.h>//del
 
 typedef struct s_list
 {

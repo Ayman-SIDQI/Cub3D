@@ -6,7 +6,7 @@
 /*   By: asidqi <asidqi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 12:10:18 by asidqi            #+#    #+#             */
-/*   Updated: 2023/08/31 10:36:51 by asidqi           ###   ########.fr       */
+/*   Updated: 2023/09/16 22:48:37 by asidqi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ char	*ft_strjoin(char *s1, char *s2)
 	if (!s1 || !s2)
 		return (0);
 	ret = (char *)malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
+	printf("join ret:%p\n", ret);
 	if (!ret)
 		return (0);
 	while (s1[len])

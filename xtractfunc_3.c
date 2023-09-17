@@ -6,7 +6,7 @@
 /*   By: asidqi <asidqi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 10:38:31 by asidqi            #+#    #+#             */
-/*   Updated: 2023/09/15 22:19:42 by asidqi           ###   ########.fr       */
+/*   Updated: 2023/09/16 22:51:48 by asidqi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,13 @@ void	check_borders(t_list *map_info, t_pov *all)
 	int	i;
 
 	link_toarr(map_info, N, all);
+	// printf("%p %s\n", all->map_2d, all->map_2d->content);
 	ft_lstclear(&all->map_2d, &free);
 	i = 0;
 	while (all->map[i])
 	{
 		if (find_zeros(i, all->map))
-			exit_perror();
+			exit_perror(all);
 		i++;
 	}
 }
@@ -37,6 +38,7 @@ bool	xmap(t_pov *all)
 		all->tmp = get_next_line(all->fd);
 	}
 	ft_lstadd_back(&all->map_2d, ft_lstnew(all->tmp));
+	free(all->tmp);
 	while (all->tmp != NULL)
 	{
 		all->tmp = get_next_line(all->fd);
@@ -77,6 +79,6 @@ void	check_comma(t_pov	*all)
 				counter++;
 		}
 		if (counter > 2)
-			exit_perror();
+			exit_perror(all);
 	}
 }

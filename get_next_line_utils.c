@@ -6,7 +6,7 @@
 /*   By: asidqi <asidqi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 19:06:14 by asidqi            #+#    #+#             */
-/*   Updated: 2023/08/28 20:22:10 by asidqi           ###   ########.fr       */
+/*   Updated: 2023/09/17 10:13:26 by asidqi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,11 +51,13 @@ char	*gn_strjoin(char *s1, char *s2)
 	if (!s1)
 	{
 		s1 = (char *)malloc(sizeof(char));
+		printf("s1:%p\n", s1);
 		s1[0] = '\0';
 	}
 	if (!s1 || !s2)
 		return (NULL);
 	ret = malloc(gn_strlen(s1) + gn_strlen(s2) + 1);
+	printf("gn_join ret:%p	[%s]\n", ret, ret);
 	if (!ret)
 		return (NULL);
 	while (s1[++len] != '\0')
@@ -89,5 +91,6 @@ char	*mon_strdup(char *s1)
 	if (s1[i] == '\n')
 		new[i] = s1[i];
 	new[i] = '\0';
+	printf("mon_str new:%p [%s]\n", new, new);
 	return (new);
 }
