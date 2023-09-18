@@ -6,7 +6,7 @@
 /*   By: asidqi <asidqi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 11:23:46 by asidqi            #+#    #+#             */
-/*   Updated: 2023/09/17 16:37:08 by asidqi           ###   ########.fr       */
+/*   Updated: 2023/09/18 15:15:07 by asidqi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	initialize(t_fil *info)
 	info->py = 0;
 }
 
-void	filter_m(t_pov *all)
+void	filter_m(t_pov *all, int fd)
 {
 	t_list	*tmp;
 
@@ -53,8 +53,13 @@ void	filter_m(t_pov *all)
 	ft_lstiter(tmp, &dup_check, &all->map_info);
 	if (all->map_info.count != 1)
 		all->map_info.errflag = 1;
-	if (all->map_info.errflag == 1)
-		exit_perror(all);
+	if (all->map_info.errflag == 1 || all->map_info.mwidth > 69)
+	{
+		system("leaks cub3D");
+		printf("Error\n Map not going to function well");
+		close(fd);
+		exit(1);
+	}
 }
 
 void	fillcolors(t_pov *all)

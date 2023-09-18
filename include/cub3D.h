@@ -6,7 +6,7 @@
 /*   By: asidqi <asidqi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 16:06:07 by asidqi            #+#    #+#             */
-/*   Updated: 2023/09/18 12:30:30 by asidqi           ###   ########.fr       */
+/*   Updated: 2023/09/18 14:55:16 by asidqi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,8 +99,8 @@ void			exit_perror(t_pov *all);
 bool			xelem(t_pov *all);
 bool			xmap(t_pov *all);
 bool			nasa(char *line);
-void			filter_m(t_pov *all);
-void			cf_ext(t_pov *all);
+void			filter_m(t_pov *all, int fd);
+void			cf_ext(t_pov *all, int fd);
 void			link_toarr(t_list *lst, int n, t_pov *all);
 void			check_borders(t_list *map_info, t_pov *all);
 void			pov(char c, t_fil *all);

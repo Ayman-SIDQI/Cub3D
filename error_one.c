@@ -6,7 +6,7 @@
 /*   By: asidqi <asidqi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 15:14:21 by asidqi            #+#    #+#             */
-/*   Updated: 2023/09/18 11:03:36 by asidqi           ###   ########.fr       */
+/*   Updated: 2023/09/18 15:22:08 by asidqi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@ void	exit_perror(t_pov *all)
 	}
 	while (++i < 4 && all->tc[i])
 		free(all->tc[i]);
-	if (all->bm)
-		free_2d(all->bm);
-	if (all->map)
-		free_2d(all->map);
+	// if (all->bm)
+	// 	free_2d(all->bm);
+	// if (all->map)
+	// 	free_2d(all->map);
 	ft_lstclear(&all->map_2d, &free);
 	perror("Error\nInvalid map ¯\\_(ツ)_/¯\n");
 	system("leaks cub3D");

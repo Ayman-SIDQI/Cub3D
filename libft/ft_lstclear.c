@@ -6,11 +6,12 @@
 /*   By: asidqi <asidqi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 17:49:52 by asidqi            #+#    #+#             */
-/*   Updated: 2023/09/16 22:14:03 by asidqi           ###   ########.fr       */
+/*   Updated: 2023/09/18 16:50:10 by asidqi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdio.h>
 
 void	ft_lstclear(t_list **lst, void (*del)(void*))
 {
@@ -22,7 +23,9 @@ void	ft_lstclear(t_list **lst, void (*del)(void*))
 	while (*lst != NULL)
 	{
 		save = (*lst)->next;
-		del((*lst)->content);
+		if (*lst && (*lst)->content)
+			del((*lst)->content);
+		(*lst)->content = NULL;
 		free(*lst);
 		*lst = save;
 	}

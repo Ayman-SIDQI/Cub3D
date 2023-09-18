@@ -6,7 +6,7 @@
 /*   By: asidqi <asidqi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 11:18:05 by asidqi            #+#    #+#             */
-/*   Updated: 2023/09/17 16:35:38 by asidqi           ###   ########.fr       */
+/*   Updated: 2023/09/18 16:40:25 by asidqi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ bool	nasa(char *line)
 	int	i;
 
 	i = -1;
+	if (!line)
+		return (true);
 	while (line[++i])
 	{
 		if (line[i] > ' ')
@@ -43,7 +45,7 @@ bool	filtr(char **arr)
 	return (false);
 }
 
-void	cf_ext(t_pov *all)
+void	cf_ext(t_pov *all, int fd)
 {
 	int	i;
 
@@ -59,6 +61,7 @@ void	cf_ext(t_pov *all)
 	}
 	if (filtr(all->map_info.f) || filtr(all->map_info.c))
 	{
+		close(fd);
 		exit_perror(all);
 		return ;
 	}

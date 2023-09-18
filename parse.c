@@ -6,7 +6,7 @@
 /*   By: asidqi <asidqi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 21:41:59 by asidqi            #+#    #+#             */
-/*   Updated: 2023/09/18 11:09:17 by asidqi           ###   ########.fr       */
+/*   Updated: 2023/09/18 16:37:33 by asidqi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,8 @@ void	jm3str(char *av, t_pov *all)
 		return ;
 	}
 	skip_empty(all);
-	filter_m(all);
-	cf_ext(all);
+	filter_m(all, all->fd);
+	cf_ext(all, all->fd);
 	close(all->fd);
 }
 
