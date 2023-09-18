@@ -6,7 +6,7 @@
 /*   By: asidqi <asidqi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 11:41:56 by hcharia           #+#    #+#             */
-/*   Updated: 2023/09/18 12:31:31 by asidqi           ###   ########.fr       */
+/*   Updated: 2023/09/18 17:35:53 by asidqi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ void	rc(t_pov *all, int j)
 	* cos(all->agl - all->map_info.angle));
 	all->hs = all->lh + (SHEIGH / 2 - (all->lh / 2));
 	all->line_start = SHEIGH / 2 - (all->lh / 2);
-	all->yinc = (float)(all->hs - all->line_start) / all->wal[0]->height;
 	all->idx = 0;
 }
 
