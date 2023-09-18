@@ -6,7 +6,7 @@
 /*   By: asidqi <asidqi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 15:09:00 by asidqi            #+#    #+#             */
-/*   Updated: 2023/09/17 16:32:19 by asidqi           ###   ########.fr       */
+/*   Updated: 2023/09/18 12:37:44 by asidqi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,9 @@ void	minimap(void *name)
 			}
 		}
 	}
+	i = -1;
+	while (++i < SWIDTH)
+		drawline(all, all->map_info.xwall[i], all->map_info.ywall[i]);
 }
 
 void	sprite_anim(void *name)
@@ -56,9 +59,11 @@ void	sprite_anim(void *name)
 void	load_wall_and_allocate_tc(t_pov *all, int *j, char *wall_path)
 {
 	all->wal[++(*j)] = mlx_load_png(wall_path);
+	if (!all->wal[*j])
+		exit_perror(all);
 	all->tc[*j] = malloc(all->wal[*j]->width \
 	* all->wal[*j]->height * sizeof(int));
-	if (!all->tc[*j] || all->wal[*j] == NULL)
+	if (!all->tc[*j])
 		exit_perror(all);
 }
 

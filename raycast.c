@@ -6,7 +6,7 @@
 /*   By: asidqi <asidqi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 11:41:56 by hcharia           #+#    #+#             */
-/*   Updated: 2023/09/17 21:55:08 by asidqi           ###   ########.fr       */
+/*   Updated: 2023/09/18 12:31:31 by asidqi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,17 +40,9 @@ float	raycast(t_pov	*all, float angle)
 	hor = calcdistance(all, all->map_info.xhwall, all->map_info.yhwall);
 	vert = calcdistance(all, all->map_info.xvwall, all->map_info.yvwall);
 	if (hor > vert)
-	{
-		all->map_info.direct = 'v';
-		drawline (all, all->map_info.xvwall, all->map_info.yvwall);
-		return (vert);
-	}
+		return (all->map_info.direct = 'v', vert);
 	else
-	{
-		all->map_info.direct = 'h';
-		drawline (all, all->map_info.xhwall, all->map_info.yhwall);
-		return (hor);
-	}
+		return (all->map_info.direct = 'h', hor);
 }
 
 void	rc(t_pov *all, int j)
@@ -90,5 +82,6 @@ void	graphic(void *name)
 			all->compus = 3;
 		while (all->idx < all->wal[all->compus]->width)
 			cog(all, j);
+		coor_fill(all, j);
 	}
 }

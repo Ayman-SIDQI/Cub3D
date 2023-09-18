@@ -6,7 +6,7 @@
 /*   By: asidqi <asidqi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 10:29:14 by asidqi            #+#    #+#             */
-/*   Updated: 2023/09/17 16:32:19 by asidqi           ###   ########.fr       */
+/*   Updated: 2023/09/18 10:39:35 by asidqi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	nullification(t_pov *all)
 
 	i = -1;
 	while (++i < 4)
-		all->tc[i] = NULL;
+		all->tc[i] = 0;
 	i = -1;
 	while (++i < 6)
 		all->elem[i] = NULL;

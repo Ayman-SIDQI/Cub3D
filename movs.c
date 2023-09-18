@@ -6,7 +6,7 @@
 /*   By: asidqi <asidqi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/15 20:42:48 by asidqi            #+#    #+#             */
-/*   Updated: 2023/09/17 16:32:19 by asidqi           ###   ########.fr       */
+/*   Updated: 2023/09/18 12:27:04 by asidqi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ void	moveup(t_pov *all)
 
 	if (mlx_is_key_down(all->mlx, MLX_KEY_W))
 	{
-		y = all->map_info.bpy + sin(all->map_info.angle);
-		x = all->map_info.bpx + cos(all->map_info.angle);
+		y = all->map_info.bpy + sin(all->map_info.angle) * W;
+		x = all->map_info.bpx + cos(all->map_info.angle) * W;
 		if (all->bm[y][(int)(all->map_info.bpx)] != '1' 
 		&& all->bm[y][x] != '1' \
 		&& all->bm[(int)(all->map_info.bpy)][x] != '1')
@@ -45,8 +45,8 @@ void	movedown(t_pov *all)
 
 	if (mlx_is_key_down(all->mlx, MLX_KEY_S))
 	{
-		y = all->map_info.bpy - sin(all->map_info.angle);
-		x = all->map_info.bpx - cos(all->map_info.angle);
+		y = all->map_info.bpy - sin(all->map_info.angle) * W;
+		x = all->map_info.bpx - cos(all->map_info.angle) * W;
 		if (all->bm[y][(int)(all->map_info.bpx)] != '1' 
 			&& all->bm[y][x] != '1' \
 			&& all->bm[(int)(all->map_info.bpy)][x] != '1')
@@ -64,8 +64,8 @@ void	moveleft(t_pov *all)
 
 	if (mlx_is_key_down(all->mlx, MLX_KEY_A))
 	{
-		y = all->map_info.bpy + sin((all->map_info.angle) - M_PI / 2);
-		x = all->map_info.bpx + cos((all->map_info.angle) - M_PI / 2);
+		y = all->map_info.bpy + sin((all->map_info.angle) - M_PI / 2) * W;
+		x = all->map_info.bpx + cos((all->map_info.angle) - M_PI / 2) * W;
 		if (all->bm[y][(int)(all->map_info.bpx)] != '1' \
 		&& all->bm[y][x] != '1' 
 		&& all->bm[(int)(all->map_info.bpy)][x] != '1')
@@ -83,8 +83,8 @@ void	moveright(t_pov *all)
 
 	if (mlx_is_key_down(all->mlx, MLX_KEY_D))
 	{
-		y = all->map_info.bpy - sin((all->map_info.angle) - M_PI / 2);
-		x = all->map_info.bpx - cos((all->map_info.angle) - M_PI / 2);
+		y = all->map_info.bpy - sin((all->map_info.angle) - M_PI / 2) * W;
+		x = all->map_info.bpx - cos((all->map_info.angle) - M_PI / 2) * W;
 		if (all->bm[y][(int)(all->map_info.bpx)] != '1' 
 		&& all->bm[y][x] != '1' \
 		&& all->bm[(int)(all->map_info.bpy)][x] != '1')

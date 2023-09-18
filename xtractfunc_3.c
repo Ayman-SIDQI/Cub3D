@@ -6,7 +6,7 @@
 /*   By: asidqi <asidqi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 10:38:31 by asidqi            #+#    #+#             */
-/*   Updated: 2023/09/17 13:54:42 by asidqi           ###   ########.fr       */
+/*   Updated: 2023/09/18 11:12:02 by asidqi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,14 @@ void	check_borders(t_list *map_info, t_pov *all)
 	int	i;
 
 	link_toarr(map_info, N, all);
-	ft_lstclear(&all->map_2d, &free);
 	i = 0;
 	while (all->map[i])
 	{
 		if (find_zeros(i, all->map))
-			exit_perror(all);
+			exit(1);
 		i++;
 	}
+	ft_lstclear(&all->map_2d, &free);
 }
 
 bool	xmap(t_pov *all)

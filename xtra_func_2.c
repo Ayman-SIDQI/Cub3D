@@ -6,7 +6,7 @@
 /*   By: asidqi <asidqi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 21:25:10 by asidqi            #+#    #+#             */
-/*   Updated: 2023/09/17 21:41:17 by asidqi           ###   ########.fr       */
+/*   Updated: 2023/09/18 12:30:17 by asidqi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,4 +80,18 @@ void	vertical(t_pov *all, float angle)
 	}
 	all->map_info.xvwall = all->v_nx;
 	all->map_info.yvwall = all->vny;
+}
+
+void	coor_fill(t_pov *all, int j)
+{
+	if (all->map_info.direct == 'v')
+	{
+		all->map_info.xwall[j] = all->map_info.xvwall;
+		all->map_info.ywall[j] = all->map_info.yvwall;
+	}
+	if (all->map_info.direct == 'h')
+	{
+		all->map_info.xwall[j] = all->map_info.xhwall;
+		all->map_info.ywall[j] = all->map_info.yhwall;
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: asidqi <asidqi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 16:06:07 by asidqi            #+#    #+#             */
-/*   Updated: 2023/09/17 21:42:14 by asidqi           ###   ########.fr       */
+/*   Updated: 2023/09/18 12:30:30 by asidqi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define CUB3D_H
 
 # define N			16
+# define W			5
 # define SHEIGH		1080
 # define SWIDTH		1920
 # define FOV		1.0471975511965976
@@ -44,6 +45,8 @@ typedef struct s_fil
 	float			yhwall;
 	float			xvwall;
 	float			yvwall;
+	float			xwall[1920];
+	float			ywall[1920];
 	int				wmap;
 	int				hmap;
 	float			dist;
@@ -126,5 +129,6 @@ void			horzontal(t_pov	*all, float angle);
 void			vertical(t_pov *all, float angle);
 int				israyfacingright(float angle);
 int				wallhit(t_pov *all, float x, float y);
+void			coor_fill(t_pov *all, int j);
 
 #endif
