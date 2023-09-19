@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   xtra_func.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asidqi <asidqi@student.1337.ma>            +#+  +:+       +#+        */
+/*   By: hcharia < hcharia@student.1337.ma>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 16:25:27 by asidqi            #+#    #+#             */
-/*   Updated: 2023/09/19 16:16:34 by asidqi           ###   ########.fr       */
+/*   Updated: 2023/09/19 16:49:57 by hcharia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,19 +41,17 @@ char	*big_strdup(char *s1, size_t n)
 void	cog(t_pov *all, int j)
 {
 	int	i;
+	int	wi;
 
+	wi = all->wal[all->compus]->width;
 	if (all->map_info.direct == 'h')
-		all->xt = (int)(all->map_info.xhwall \
-		* (all->wal[all->compus]->width / N)) % all->wal[all->compus]->width;
+		all->xt = (int)(all->map_info.xhwall * ((float)wi / N)) % wi;
 	else
-		all->xt = (int)(all->map_info.yvwall \
-		* (all->wal[all->compus]->width / N)) % all->wal[all->compus]->width;
-	// if (all->compus == 1)
-	// 	printf("%d\n", (int)(all->map_info.yvwall * (all->wal[all->compus]->width / N)) % all->wal[all->compus]->width);
+		all->xt = (int)(all->map_info.yvwall * ((float)wi / N)) % wi;
 	all->temp = all->line_start;
 	while (all->temp < all->line_start + all->yinc)
 	{
-		i = all->idx * all->wal[all->compus]->width + all->xt;
+		i = all->idx * wi + all->xt;
 		if (all->temp >= 0 && all->temp < SHEIGH)
 			mlx_put_pixel(all->img, j, all->temp, all->tc[all->compus][i]);
 		all->temp++;
