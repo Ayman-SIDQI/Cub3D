@@ -6,7 +6,7 @@
 /*   By: asidqi <asidqi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 11:23:46 by asidqi            #+#    #+#             */
-/*   Updated: 2023/09/18 15:15:07 by asidqi           ###   ########.fr       */
+/*   Updated: 2023/09/19 21:55:07 by asidqi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,4 +97,5 @@ void	colorize_swg(t_pov *all, char *joined)
 		if (!all->frm[i - 1])
 			exit_perror(all);
 	}
+
 }

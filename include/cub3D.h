@@ -6,7 +6,7 @@
 /*   By: asidqi <asidqi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 16:06:07 by asidqi            #+#    #+#             */
-/*   Updated: 2023/09/19 15:53:11 by asidqi           ###   ########.fr       */
+/*   Updated: 2023/09/19 21:54:15 by asidqi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,8 @@ struct s_pov
 	mlx_texture_t		*wal[4];
 	mlx_t				*mlx;
 	mlx_texture_t		*frm[97];
+	mlx_image_t			*hand_img;
+	mlx_texture_t		*hand;
 	int					*tc[4];
 	int					compus;
 	float				njm;
