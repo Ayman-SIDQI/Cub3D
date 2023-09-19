@@ -6,7 +6,7 @@
 /*   By: asidqi <asidqi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 15:09:00 by asidqi            #+#    #+#             */
-/*   Updated: 2023/09/18 15:24:32 by asidqi           ###   ########.fr       */
+/*   Updated: 2023/09/19 15:35:33 by asidqi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	sprite_anim(void *name)
 void	load_wall_and_allocate_tc(t_pov *all, int *j, char *wall_path)
 {
 	all->wal[++(*j)] = mlx_load_png(wall_path);
-	if (!all->wal[*j])
+	if (!all->wal[*j] || (all->wal[(*j)]->width != all->wal[(*j)]->height))
 	{
 		printf("Error\n");
 		system("leaks cub3D");
