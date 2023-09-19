@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   xtra_func.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asidqi <asidqi@student.1337.ma>            +#+  +:+       +#+        */
+/*   By: hcharia < hcharia@student.1337.ma>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 16:25:27 by asidqi            #+#    #+#             */
-/*   Updated: 2023/09/18 17:37:12 by asidqi           ###   ########.fr       */
+/*   Updated: 2023/09/19 15:22:04 by hcharia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,6 @@ void	cog(t_pov *all, int j)
 {
 	int	i;
 
-	all->yinc = (float)(all->hs - all->line_start)
-		/ all->wal[all->compus]->height;
 	if (all->map_info.direct == 'h')
 		all->xt = (int)(all->map_info.xhwall \
 		* (all->wal[all->compus]->width / N)) % all->wal[all->compus]->width;

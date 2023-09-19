@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asidqi <asidqi@student.1337.ma>            +#+  +:+       +#+        */
+/*   By: hcharia < hcharia@student.1337.ma>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 11:41:56 by hcharia           #+#    #+#             */
-/*   Updated: 2023/09/18 17:35:53 by asidqi           ###   ########.fr       */
+/*   Updated: 2023/09/19 15:23:36 by hcharia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,8 @@ void	graphic(void *name)
 			all->compus = 2;
 		else if (israyfacingup(all->agl) && all->map_info.direct == 'h')
 			all->compus = 3;
+		all->yinc = (float)(all->hs - all->line_start)
+		/ all->wal[all->compus]->height;
 		while (all->idx < all->wal[all->compus]->width)
 			cog(all, j);
 		coor_fill(all, j);
