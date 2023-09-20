@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bonufication.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asidqi <asidqi@student.1337.ma>            +#+  +:+       +#+        */
+/*   By: hcharia < hcharia@student.1337.ma>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 15:09:00 by asidqi            #+#    #+#             */
-/*   Updated: 2023/09/19 22:03:39 by asidqi           ###   ########.fr       */
+/*   Updated: 2023/09/20 17:02:01 by hcharia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,7 @@ void	load_wall_and_allocate_tc(t_pov *all, int *j, char *wall_path)
 	all->wal[++(*j)] = mlx_load_png(wall_path);
 	if (!all->wal[*j] || (all->wal[(*j)]->width != all->wal[(*j)]->height))
 	{
-		printf("Error\n");
-		system("leaks cub3D");
+		perror("Error\n");
 		exit(1);
 	}
 	all->tc[*j] = malloc(all->wal[*j]->width \

@@ -6,7 +6,7 @@
 /*   By: hcharia < hcharia@student.1337.ma>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 15:14:21 by asidqi            #+#    #+#             */
-/*   Updated: 2023/09/19 16:50:24 by hcharia          ###   ########.fr       */
+/*   Updated: 2023/09/20 17:10:48 by hcharia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	exit_perror(t_pov *all)
 	i = -1;
 	if (all == NULL)
 	{
-		printf("Error\n");
+		perror("Error\n");
 		exit(1);
 	}
 	while (++i < 4 && all->tc[i])
@@ -30,6 +30,5 @@ void	exit_perror(t_pov *all)
 		free_2d(all->map);
 	ft_lstclear(&all->map_2d, &free);
 	perror("Error\nInvalid map ¯\\_(ツ)_/¯\n");
-	system("leaks cub3D");
 	exit(1);
 }

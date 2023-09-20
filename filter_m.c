@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   filter_m.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asidqi <asidqi@student.1337.ma>            +#+  +:+       +#+        */
+/*   By: hcharia < hcharia@student.1337.ma>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 11:23:46 by asidqi            #+#    #+#             */
-/*   Updated: 2023/09/20 11:35:38 by asidqi           ###   ########.fr       */
+/*   Updated: 2023/09/20 17:19:32 by hcharia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,10 +53,9 @@ void	filter_m(t_pov *all, int fd)
 	ft_lstiter(tmp, &dup_check, &all->map_info);
 	if (all->map_info.count != 1)
 		all->map_info.errflag = 1;
-	if (all->map_info.errflag == 1 || all->map_info.mwidth > 69)
+	if (all->map_info.errflag == 1 || all->map_info.mwidth > 50)
 	{
-		system("leaks cub3D");
-		printf("Error\n Map not going to function well");
+		perror("Error\n Map not going to function well");
 		close(fd);
 		exit(1);
 	}
