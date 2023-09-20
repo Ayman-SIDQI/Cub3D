@@ -6,7 +6,7 @@
 /*   By: hcharia < hcharia@student.1337.ma>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 21:41:59 by asidqi            #+#    #+#             */
-/*   Updated: 2023/09/20 17:20:16 by hcharia          ###   ########.fr       */
+/*   Updated: 2023/09/20 17:55:24 by hcharia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,13 @@ void	skip_empty(t_pov *all)
 	while (tmp && (!nasa(tmp->content) || !tmp->content[0]))
 		tmp = tmp->next;
 	if (tmp && tmp->next)
-		exit_perror(all);
+	{
+		if (all->bm)
+			free_2d(all->bm);
+		ft_lstclear(&all->map_2d, &free);
+		perror("Error\nInvalid map ¯\\_(ツ)_/¯\n");
+		exit(1);
+	}
 }
 
 void	jm3str(char *av, t_pov *all)
@@ -60,7 +66,6 @@ void	jm3str(char *av, t_pov *all)
 		close(all->fd);
 		return ;
 	}
-	printf("map height[%d]\n", ft_lstsize(all->map_2d));
 	if (ft_lstsize(all->map_2d) > 20)
 	{
 		perror("Error\n Map kindof huge");
@@ -68,7 +73,6 @@ void	jm3str(char *av, t_pov *all)
 		system("leaks cub3D");
 		exit(1);
 	}
-	
 	skip_empty(all);
 	filter_m(all, all->fd);
 	cf_ext(all, all->fd);
