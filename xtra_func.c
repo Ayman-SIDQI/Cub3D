@@ -6,7 +6,7 @@
 /*   By: asidqi <asidqi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 16:25:27 by asidqi            #+#    #+#             */
-/*   Updated: 2023/09/19 19:32:45 by asidqi           ###   ########.fr       */
+/*   Updated: 2023/09/20 11:10:29 by asidqi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,13 +48,10 @@ void	cog(t_pov *all, int j)
 		all->xt = (int)(all->map_info.xhwall * ((float)wi / N)) % wi;
 	else
 		all->xt = (int)(all->map_info.yvwall * ((float)wi / N)) % wi;
-
-		
-	// if (sin(all->map_info.angle) > 0 && all->map_info.direct == 'h')
-	// 	all->xt *= -1;
-		
-	// if (cos(all->map_info.angle) < 0 && all->map_info.direct == 'v')
-	// 	all->xt *= -1;
+	if (!israyfacingup(all->agl) && all->map_info.direct == 'h')
+		all->xt *= -1;
+	if (!israyfacingright(all->agl) && all->map_info.direct == 'v')
+		all->xt *= -1;
 	all->temp = all->line_start;
 	while (all->temp < all->line_start + all->yinc)
 	{

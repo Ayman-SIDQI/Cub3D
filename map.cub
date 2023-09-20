@@ -1,7 +1,7 @@
-NO ./frames/walls/hi.png
-SO ./frames/walls/hi.png
-WE ./frames/walls/hi.png
-EA ./frames/walls/hi.png
+NO ./frames/walls/asd.png
+SO ./frames/walls/mages.png
+WE ./frames/walls/text.png
+EA ./frames/walls/DT.png
 F 2,10,24
 C 205,30,250
 
