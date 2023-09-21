@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   xtractfunc_3.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asidqi <asidqi@student.1337.ma>            +#+  +:+       +#+        */
+/*   By: hcharia < hcharia@student.1337.ma>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 10:38:31 by asidqi            #+#    #+#             */
-/*   Updated: 2023/09/21 13:32:38 by asidqi           ###   ########.fr       */
+/*   Updated: 2023/09/21 17:16:19 by hcharia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,11 @@ void	check_borders(t_list *map_info, t_pov *all)
 {
 	int	i;
 
+	if (!all->map_2d)
+	{
+		perror("Error\nInvalid input");
+		exit(1);
+	}
 	link_toarr(map_info, N, all);
 	i = 0;
 	while (all->map[i])
