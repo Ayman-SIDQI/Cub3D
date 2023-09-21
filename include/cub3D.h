@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asidqi <asidqi@student.1337.ma>            +#+  +:+       +#+        */
+/*   By: hcharia < hcharia@student.1337.ma>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 16:06:07 by asidqi            #+#    #+#             */
-/*   Updated: 2023/09/19 21:54:15 by asidqi           ###   ########.fr       */
+/*   Updated: 2023/09/21 10:00:00 by hcharia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,12 +73,11 @@ struct s_pov
 	int					*tc[4];
 	int					compus;
 	float				njm;
-	float				lh;
+	float				line_high;
 	float				hs;
 	int					y;
 	float				line_start;
 	float				yinc;
-	float				idx;
 	int					xt;
 	float				yt;
 	float				temp;

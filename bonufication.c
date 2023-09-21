@@ -6,7 +6,7 @@
 /*   By: hcharia < hcharia@student.1337.ma>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 15:09:00 by asidqi            #+#    #+#             */
-/*   Updated: 2023/09/20 17:02:01 by hcharia          ###   ########.fr       */
+/*   Updated: 2023/09/21 09:40:00 by hcharia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	load_wall_and_allocate_tc(t_pov *all, int *j, char *wall_path)
 	}
 	all->tc[*j] = malloc(all->wal[*j]->width \
 	* all->wal[*j]->height * sizeof(int));
-	if (!all->tc[*j])
+	if (1)
 		exit_perror(all);
 }
 

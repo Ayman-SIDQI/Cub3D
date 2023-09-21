@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asidqi <asidqi@student.1337.ma>            +#+  +:+       +#+        */
+/*   By: hcharia < hcharia@student.1337.ma>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 11:41:56 by hcharia           #+#    #+#             */
-/*   Updated: 2023/09/19 15:43:25 by asidqi           ###   ########.fr       */
+/*   Updated: 2023/09/21 10:00:21 by hcharia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,11 +52,11 @@ void	rc(t_pov *all, int j)
 		all->agl -= 2 * M_PI;
 	if (all->agl < 0)
 		all->agl += 2 * M_PI;
-	all->lh = SHEIGH / (raycast(all, all->agl) \
+	all->line_high = SHEIGH / (raycast(all, all->agl) \
 	* cos(all->agl - all->map_info.angle));
-	all->hs = all->lh + (SHEIGH / 2 - (all->lh / 2));
-	all->line_start = SHEIGH / 2 - (all->lh / 2);
-	all->idx = 0;
+	all->hs = SHEIGH / 2 + (all->line_high / 2);
+	all->line_start = SHEIGH / 2 - (all->line_high / 2);
+	all->yt = 0;
 }
 
 void	graphic(void *name)
@@ -81,7 +81,7 @@ void	graphic(void *name)
 			all->compus = 3;
 		all->yinc = (float)(all->hs - all->line_start)
 			/ all->wal[all->compus]->height;
-		while (all->idx < all->wal[all->compus]->width)
+		while (all->yt < all->wal[all->compus]->width)
 			cog(all, j);
 		coor_fill(all, j);
 	}

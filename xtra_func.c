@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   xtra_func.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asidqi <asidqi@student.1337.ma>            +#+  +:+       +#+        */
+/*   By: hcharia < hcharia@student.1337.ma>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 16:25:27 by asidqi            #+#    #+#             */
-/*   Updated: 2023/09/20 11:10:29 by asidqi           ###   ########.fr       */
+/*   Updated: 2023/09/21 10:00:36 by hcharia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,26 +41,26 @@ char	*big_strdup(char *s1, size_t n)
 void	cog(t_pov *all, int j)
 {
 	int	i;
-	int	wi;
+	int	wt;
 
-	wi = all->wal[all->compus]->width;
+	wt = all->wal[all->compus]->width;
 	if (all->map_info.direct == 'h')
-		all->xt = (int)(all->map_info.xhwall * ((float)wi / N)) % wi;
+		all->xt = (int)(all->map_info.xhwall * ((float)wt / N)) % wt;
 	else
-		all->xt = (int)(all->map_info.yvwall * ((float)wi / N)) % wi;
+		all->xt = (int)(all->map_info.yvwall * ((float)wt / N)) % wt;
 	if (!israyfacingup(all->agl) && all->map_info.direct == 'h')
 		all->xt *= -1;
 	if (!israyfacingright(all->agl) && all->map_info.direct == 'v')
 		all->xt *= -1;
 	all->temp = all->line_start;
+	i = all->yt * wt + all->xt;
 	while (all->temp < all->line_start + all->yinc)
 	{
-		i = all->idx * wi + all->xt;
 		if (all->temp >= 0 && all->temp < SHEIGH)
 			mlx_put_pixel(all->img, j, all->temp, all->tc[all->compus][i]);
 		all->temp++;
 	}
-	all->idx++;
+	all->yt++;
 	all->line_start += all->yinc;
 }
 
