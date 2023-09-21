@@ -6,7 +6,7 @@
 /*   By: asidqi <asidqi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 11:18:05 by asidqi            #+#    #+#             */
-/*   Updated: 2023/09/18 16:40:25 by asidqi           ###   ########.fr       */
+/*   Updated: 2023/09/21 14:31:12 by asidqi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void	cf_ext(t_pov *all, int fd)
 	all->map_info.fn = ft_pixel(ft_atoi(all->map_info.f[0]), \
 	ft_atoi(all->map_info.f[1]), ft_atoi(all->map_info.f[2]), 255);
 	all->map_info.cn = ft_pixel(ft_atoi(all->map_info.c[0]), \
-ft_atoi(all->map_info.c[1]), ft_atoi(all->map_info.c[2]), 255);
+	ft_atoi(all->map_info.c[1]), ft_atoi(all->map_info.c[2]), 255);
 }
 
 bool	fndr(t_pov *all, int i)
@@ -104,6 +104,10 @@ bool	xelem(t_pov *all)
 	}
 	if (i != 6)
 		return (true);
-	free(all->elem[i]);
+	if (all->elem[i])
+	{
+		free(all->elem[i]);
+		all->elem[i] = NULL;
+	}
 	return (false);
 }

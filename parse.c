@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hcharia < hcharia@student.1337.ma>         +#+  +:+       +#+        */
+/*   By: asidqi <asidqi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 21:41:59 by asidqi            #+#    #+#             */
-/*   Updated: 2023/09/20 17:55:24 by hcharia          ###   ########.fr       */
+/*   Updated: 2023/09/21 13:07:30 by asidqi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	checkname(char *filename)
 	rstr = "buc.";
 	if (!filename)
 	{
-		perror("Error\nwhere is the map my boi?\n");
+		perror("Error\n");
 		exit (1);
 	}
 	while (filename[i])
@@ -51,7 +51,7 @@ void	skip_empty(t_pov *all)
 	if (tmp && tmp->next)
 	{
 		if (all->bm)
-			free_2d(all->bm);
+			free_b2d(all->bm);
 		ft_lstclear(&all->map_2d, &free);
 		perror("Error\nInvalid map ¯\\_(ツ)_/¯\n");
 		exit(1);
@@ -70,7 +70,6 @@ void	jm3str(char *av, t_pov *all)
 	{
 		perror("Error\n Map kindof huge");
 		close(all->fd);
-		system("leaks cub3D");
 		exit(1);
 	}
 	skip_empty(all);

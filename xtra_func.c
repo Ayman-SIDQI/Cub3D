@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   xtra_func.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hcharia < hcharia@student.1337.ma>         +#+  +:+       +#+        */
+/*   By: asidqi <asidqi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 16:25:27 by asidqi            #+#    #+#             */
-/*   Updated: 2023/09/21 10:00:36 by hcharia          ###   ########.fr       */
+/*   Updated: 2023/09/21 13:19:59 by asidqi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	cog(t_pov *all, int j)
 	while (all->temp < all->line_start + all->yinc)
 	{
 		if (all->temp >= 0 && all->temp < SHEIGH)
-			mlx_put_pixel(all->img, j, all->temp, all->tc[all->compus][i]);
+			mlx_put_pixel(all->img, j, all->temp, all->tc[all->compus][abs(i)]);
 		all->temp++;
 	}
 	all->yt++;

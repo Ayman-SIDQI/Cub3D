@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bonufication.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hcharia < hcharia@student.1337.ma>         +#+  +:+       +#+        */
+/*   By: asidqi <asidqi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 15:09:00 by asidqi            #+#    #+#             */
-/*   Updated: 2023/09/21 09:40:00 by hcharia          ###   ########.fr       */
+/*   Updated: 2023/09/21 13:36:05 by asidqi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,15 +58,12 @@ void	sprite_anim(void *name)
 
 void	load_wall_and_allocate_tc(t_pov *all, int *j, char *wall_path)
 {
-	all->wal[++(*j)] = mlx_load_png(wall_path);
+	all->wal[++(*j)] = mlx_load_png(s_spc(wall_path));
 	if (!all->wal[*j] || (all->wal[(*j)]->width != all->wal[(*j)]->height))
-	{
-		perror("Error\n");
-		exit(1);
-	}
+		exit_perror(all);
 	all->tc[*j] = malloc(all->wal[*j]->width \
 	* all->wal[*j]->height * sizeof(int));
-	if (1)
+	if (!all->tc[*j])
 		exit_perror(all);
 }
 
@@ -75,9 +72,9 @@ char	*sns(char **elem, char *s)
 	int	i;
 
 	i = -1;
-	while (elem[++i] && ft_strncmp(elem[i], s, 3))
+	while (elem[++i] && ft_strncmp(s_spc(elem[i]), s, 3))
 		;
-	return (elem[i] + 3);
+	return (s_spc(elem[i]) + 3);
 }
 
 void	init_frm(t_pov *all)

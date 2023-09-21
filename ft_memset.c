@@ -1,34 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error_one.c                                        :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: asidqi <asidqi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/23 15:14:21 by asidqi            #+#    #+#             */
-/*   Updated: 2023/09/21 14:32:27 by asidqi           ###   ########.fr       */
+/*   Created: 2022/09/30 12:39:34 by asidqi            #+#    #+#             */
+/*   Updated: 2023/08/26 20:54:32 by asidqi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "libft.h"
 
-void	exit_perror(t_pov *all)
+void	*ft_memset(void *b, int c, size_t len)
 {
-	int	i;
+	unsigned char	*ret;
 
-	i = -1;
-	if (all == NULL)
+	ret = (unsigned char *) b;
+	while (len--)
 	{
-		perror("Error\n");
-		exit(1);
+		*ret++ = (unsigned char)c;
 	}
-	while (all->tc[++i] && i < 4)
-		free(all->tc[i]);
-	if (all->bm)
-		free_b2d(all->bm);
-	if (all->map)
-		free_2d(all->map);
-	ft_lstclear(&all->map_2d, &free);
-	perror("Error\nInvalid map ¯\\_(ツ)_/¯\n");
-	exit(1);
+	return (b);
 }

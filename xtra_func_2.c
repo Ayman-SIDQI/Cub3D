@@ -6,7 +6,7 @@
 /*   By: asidqi <asidqi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 21:25:10 by asidqi            #+#    #+#             */
-/*   Updated: 2023/09/18 12:30:17 by asidqi           ###   ########.fr       */
+/*   Updated: 2023/09/21 12:43:07 by asidqi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	horzontal(t_pov	*all, float angle)
 	if (!israyfacingup(angle))
 		all->hny += N;
 	else
-		all->hny -= 0.000024;
+		all->hny -= 0.00008;
 	all->hnx = all->map_info.bpx + (all->hny - all->map_info.bpy) / tan (angle);
 	ystep = N;
 	xstep = N / tan(angle);
@@ -62,7 +62,7 @@ void	vertical(t_pov *all, float angle)
 	if (israyfacingright(angle))
 		all->v_nx += N;
 	else
-		all->v_nx -= 0.000024;
+		all->v_nx -= 0.00008;
 	all->vny = all->map_info.bpy + (all->v_nx - all->map_info.bpx) * tan(angle);
 	xstep = N;
 	if (!israyfacingright(angle))

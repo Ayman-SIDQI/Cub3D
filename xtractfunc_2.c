@@ -6,7 +6,7 @@
 /*   By: asidqi <asidqi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/25 16:25:48 by asidqi            #+#    #+#             */
-/*   Updated: 2023/09/17 16:36:24 by asidqi           ###   ########.fr       */
+/*   Updated: 2023/09/21 13:10:31 by asidqi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,20 @@ bool	find_zeros(int i, char **map)
 	o = 0;
 	while (map[i][o] != '\0')
 	{
-		if (map[i][o] == '0' && 
-			(((!(map[i - 1][o]) || map[i - 1][o] <= ' '))
-			|| ((!(map[i + 1][o]) || map[i + 1][o] <= ' '))
-			|| ((!(map[i][o + 1]) || map[i][o + 1] <= ' '))
-			|| ((!(map[i][o - 1]) || map[i][o - 1] <= ' '))))
-			return (true);
+		if (map[i][o] == '0' || map[i][o] == 'N' || map[i][o] == 'E' \
+		|| map[i][o] == 'W' || map[i][o] == 'S')
+		{
+			if (i == 0 || (ft_strlen(map[i - 1]) < o) \
+			|| (!(map[i - 1][o]) || map[i - 1][o] <= ' '))
+				return (true);
+			if ((ft_strlen(map[i + 1]) < o) || (!(map[i + 1][o]) \
+			|| map[i + 1][o] <= ' '))
+				return (true);
+			if ((!(map[i][o + 1]) || map[i][o + 1] <= ' '))
+				return (true);
+			if ((!(map[i][o - 1]) || map[i][o - 1] <= ' '))
+				return (true);
+		}
 		o++;
 	}
 	return (false);

@@ -1,34 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error_one.c                                        :+:      :+:    :+:   */
+/*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: asidqi <asidqi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/23 15:14:21 by asidqi            #+#    #+#             */
-/*   Updated: 2023/09/21 14:32:27 by asidqi           ###   ########.fr       */
+/*   Created: 2022/10/16 10:02:09 by asidqi            #+#    #+#             */
+/*   Updated: 2023/09/17 13:54:50 by asidqi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "libft.h"
 
-void	exit_perror(t_pov *all)
+t_list	*ft_lstnew(char *value)
 {
-	int	i;
+	t_list	*new;
 
-	i = -1;
-	if (all == NULL)
-	{
-		perror("Error\n");
-		exit(1);
-	}
-	while (all->tc[++i] && i < 4)
-		free(all->tc[i]);
-	if (all->bm)
-		free_b2d(all->bm);
-	if (all->map)
-		free_2d(all->map);
-	ft_lstclear(&all->map_2d, &free);
-	perror("Error\nInvalid map ¯\\_(ツ)_/¯\n");
-	exit(1);
+	new = malloc(sizeof(t_list));
+	if (!new)
+		return (0);
+	new->content = ft_strdup(value);
+	new->next = NULL;
+	new->prv = NULL;
+	return (new);
 }

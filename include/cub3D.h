@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hcharia < hcharia@student.1337.ma>         +#+  +:+       +#+        */
+/*   By: asidqi <asidqi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 16:06:07 by asidqi            #+#    #+#             */
-/*   Updated: 2023/09/21 10:00:00 by hcharia          ###   ########.fr       */
+/*   Updated: 2023/09/21 12:57:12 by asidqi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,5 +131,6 @@ void			vertical(t_pov *all, float angle);
 int				israyfacingright(float angle);
 int				wallhit(t_pov *all, float x, float y);
 void			coor_fill(t_pov *all, int j);
+void			free_b2d(char **str);
 
 #endif
