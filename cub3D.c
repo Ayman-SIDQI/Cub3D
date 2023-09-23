@@ -6,7 +6,7 @@
 /*   By: asidqi <asidqi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 16:06:01 by asidqi            #+#    #+#             */
-/*   Updated: 2023/09/23 07:44:27 by asidqi           ###   ########.fr       */
+/*   Updated: 2023/09/23 20:13:44 by asidqi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,17 +56,6 @@ void	cf_background(void *name)
 	}
 }
 
-void	sway(double x, double y, void *name)
-{
-	t_pov	*all;
-
-	all = name;
-	(void)y;
-	mlx_set_cursor_mode(all->mlx, MLX_MOUSE_HIDDEN);
-	mlx_set_mouse_pos(all->mlx, 960, 540);
-	all->map_info.angle += (x - 960) / 400;
-}
-
 int	main(int ac, char **av)
 {
 	t_pov	all;
@@ -84,7 +73,6 @@ int	main(int ac, char **av)
 	mlx_image_to_window(all.mlx, all.img, 0, 0);
 	mlx_image_to_window(all.mlx, all.hand_img, 0, 810);
 	mlx_loop_hook(all.mlx, sprite_anim, &all);
-	mlx_cursor_hook(all.mlx, sway, &all);
 	mlx_loop_hook(all.mlx, cf_background, &all);
 	mlx_loop_hook(all.mlx, keys, &all);
 	mlx_loop_hook(all.mlx, graphic, &all);
