@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hcharia < hcharia@student.1337.ma>         +#+  +:+       +#+        */
+/*   By: asidqi <asidqi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 21:41:59 by asidqi            #+#    #+#             */
-/*   Updated: 2023/09/21 17:10:57 by hcharia          ###   ########.fr       */
+/*   Updated: 2023/09/23 08:02:20 by asidqi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,14 +48,6 @@ void	skip_empty(t_pov *all)
 		tmp = tmp->next;
 	while (tmp && (!nasa(tmp->content) || !tmp->content[0]))
 		tmp = tmp->next;
-	if (tmp && tmp->next)
-	{
-		if (all->bm)
-			free_b2d(all->bm);
-		ft_lstclear(&all->map_2d, &free);
-		perror("Error\nInvalid map ¯\\_(ツ)_/¯\n");
-		exit(1);
-	}
 }
 
 void	jm3str(char *av, t_pov *all)

@@ -6,7 +6,7 @@
 /*   By: asidqi <asidqi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 16:06:01 by asidqi            #+#    #+#             */
-/*   Updated: 2023/09/21 10:45:33 by asidqi           ###   ########.fr       */
+/*   Updated: 2023/09/23 07:44:27 by asidqi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ int	main(int ac, char **av)
 	t_pov	all;
 
 	if (ac != 2)
-		return (1);
+		return (perror("Error\n"), 1);
 	nullification(&all);
 	parse(av[1], &all);
 	init_frm(&all);

@@ -6,7 +6,7 @@
 /*   By: asidqi <asidqi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 16:06:07 by asidqi            #+#    #+#             */
-/*   Updated: 2023/09/21 12:57:12 by asidqi           ###   ########.fr       */
+/*   Updated: 2023/09/23 07:42:03 by asidqi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # include <MLX42/MLX42.h>
 # include <stdio.h>
 # include <stdlib.h>
+# include <string.h>
 # include "get_next_line.h"
 # include "libft.h"
 # include <math.h>
