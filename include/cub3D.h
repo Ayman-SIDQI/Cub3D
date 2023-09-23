@@ -6,7 +6,7 @@
 /*   By: asidqi <asidqi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 16:06:07 by asidqi            #+#    #+#             */
-/*   Updated: 2023/09/23 07:42:03 by asidqi           ###   ########.fr       */
+/*   Updated: 2023/09/23 20:24:48 by asidqi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,5 +133,6 @@ int				israyfacingright(float angle);
 int				wallhit(t_pov *all, float x, float y);
 void			coor_fill(t_pov *all, int j);
 void			free_b2d(char **str);
+void			fillcolors(t_pov *all);
 
 #endif

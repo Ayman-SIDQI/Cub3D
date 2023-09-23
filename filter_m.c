@@ -6,7 +6,7 @@
 /*   By: asidqi <asidqi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 11:23:46 by asidqi            #+#    #+#             */
-/*   Updated: 2023/09/21 13:05:10 by asidqi           ###   ########.fr       */
+/*   Updated: 2023/09/23 20:24:13 by asidqi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,21 +79,5 @@ void	fillcolors(t_pov *all)
 			all->wal[i]->pixels[j + 3]);
 			j += all->wal[i]->bytes_per_pixel;
 		}
-	}
-}
-
-void	colorize_swg(t_pov *all, char *joined)
-{
-	int	i;
-
-	fillcolors (all);
-	i = 0;
-	while (++i < 98)
-	{
-		joined = ft_strjoin("./frames/", ft_itoa(i));
-		all->frm[i - 1] = mlx_load_png(joined);
-		free(joined);
-		if (!all->frm[i - 1])
-			exit_perror(all);
 	}
 }
